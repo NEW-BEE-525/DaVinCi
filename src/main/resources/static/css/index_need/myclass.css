@@ -70,7 +70,7 @@ footer a:hover{
 }
 .onmoseover{height: 2px;width: 0px;bottom: 0px;background: #FF7E00;left: 50%;position: absolute;transform: translateX(-50%);transition: all 0.2s;}
 .onmoseoveractive{height: 2px;width: 30px;bottom: 0px;background: #FF7E00;left: 50%;position: absolute;transform: translateX(-50%);transition: all 0.2s;}
-/*header结束*/
+
 
 /*productsservices.html*/
 .pull-left ul#menu_list li, .pull-left ul#menu_list li a {
