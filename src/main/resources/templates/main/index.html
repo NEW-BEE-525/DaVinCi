@@ -4,8 +4,8 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="达分期、消费金融服务平台、教育分期、家居家电分期、低至0利息0首付">
-    <meta name="description" content="达分期是达飞纷期推出的消费金融服务平台，专注为中国家庭用户提供“家·生活”消费金融服务，涵盖亲子教育、家居家电等家庭领域，让幸福“家·生活”走进中国亿万家庭。">
+    <!--<meta name="keywords" content="达分期、消费金融服务平台、教育分期、家居家电分期、低至0利息0首付">-->
+    <!--<meta name="description" content="达分期是达飞纷期推出的消费金融服务平台，专注为中国家庭用户提供“家·生活”消费金融服务，涵盖亲子教育、家居家电等家庭领域，让幸福“家·生活”走进中国亿万家庭。">-->
     <link rel="shortcut icon" href="../../static/img/index_need/dfq_logo.ico">
     <link href=" ../../static/css/index_need/bootstrap.min.css" rel="stylesheet">
     <link href="../../static/css/index_need/swiper.min.css" rel="stylesheet">
@@ -152,8 +152,6 @@
                 <div class="two" id="head_pic_list">
                     <em class="member-box"></em>
                     <ul>
-                        <!--<li style="display: none;"><a href="#">我的授课表</a></li>-->
-                        <!--<li style="font-size: 10px;height: 12px">隐藏</li>-->
                         <li><a href="#">个人中心</a></li>
                         <li><a href="#">我的订单</a></li>
                         <li><a href="#">我的账单</a></li>
@@ -168,9 +166,9 @@
                 head_pic.onmouseover = function () {
                     document.getElementsByClassName("two")[0].style.visibility = "visible";
                 };
-                // head_pic.onmouseout = function () {
-                //     document.getElementsByClassName("two")[0].style.visibility = "hidden";
-                // }
+                head_pic_list.onmouseleave = function () {
+                    document.getElementsByClassName("two")[0].style.visibility = "hidden";
+                }
 
             </script>
         </div>
@@ -209,8 +207,6 @@
 <div class="swiper-container index-swiper">
     <div class="swiper-wrapper">
         <div class="swiper-slide page" style="">
-            <!--<div style="background: url(img/bg01.png) no-repeat;background-size: 100% 100%;width: 100%;height: 100%;">-->
-            <!--<video src="http://file.dafy.com.cn/OSS/20180425/indexvideo_171600226.mp4" autoplay="autoplay" loop="loop">您的浏览器不支持 video 标签。</video>-->
             <video style="position: absolute;left: 0;top: 0;" id="indexVideo" autoplay loop muted preload="auto"
                    style="" x-webkit-airplay="true" x5-video-player-fullscreen="true" x5-video-player-type="h5"
                    playsinline webkit-playsinline>
