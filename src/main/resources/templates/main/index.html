@@ -145,11 +145,17 @@
         <div class="pic">
             <a href="#" id="head_pic">
                 <img th:title="${account_name}?${account_name}:'用户头像'"
-                     src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                     src="../../static/img/account/common_head_pic.jpg"
                      alt="头像" style="position: relative;">
             </a>
+            <div class="two" id="head_pic_list" th:if="${account} eq null">
+                <em class="member-box"></em>
+                <ul>
+                    <li><a href="#">登录</a> \ <a href="#">注册</a></li>
 
-            <div class="two" id="head_pic_list">
+                </ul>
+            </div>
+            <div class="two" id="head_pic_list" th:if="${account} ne null">
                 <em class="member-box"></em>
                 <ul>
                     <li><a href="../account/personal_center.html">个人中心</a></li>
@@ -174,42 +180,11 @@
         </div>
     </div>
 </header>
-<header class="hd-bgc hd-bgcphone" style="position: fixed;width: 100%;top: 0;z-index: 100;">
-    <div class="pull-left" style="padding-left: 30px;">
-        <img src="../../static/img/index_need/dfqlogo.png" height="50px" width="100px" alt="A">
-    </div>
-    <div class="pull-right hamburger_menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <nav class="hd_nav">
-        <ul class='text-l'>
-            <li class="hd_nav-item">
-                <a class="hd_nav-a active" href="index.html">首页</a>
-            </li>
-            <li class="hd_nav-item">
-                <a class="hd_nav-a" href="#">站内产品</a>
-            </li>
-            <li class="hd_nav-item">
-                <a class="hd_nav-a" href="#">站外产品</a>
-            </li>
-            <li class="hd_nav-item">
-                <a class="hd_nav-a" href="#">关于达分期</a>
-            </li>
-            <li class="hd_nav-item">
-                <a class="hd_nav-a" href="#">APP下载</a>
-            </li>
-        </ul>
-    </nav>
-</header>
 <!-- Swiper -->
 <div class="swiper-container index-swiper">
     <div class="swiper-wrapper">
         <div class="swiper-slide page" style="">
-            <video style="position: absolute;left: 0;top: 0;" id="indexVideo" autoplay loop muted preload="auto"
-                   style="" x-webkit-airplay="true" x5-video-player-fullscreen="true" x5-video-player-type="h5"
-                   playsinline webkit-playsinline>
+            <video style="position: absolute;left: 0;top: 0;" id="indexVideo" autoplay loop muted preload="auto">
                 <source src="https://file.dafy.com.cn/OSS/20180425/indexvideo_171600226.mp4" type="video/mp4">
             </video>
             <img class="ani imgwh24" swiper-animate-effect="fadeIn" swiper-animate-duration="2s"
@@ -382,110 +357,6 @@
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
-</div>
-<div class="mediaindex-swiper" style="padding-top: 50px">
-    <div style="height: 200px;position: relative;background: url(../../static/img/index_need/bg03.jpg) no-repeat;background-size: 100% 100%;width: 100%;">
-        <img style="position: absolute;top: 50%;left: 50%;margin-top:-21px ;margin-left: -127px;" class="imgwh24"
-             src="#">
-    </div>
-    <div class=""
-         style="background: url(../../static/img/index_need/bg02.png) no-repeat;background-size: 100% 100%;width: 100%;height: 200px;">
-        <div>
-            <div class="font_color-3 text-c font-size-7" style="padding: 20px 0 10px;">优质商家 覆盖众多品牌</div>
-            <div class="container">
-                <div class="row text-c font-size-4 font_color-2" style="margin: 0;">
-
-                    <div class="col-xs-4 padd2">
-                        <img src="#" class="imgwh27">
-                    </div>
-                    <div class="col-xs-4 padd2">
-                        <img src="#" class="imgwh27">
-                    </div>
-                    <div class="col-xs-4 padd2">
-                        <img src="#" class="imgwh27">
-                    </div>
-                    <div class="col-xs-4 padd2">
-                        <img src="#" class="imgwh27">
-                    </div>
-                    <div class="col-xs-4 padd2">
-                        <img src="#" class="imgwh27">
-                    </div>
-                    <div class="col-xs-4 padd2">
-                        <img src="#" class="imgwh27">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class=""
-         style="background: url(../../static/img/index_need/bg01.png) no-repeat;background-size: 100% 100%;width: 100%;height: 200px;">
-        <div class="text-c">
-            <div class="font-size-7 font_color-3" style="padding: 25px 0 20px;">极致体验 超越价值</div>
-            <div class="container">
-                <div class="row" style="width: 310px;margin: 0 auto;">
-                    <div class="col-xs-4">
-                        <img src="#" class="imgwh25">
-                        <div class="font_color-3 font-size-3 mediapd">提前享受资源</div>
-                    </div>
-                    <div class="col-xs-4">
-                        <img src="#" class="imgwh25">
-                        <div class="font_color-3 font-size-3 mediapd">减轻经济压力</div>
-                    </div>
-                    <div class="col-xs-4">
-                        <img src="#" class="imgwh25">
-                        <div class="font_color-3 font-size-3 mediapd">节余现金流</div>
-                    </div>
-                    <div class="col-xs-4">
-                        <img src="#" class="imgwh25" style="margin-top: 10px;">
-                        <div class="font_color-3 font-size-3 mediapd">形成理财意识</div>
-                    </div>
-                    <div class="col-xs-4">
-                        <img src="#" class="imgwh25" style="margin-top: 10px;">
-                        <div class="font_color-3 font-size-3 mediapd">建立信用记录</div>
-                    </div>
-                    <div class="col-xs-4">
-                        <img src="#" class="imgwh25" style="margin-top: 10px;">
-                        <div class="font_color-3 font-size-3 mediapd">消费升级</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class=""
-         style="background: url(../../static/img/index_need/bg04.png) no-repeat;background-size: 100% 100%;width: 100%;height: 200px;">
-        <div class="text-c" style="padding-top: 76px;">
-            <div class="font-size-7 font_color-3">优质生活日 千种钜惠等你来</div>
-            <div class="font_color-3 font-size-3">免单+半价，吃喝玩乐，满足你的全部需求</div>
-        </div>
-    </div>
-    <footer class="main-footer" style="padding-top: 0;">
-        <div class="container-fluid">
-            <div class="row text-c">
-                <div class="col-sm-3">
-                    <!--<img src="#" style="width: 90px;">-->
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="font_color-4 mediapd2">
-                        <p class="font-size-3">友情链接： <a href="#" target="_blank">铁道集团</a> | <a
-                                href="#" target="_blank">铁道云贷</a> | <a href="#" target="_blank">铁道金控</a> | <a
-                                href="#" target="_blank">铁道商城</a></p>
-                        <p class="font-size-3 font_color-5" style="padding-top: 6px;">办公地址：长沙市天心区铁道学院二综203</p>
-                        <p class="font-size-3 font_color-5">服务热线：400-888-8888</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <span>京ICP备190829号-1 Ccpyright@2019 铁道软件商务咨询（长沙）有限公司 版权所有</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 </div>
 <script src="../../static/js/index_need/jquery.js"></script>
 <script src="../../static/js/index_need/swiper.min.js"></script>
