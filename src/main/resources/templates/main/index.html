@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -139,26 +139,26 @@
             </ul>
         </div>
         <div class="pull-right telephone font_color-3">
-            <img src="../../static/img/index_need/telephonewhite.png" width="20px" height="14px" style="padding-right: 5px;" id="telephone">400-888-8888
+            <img src="../../static/img/index_need/telephonewhite.png" width="20px" height="14px"
+                 style="padding-right: 5px;" id="telephone">400-888-8888
         </div>
         <div class="pic">
             <a href="#" id="head_pic">
-                <img title="16期-来坛天子笑"
+                <img th:title="${account_name}?${account_name}:'用户头像'"
                      src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                     alt="头像"
-                     style="position: relative;">
+                     alt="头像" style="position: relative;">
             </a>
 
-                <div class="two" id="head_pic_list">
-                    <em class="member-box"></em>
-                    <ul>
-                        <li><a href="#">个人中心</a></li>
-                        <li><a href="#">我的订单</a></li>
-                        <li><a href="#">我的账单</a></li>
-                        <li><a href="#">安全中心</a></li>
-                        <li><a href="#">退出登录</a></li>
-                    </ul>
-                </div>
+            <div class="two" id="head_pic_list">
+                <em class="member-box"></em>
+                <ul>
+                    <li><a href="../account/personal_center.html">个人中心</a></li>
+                    <li><a href="#">我的订单</a></li>
+                    <li><a href="#">我的账单</a></li>
+                    <li><a href="#">安全中心</a></li>
+                    <li><a href="#">退出登录</a></li>
+                </ul>
+            </div>
 
             <script>
                 var head_pic = document.getElementById("head_pic");

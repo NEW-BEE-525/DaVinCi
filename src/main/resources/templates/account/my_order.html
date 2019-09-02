@@ -14,6 +14,7 @@
     <link href="https://www-cdn-res.shiguangkey.com/res/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <title>个人中心</title>
     <link href="../../static/css/account/personal_center.css" rel="stylesheet">
+    <link href="../../static/css/account/my_order.css" rel="stylesheet">
     <script src="../../static/js/index_need/jquery.js"></script>
     <style>
         .header_a:hover {
@@ -78,7 +79,7 @@
                     <div class="_1NC1D">
                         <div class="rc-tabs rc-tabs-top">
                             <div role="tab" aria-disabled="false" aria-selected="true"
-                                 class="rc-tabs-tab-active rc-tabs-tab" id="above_info">个人信息
+                                 class="rc-tabs-tab-active rc-tabs-tab" id="above_info">我的订单
                             </div>
                             <div class="rc-tabs-ink-bar rc-tabs-ink-bar-animated"
                                  style="display: block; transform: translate3d(0px, 0px, 0px); width: 96px;">
@@ -88,103 +89,64 @@
 
                         <!--个人信息-->
                         <div class="rc-tabs-content rc-tabs-content-no-animated">
-                            <div role="tabpanel" aria-hidden="false" class="rc-tabs-tabpane rc-tabs-tabpane-active"
-                                 style="margin-top: 0px;">
-                                <div class="_1Zcg9">
-                                    <div class="_2u4ro">
-                                        <div>
-                                            <table cellspacing="15px" class="_319EJ">
-                                                <tbody>
-                                                <tr>
-                                                    <td>账号：</td>
-                                                    <td>m15367489070<a href="javascript:;" class="_2uLFV">修改密码</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span>昵称：</span><i>*</i></td>
-                                                    <td><input type="text" class="_1YMqD"
-                                                               placeholder="昵称长度2-15个字，可以是汉字、字母、'·'号或数字"
-                                                               value="16期-来坛天子笑">
-                                                        <p class="_1dh-i"></p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>头像：</td>
-                                                    <td>
-                                                        <div>
-                                                            <div class="dhuTH"><img
-                                                                    src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                                    alt="头像"></div>
-                                                            <div class="_3-8YK">
-                                                                <div style="margin-bottom: 20px;">
-                                                                    支持jpg、gif、png或bmp格式的图片，小于5M
-                                                                </div>
-                                                                <div><label for="image-clip-upload-input"
-                                                                            class="XqBc3">修改头像<input type="file"
-                                                                                                     id="image-clip-upload-input"
-                                                                                                     accept="image/gif, image/jpeg, image/jpg, image/png, image/bmp"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>性别：</td>
-                                                    <td>
-                                                        <div><label class="_2YvKE" for="male"><input type="radio"
-                                                                                                     name="infoSexRadio"
-                                                                                                     id="male"
-                                                                                                     value="1">&nbsp;男</label><label
-                                                                class="_2YvKE" for="female"><input
-                                                                type="radio" name="infoSexRadio" id="female"
-                                                                value="0" checked="">&nbsp;
-                                                            女</label></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>常用邮箱：</td>
-                                                    <td><span
-                                                            style="float: left; width: 200px; line-height: 2;"></span><a
-                                                            href="javascript:;" class="_2uLFV">绑定邮箱</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>手机号码：</td>
-                                                    <td><span style="float: left; width: 200px; line-height: 2;">15367489070</span><a
-                                                            href="javascript:;" class="_2uLFV">绑定手机</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span>QQ号：</span><i>*</i></td>
-                                                    <td><input type="qq" class="_3lIvW" placeholder="请输入常用的QQ号码"
-                                                               value="975344363">
-                                                        <p class="_1dh-i"></p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span>微信：</span></td>
-                                                    <td><input type="微信" class="_3lIvW" placeholder="请输入微信"
-                                                               value="zz--jacky">
-                                                        <p class="_1dh-i"></p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>生日：</td>
-                                                    <td><input title="点击选择日期" placeholder="选择日期" class="_2AmVs"
-                                                               readonly="" value="" type="date">
-                                                        <p class="_1dh-i"></p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>个性签名：</td>
-                                                    <td><textarea maxlength="20" class="_2uDW_"
-                                                                  placeholder="请填写签名，20个字内"></textarea></td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                            <div class="order_list">
+                                <a>
+                                    <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                         width="70px" height="70px" style="vertical-align: unset">
+                                </a>
+                                <div class="order_list_textcontent">
+                                    <a>订单编号</a><br><a>订单编号</a><br>
+                                    <a>交易情况</a>
+                                </div>
+                            </div>
+                            <div class="order_list">
+                                <a>
+                                    <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                         width="70px" height="70px" style="vertical-align: unset">
+                                </a>
+                                <div class="order_list_textcontent">
+                                    <a>订单编号</a><br><a>订单编号</a><br>
+                                    <a>交易情况</a>
+                                </div>
+                            </div>
+                            <div class="order_list">
+                                <a>
+                                    <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                         width="70px" height="70px" style="vertical-align: unset">
+                                </a>
+                                <div class="order_list_textcontent">
+                                    <a>订单编号</a><br><a>订单编号</a><br>
+                                    <a>交易情况</a>
+                                </div>
+                            </div>
+                            <div class="order_list">
+                                <a>
+                                    <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                         width="70px" height="70px" style="vertical-align: unset">
+                                </a>
+                                <div class="order_list_textcontent">
+                                    <a>订单编号</a><br><a>订单编号</a><br>
+                                    <a>交易情况</a>
+                                </div>
+                            </div>
+                            <div class="order_list">
+                                <a>
+                                    <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                         width="70px" height="70px" style="vertical-align: unset">
+                                </a>
+                                <div class="order_list_textcontent">
+                                    <a>订单编号</a><br><a>订单编号</a><br>
+                                    <a>交易情况</a>
+                                </div>
+                            </div>
+                            <div class="order_list">
+                                <a>
+                                    <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                         width="70px" height="70px" style="vertical-align: unset">
+                                </a>
+                                <div class="order_list_textcontent">
+                                    <a>订单编号</a><br><a>订单编号</a><br>
+                                    <a>交易情况</a>
                                 </div>
                             </div>
                         </div>
