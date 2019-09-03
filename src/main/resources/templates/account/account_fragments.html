@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head(title)">
+<head>
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no,email=no,address=no"><!-- 清除页面缓存 -->
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta itemprop="name" content="潭州课堂">
-    <meta itemprop="image" content="https://res.shiguangkey.com/file/201810/20/20181020160750926066891.png">
-    <link href="https://www-cdn-res.shiguangkey.com/res/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link rel="shortcut icon" href="../../static/img/index_need/dfq_logo.ico">
     <title th:text="${title}">个人中心</title>
     <link href="../../static/css/account/personal_center.css" rel="stylesheet">
+    <link href="../../static/css/account/my_order_and_bill.css" rel="stylesheet">
     <script src="../../static/js/index_need/jquery.js"></script>
     <style>
         .header_a:hover {
@@ -23,11 +22,8 @@
 <body>
 <div id="root">
     <div id="reactRoot">
-
-        <!--00000-->
         <!--头部-->
-        <!--00000-->
-        <div class="_3UHJr" th:fragment="header">
+        <div class="_3UHJr">
             <div class="_3yuli">
                 <a href="/">
                     <img src="../../static/img/index_need/dfqlogo.png" alt="logo">
@@ -53,141 +49,403 @@
                 </ul>
             </div>
         </div>
-        <!--</div>-->
-
-        <!---->
-        <!--左栏-->
-        <!---->
-        <div class="_3p0h7" th:fragment="left_bar">
+        <!--中间-->
+        <div class="_3p0h7">
+            <!--左栏-->
             <div class="_3WUlw">
                 <ul>
-                    <li class="VrjG_ -jFKi"><a onclick="personal_center_funct()">个人资料</a></li>
-                    <li class="-jFKi"><a onclick="my_order_funct()">我的订单</a></li>
-                    <li class="-jFKi"><a onclick="my_bill_funct()">我的账单</a></li>
-                    <li class="-jFKi"><a onclick="help_funct()">帮助</a></li>
-                    <li class="-jFKi"><a onclick="safe_center_funct()">安全中心</a></li>
+                    <li class="VrjG_ -jFKi"><a onclick="chang_main_div(0)">个人中心</a></li>
+                    <li class="-jFKi"><a onclick="chang_main_div(1)">我的订单</a></li>
+                    <li class="-jFKi"><a onclick="chang_main_div(2)">我的账单</a></li>
+                    <li class="-jFKi"><a onclick="chang_main_div(3)">帮助</a></li>
+                    <li class="-jFKi"><a onclick="chang_main_div(4)">安全中心</a></li>
                 </ul>
             </div>
-
-            <!--上栏-->
+            <!--主体-->
             <div class="qtQ6s">
                 <div class="adminContentBody">
                     <div class="_1NC1D">
                         <!--主体上栏-->
                         <div class="rc-tabs rc-tabs-top">
                             <div role="tab" aria-disabled="false" aria-selected="true"
-                                 class="rc-tabs-tab-active rc-tabs-tab">个人信息
+                                 class="rc-tabs-tab-active rc-tabs-tab" id="above_info">个人中心
                             </div>
                             <div class="rc-tabs-ink-bar rc-tabs-ink-bar-animated"
                                  style="display: block; transform: translate3d(0px, 0px, 0px); width: 96px;">
+                            </div>
+                        </div>
+                        <!--主体的主体-->
+                        <div class="rc-tabs-content rc-tabs-content-no-animated">
+                            <div class="main_html">
+                                <!--
+                                这里只主体，通过异步请求获取
+                                -->
+                                <div class="_1Zcg9 div_list" style="display:none;">
+                                    <div class="_2u4ro">
+                                        <div>
+                                            <table cellspacing="15px" class="_319EJ">
+                                                <tbody>
+                                                <tr>
+                                                    <td><span>昵称：</span><i>*</i></td>
+                                                    <td>
+                                                        <input type="text" class="_1YMqD"
+                                                               placeholder="昵称长度2-15个字，可以是汉字、字母、'·'号或数字"
+                                                               value="16期-来坛天子笑" name="account_name">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>头像：</td>
+                                                    <td>
+                                                        <div>
+                                                            <div class="dhuTH">
+                                                                <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                                     alt="头像" id="preview">
+                                                            </div>
+                                                            <div class="_3-8YK">
+                                                                <div style="margin-bottom: 20px;">
+                                                                    支持jpg、png、jpeg、gif、bmp格式的图片，小于5M
+                                                                </div>
+                                                                <div>
+                                                                    <label for="image-clip-upload-input" class="XqBc3">修改头像
+                                                                        <input type="file" id="image-clip-upload-input"
+                                                                               name="pic_file"
+                                                                               onchange="imgPreview(this)"
+                                                                               accept="image/jpg, image/png, image/jpeg, image/gif, iamge/bmp">
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>性别：</td>
+                                                    <td>
+                                                        <div>
+                                                            <label class="_2YvKE" for="male">
+                                                                <input type="radio" name="infoSexRadio"
+                                                                       id="male" value="1" checked>&nbsp;男
+                                                            </label>
+                                                            <label class="_2YvKE" for="female">
+                                                                <input type="radio" name="infoSexRadio"
+                                                                       id="female" value="2">&nbsp; 女
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>信誉等级：</td>
+                                                    <td>
+                                                        <span style="float: left; width: 200px; line-height: 2;" id="user_level">0</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>常用邮箱：</td>
+                                                    <td>
+                                                        <input type="email" class="_3lIvW" name="email" title="请输入邮箱">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>手机号码：</td>
+                                                    <td>
+                                                        <span style="float: left; width: 200px; line-height: 2;" id="hidden_phone">153xxxxx070</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>生日：</td>
+                                                    <td>
+                                                        <input title="点击选择日期" placeholder="选择日期" class="_2AmVs"
+                                                               type="date" name="birthday">
+                                                        <p class="_1dh-i"></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>个性签名：</td>
+                                                    <td>
+                        <textarea maxlength="20" class="_2uDW_"
+                                  placeholder="请填写签名，20个字内">
+                        </textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <a class="_2uLFV" onclick="save_info()">保存设置</a>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="div_list" style="display: none">
+                                    <div class="order_list">
+                                        <a>
+                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                 width="70px" height="70px" style="vertical-align: unset">
+                                        </a>
+                                        <div class="order_list_textcontent">
+                                            <a>订单编号</a><br><a>订单编号</a><br>
+                                            <a>交易情况</a>
+                                        </div>
+                                    </div>
+                                    <div class="order_list">
+                                        <a>
+                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                 width="70px" height="70px" style="vertical-align: unset">
+                                        </a>
+                                        <div class="order_list_textcontent">
+                                            <a>订单编号</a><br><a>订单编号</a><br>
+                                            <a>交易情况</a>
+                                        </div>
+                                    </div>
+                                    <div class="order_list">
+                                        <a>
+                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                 width="70px" height="70px" style="vertical-align: unset">
+                                        </a>
+                                        <div class="order_list_textcontent">
+                                            <a>订单编号</a><br><a>订单编号</a><br>
+                                            <a>交易情况</a>
+                                        </div>
+                                    </div>
+                                    <div class="order_list">
+                                        <a>
+                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                 width="70px" height="70px" style="vertical-align: unset">
+                                        </a>
+                                        <div class="order_list_textcontent">
+                                            <a>订单编号</a><br><a>订单编号</a><br>
+                                            <a>交易情况</a>
+                                        </div>
+                                    </div>
+                                    <div class="order_list">
+                                        <a>
+                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                 width="70px" height="70px" style="vertical-align: unset">
+                                        </a>
+                                        <div class="order_list_textcontent">
+                                            <a>订单编号</a><br><a>订单编号</a><br>
+                                            <a>交易情况</a>
+                                        </div>
+                                    </div>
+                                    <div class="order_list">
+                                        <a>
+                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                 width="70px" height="70px" style="vertical-align: unset">
+                                        </a>
+                                        <div class="order_list_textcontent">
+                                            <a>订单编号</a><br><a>订单编号</a><br>
+                                            <a>交易情况</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="div_list" style="display: none">
+                                    <div class="bill_list">
+                                        <a>
+                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                 width="70px" height="70px" style="vertical-align: unset">
+                                        </a>
+                                        <div class="bill_list_textcontent">
+                                            <a>
+                                                <h3>交易物品：XXXX</h3>
+                                                <h4>交易时间：XXX：XXX：XXX</h4>
+                                            </a>
+                                        </div>
+                                        <div class="bill_price">
+                                            <h1>+0.01</h1>
 
+                                        </div>
+                                    </div>
+                                    <div class="bill_list">
+                                        <a>
+                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                 width="70px" height="70px" style="vertical-align: unset">
+                                        </a>
+                                        <div class="bill_list_textcontent">
+                                            <h3>交易物品：XXXX</h3>
+                                            <h4>交易时间：XXX：XXX：XXX</h4>
+
+                                        </div>
+                                        <div class="bill_price">
+                                            <h1>+0.01</h1>
+
+                                        </div>
+                                    </div>
+                                    <div class="bill_list">
+                                        <a>
+                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                 width="70px" height="70px" style="vertical-align: unset">
+                                        </a>
+                                        <div class="bill_list_textcontent">
+                                            <h3>交易物品：XXXX</h3>
+                                            <h4>交易时间：XXX：XXX：XXX</h4>
+                                        </div>
+                                        <div class="bill_price">
+                                            <h1>+0.01</h1>
+
+                                        </div>
+                                    </div>
+                                    <div class="bill_list">
+                                        <a>
+                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                 width="70px" height="70px" style="vertical-align: unset">
+                                        </a>
+                                        <div class="bill_list_textcontent">
+                                            <h3>交易物品：XXXX</h3>
+                                            <h4>交易时间：XXX：XXX：XXX</h4>
+                                        </div>
+                                        <div class="bill_price">
+                                            <h1>+0.01</h1>
+
+                                        </div>
+                                    </div>
+                                    <div class="bill_list">
+                                        <a>
+                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                 width="70px" height="70px" style="vertical-align: unset">
+                                        </a>
+                                        <div class="bill_list_textcontent">
+                                            <h3>交易物品：XXXX</h3>
+                                            <h4>交易时间：XXX：XXX：XXX</h4>
+                                        </div>
+                                        <div class="bill_price">
+                                            <h1>+0.01</h1>
+
+                                        </div>
+                                    </div>
+                                    <div class="bill_list">
+                                        <a>
+                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                 width="70px" height="70px" style="vertical-align: unset">
+                                        </a>
+                                        <div class="bill_list_textcontent">
+                                            <h3>交易物品：XXXX</h3>
+                                            <h4>交易时间：XXX：XXX：XXX</h4>
+                                        </div>
+                                        <div class="bill_price">
+                                            <h1>+0.01</h1>
+
+                                        </div>
+                                    </div>
+                                    <div class="bill_list">
+                                        <a>
+                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                                                 width="70px" height="70px" style="vertical-align: unset">
+                                        </a>
+                                        <div class="bill_list_textcontent">
+                                            <a>
+                                                <h3>交易物品：XXXX</h3>
+                                                <h4>交易时间：XXX：XXX：XXX</h4>
+                                            </a>
+                                        </div>
+                                        <div class="bill_price">
+                                            <h1>+0.01</h1>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="div_list" style="display: none">
+                                    <div class="">
+                                        <br>
+                                        <p>
+                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <p>
+                                            xxxxxxxxxxxxxxxxxxxxxxxxxx1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <p>
+                                            xxxxxxxxxxxxxxxxxxxxxxxxx111xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <br>
+                                        <p>
+                                            xxxxxxxxxxxxxxxx1111111111111111111xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <p>
+                                            xxxxxxxxxxxxxxxxxxxx11111111111xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <p>
+                                            xxxxxxxxxxxxxxxx11111111111111111111xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <br>
+                                        <p>
+                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <p>
+                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <p>
+                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <br>
+                                        <p>
+                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <p>
+                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <p>
+                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <br>
+                                        <p>
+                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <p>
+                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                        <p>
+                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+
+
+                                    </div>
+                                </div>
+                                <div class="div_list" style="display: none">
+                                    <table cellspacing="15px" class="_319EJ">
+                                        <tr></tr>
+                                        <tr></tr>
+                                        <tr>
+                                            <td>手机号码：</td>
+                                            <td><input type="tel" readonly title="手机号" value="15367489070"
+                                                       class="_1YMqD" name="phone"></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td><a onclick="change_phone()" class="_2uLFV">修改手机号</a></td>
+                                        </tr>
+                                        <tr></tr>
+                                        <tr></tr>
+                                        <tr>
+                                            <td>新密码：</td>
+                                            <td><input type="password" class="_1YMqD" name="new_pwd" title="新密码"
+                                                       placeholder="请输入新密码">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>重复密码：</td>
+                                            <td><input type="password" class="_1YMqD" name="re_pwd" title="再次输入新密码"
+                                                       placeholder="再次输入新密码"></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td><a onclick="change_password()" class="_2uLFV">修改密码</a></td>
+                                        </tr>
+                                        <tr></tr>
+                                        <tr></tr>
+                                        <tr>
+                                            <td>真实姓名：</td>
+                                            <td><input type="text" class="_1YMqD" title="真实姓名" name="real_name"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>学号：</td>
+                                            <td><input type="number" class="_1YMqD" title="学号" name="student_number">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>所读学校：</td>
+                                            <td><input type="text" class="_1YMqD" title="学校名称" name="school_name"></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td><a onclick="change_real_info()" class="_2uLFV">修改信息</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
-
-        <div class="rc-tabs-content rc-tabs-content-no-animated">
-            <div class="main_html">
-                <!--
-                这里只主体，通过异步请求获取
-                -->
-            </div>
-        </div>
-        <script>
-            $(function () {
-                var page_type = document.title;
-                var url = "";
-                switch (page_type) {
-                    case "个人中心":
-                        url = "#";
-                        personal_center_funct();
-                        break;
-                    case "我的订单":
-                        url = "#";
-                        my_order_funct();
-                        break;
-                    case "我的账单":
-                        url = "#";
-                        my_bill_funct();
-                        break;
-                    case "帮助":
-                        url = "#";
-                        help_funct();
-                        break;
-                    case "安全中心":
-                        url = "#";
-                        safe_center_funct();
-                        break;
-                    default:
-                        alert("后端出错了");
-                }
-                $.get(url, function (html) {
-                    document.getElementsByName("main_html")[0].innerHTML = html;
-                })
-            });
-        </script>
-        <script>
-            function personal_center_funct() {
-                document.getElementsByClassName("VrjG_")[0].classList.remove("VrjG_");
-                document.getElementsByClassName("-jFKi")[0].classList.add("VrjG_");
-                document.getElementById("above_info").innerText = "个人中心";
-                $.ajax("#", function (html) {
-                    console.log(111);
-                    document.getElementsByName("main_html")[0].innerHTML = html;
-                })
-            }
-
-            function my_order_funct() {
-                document.getElementsByClassName("VrjG_")[0].classList.remove("VrjG_");
-                document.getElementsByClassName("-jFKi")[1].classList.add("VrjG_");
-                document.getElementById("above_info").innerText = "我的订单";
-                $.ajax("#", function (html) {
-                    console.log(222);
-                    document.getElementsByName("main_html")[0].innerHTML = html;
-                })
-            }
-
-            function my_bill_funct() {
-                document.getElementsByClassName("VrjG_")[0].classList.remove("VrjG_");
-                document.getElementsByClassName("-jFKi")[2].classList.add("VrjG_");
-                document.getElementById("above_info").innerText = "我的账单";
-                $.ajax("#", function (html) {
-                    console.log(333);
-                    document.getElementsByName("main_html")[0].innerHTML = html;
-                })
-            }
-
-            function help_funct() {
-                document.getElementsByClassName("VrjG_")[0].classList.remove("VrjG_");
-                document.getElementsByClassName("-jFKi")[3].classList.add("VrjG_");
-                document.getElementById("above_info").innerText = "帮助";
-                $.ajax("#", function (html) {
-                    console.log(444);
-                    document.getElementsByName("main_html")[0].innerHTML = html;
-                })
-            }
-
-            function safe_center_funct() {
-                document.getElementsByClassName("VrjG_")[0].classList.remove("VrjG_");
-                document.getElementsByClassName("-jFKi")[4].classList.add("VrjG_");
-                document.getElementById("above_info").innerText = "安全中心";
-                $.ajax("#", function (html) {
-                    console.log(555);
-                    document.getElementsByName("main_html")[0].innerHTML = html;
-                })
-            }
-
-        </script>
     </div>
 </div>
-<!---->
-<!--脚步-->
-<!---->
-<footer class="_3LWKs" th:fragment="footer">
+<!--脚部-->
+<footer class="_3LWKs">
     <div class="w1200">
         <div class="_3aJyk">
             <p class="_2DW2R">
@@ -231,7 +489,190 @@
         </div>
     </div>
 </footer>
-</div>
+<script>
+    $(function () {
+        var page_type = document.title;
+        var url = "";
+        switch (page_type) {
+            case "个人中心":
+                url = "personalCenter";
+                chang_main_div(0);
+                break;
+            case "我的订单":
+                url = "allOrders";
+                chang_main_div(1);
+                break;
+            case "我的账单":
+                url = "allBills";
+                chang_main_div(2);
+                break;
+            case "帮助":
+                url = "help";
+                chang_main_div(3);
+                break;
+            case "安全中心":
+                url = "safetyCenter";
+                chang_main_div(4);
+                break;
+            default:
+                alert("后端出错了");
+        }
+        $.get(url, function (html) {
+            document.getElementsByName("main_html")[0].innerHTML = html;
+        })
+    });
+
+    var div_name_list = ["个人中心", "我的订单", "我的账单", "帮助", "安全中心"];
+    var url_list = ["personalCenter", "allOrders", "allBills", "help", "safetyCenter"];
+    var div_list = document.getElementsByClassName("div_list");
+
+    function chang_main_div(x) {
+        if (x === 4) {
+            if (confirm("进入安全中心需要进行手机验证，您确定吗？")) {
+                $.post("sendVerificat", function (data) {
+                    if (data === "1") {
+                        var str = prompt("手机验证码已发送成功，请输入验证码：");
+                        $.post("judgeVerificat", str, function (result) {
+                            if (result === "1") {
+                                document.getElementsByClassName("VrjG_")[0].classList.remove("VrjG_");
+                                document.getElementsByClassName("-jFKi")[x].classList.add("VrjG_");
+                                document.getElementById("above_info").innerText = div_name_list[x];
+                                document.title = div_name_list[x];
+                                for (var i = 0; i < div_list.length; i++)
+                                    div_list[i].style.display = "none";
+
+                                div_list[x].style.display = "block";
+                                $.post(url_list[x], function (data) {
+                                    console.log(data);
+                                })
+                            }
+                            else
+                                alert("验证码错误！！")
+                        })
+                    }
+                    else {
+                        alert("验证码发送失败！");
+                    }
+                })
+            }
+        } else {
+            document.getElementsByClassName("VrjG_")[0].classList.remove("VrjG_");
+            document.getElementsByClassName("-jFKi")[x].classList.add("VrjG_");
+            document.getElementById("above_info").innerText = div_name_list[x];
+            document.title = div_name_list[x];
+            for (var i = 0; i < div_list.length; i++)
+                div_list[i].style.display = "none";
+            div_list[x].style.display = "block";
+            $.post(url_list[x], function (data) {
+                console.log(data);
+                switch(x){
+                    case 0:
+                        document.getElementsByName("account_name")[0].value = data.username;
+                        document.getElementsByName("infoSexRadio")[data.gender - 1].checked = "true";
+                        document.getElementById("user_level").innerText = data.user_level;
+                        document.getElementsByName("email")[0].value = data.email;
+                        document.getElementById("hidden_phone").innerText = data.mobile.substring(0,2) + "xxxxx" + data.mobile.substring(8,10);
+                        document.getElementById("preview").setAttribute("src","data:image/jpg;base64,"+data.avatar);
+                        document.getElementsByName("birthday").value = data.birthday;
+                        break;
+                }
+            })
+        }
+    }
+
+    function save_info() {
+        var formData = new FormData();
+        formData.append("name", document.getElementsByName("account_name")[0].value);
+        formData.append("pic", document.getElementsByName("pic_file")[0].files[0]);
+        if (document.getElementsByName("infoSexRadio")[0].checked)
+            formData.append("gender", "1");
+        else
+            formData.append("gender", "2");
+        formData.append("email", document.getElementsByName("email")[0].value);
+        formData.append("birthday", document.getElementsByName("birthday")[0].value);
+        $.ajax({
+            url: '#',
+            type: 'POST',
+            cache: false,
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                alert("保存成功！");
+            }
+        })
+    }
+
+    function imgPreview(fileDom) {
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+        //获取文件
+        var file = fileDom.files[0];
+        var imageType = /^image\//;
+        //是否是图片
+        if (!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        //读取完成
+        reader.onload = function (e) {
+            //获取图片dom
+            var img = document.getElementById("preview");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function change_phone() {
+        var phone_num = prompt("请输入新的手机号：");
+        $.post("#", phone_num, function (data) {
+            if (data === "1") {
+                var str = prompt("手机验证码已发送成功，请输入验证码：");
+                $.post("#", str, function (result) {
+                    if (result === "1") {
+                        document.getElementsByName("phone")[0].value = phone_num;
+                    }
+                    else
+                        alert("验证码错误！！")
+                })
+            }
+            else {
+                alert("验证码发送失败！");
+            }
+        })
+    }
+
+    function change_password() {
+        if (document.getElementsByName("new_pwd")[0].value === document.getElementsByName("re_pwd")[0].value) {
+            $.post("#", document.getElementsByName("new_pwd")[0].value, function (data) {
+                if (data === "1")
+                    alert("密码修改成功！！");
+                else
+                    alert("密码修改失败")
+            })
+        }
+        else
+            alert("两次密码一致！")
+    }
+
+    function change_real_info() {
+        var formData = new FormData();
+        formData.append("real_name", document.getElementsByName("real_name")[0].value);
+        formData.append("real_name", document.getElementsByName("student_number")[0].value);
+        formData.append("real_name", document.getElementsByName("school_name")[0].value);
+        $.post("#", formData, function (data) {
+            if (data === "1")
+                alert("信息修改成功！！");
+            else
+                alert("信息修改失败！！")
+        })
+    }
+</script>
 </body>
 
 </html>

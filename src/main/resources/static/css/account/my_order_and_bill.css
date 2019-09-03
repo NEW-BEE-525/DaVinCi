@@ -1,4 +1,4 @@
-.order_list, .bill_list{
+.order_list, .bill_list {
     border: 1px solid #e4e5e8;
     width: 960px;
     height: 100px;
@@ -6,7 +6,7 @@
     padding: 15px;
 }
 
-.order_list_textcontent{
+.order_list_textcontent {
     height: 70px;
     width: 800px;
     display: inline-block;
@@ -15,7 +15,7 @@
     margin-left: 10px;
 }
 
-.bill_list_textcontent{
+.bill_list_textcontent {
     height: 70px;
     width: 750px;
     display: inline-block;
@@ -24,10 +24,29 @@
     margin-left: 10px;
 }
 
-.bill_price{
+.bill_price {
     height: 70px;
     display: inline-block;
     text-align: left;
     vertical-align: bottom;
     margin-left: 10px;
+}
+
+.sdad {
+    margin-top: 20px
+}
+
+.ldiv {
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    vertical-align: top
+}
+
+.rdiv {
+    display: inline-block;
+    margin-left: 20px;
+    width: 400px;
+    height: 300px;
+    vertical-align: top
 }

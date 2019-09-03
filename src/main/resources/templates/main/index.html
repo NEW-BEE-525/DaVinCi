@@ -144,23 +144,24 @@
         </div>
         <div class="pic">
             <a href="#" id="head_pic">
-                <img th:title="${account_name}?${account_name}:'用户头像'"
-                     src="../../static/img/account/common_head_pic.jpg"
+                <img th:title="${session.account?.getUsename()}?${session.account?.getUsename()}:'用户头像'"
+                     th:src="${session.account?.getAvatar()}?${session.account?.getAvatar}:'../../static/img/account/common_head_pic.jpg'"
                      alt="头像" style="position: relative;">
             </a>
-            <div class="two" id="head_pic_list" th:if="${account} eq null">
+            <div class="two" id="head_pic_list" th:if="${session.account} eq null">
                 <em class="member-box"></em>
                 <ul>
                     <li><a href="#">登录</a> \ <a href="#">注册</a></li>
 
                 </ul>
             </div>
-            <div class="two" id="head_pic_list" th:if="${account} ne null">
+            <div class="two" id="head_pic_list" th:if="${session.account} ne null">
                 <em class="member-box"></em>
                 <ul>
                     <li><a href="../account/personal_center.html">个人中心</a></li>
                     <li><a href="#">我的订单</a></li>
                     <li><a href="#">我的账单</a></li>
+                    <li><a href="#">帮助</a></li>
                     <li><a href="#">安全中心</a></li>
                     <li><a href="#">退出登录</a></li>
                 </ul>
