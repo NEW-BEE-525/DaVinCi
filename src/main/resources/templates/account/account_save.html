@@ -531,38 +531,31 @@
     function chang_main_div(x) {
         if (x === 4) {
             if (confirm("进入安全中心需要进行手机验证，您确定吗？")) {
-                $.get("sendVerificat", function (data) {
+                $.post("sendVerificat", function (data) {
                     if (data === "1") {
                         var str = prompt("手机验证码已发送成功，请输入验证码：");
-                        record = {"verification": str};
-                        $.ajax({
-                            type: "POST",
-                            url: "judgeVerificat",
-                            datatype: "text",
-                            contentType: "application../../static/json",
-                            data: JSON.stringify(record),
-                            async: true,
-                            success: function (result) {
-                                if (result === "1") {
-                                    document.getElementsByClassName("VrjG_")[0].classList.remove("VrjG_");
-                                    document.getElementsByClassName("-jFKi")[x].classList.add("VrjG_");
-                                    document.getElementById("above_info").innerText = div_name_list[x];
-                                    document.title = div_name_list[x];
-                                    for (var i = 0; i < div_list.length; i++)
-                                        div_list[i].style.display = "none";
-                                    div_list[x].style.display = "block";
-                                    $.get(url_list[x], function (data) {
-                                        console.log(data);
-                                        document.getElementsByName("phone")[0].value = data['mobile'];
-                                        document.getElementsByName("real_name")[0].value = data['name'];
-                                        document.getElementsByName('student_number')[0].value = data['studentNumber'];
-                                        document.getElementsByName('school_name')[0].value = data['school'];
-                                    })
-                                } else
-                                    alert("验证码错误！！")
+                        $.post("judgeVerificat", str, function (result) {
+                            if (result === "1") {
+                                document.getElementsByClassName("VrjG_")[0].classList.remove("VrjG_");
+                                document.getElementsByClassName("-jFKi")[x].classList.add("VrjG_");
+                                document.getElementById("above_info").innerText = div_name_list[x];
+                                document.title = div_name_list[x];
+                                for (var i = 0; i < div_list.length; i++)
+                                    div_list[i].style.display = "none";
+                                div_list[x].style.display = "block";
+                                $.post(url_list[x], function (data) {
+                                    console.log(data);
+                                    document.getElementsByName("phone")[0].value = data['mobile'];
+                                    document.getElementsByName("real_name")[0].value = data['name'];
+                                    document.getElementsByName('student_number')[0].value = data['studentNumber']
+                                    document.getElementsByName('school_name')[0].value = data['school'];
+                                })
                             }
+                            else
+                                alert("验证码错误！！")
                         })
-                    } else {
+                    }
+                    else {
                         alert("验证码发送失败！");
                     }
                 })
@@ -575,7 +568,7 @@
             for (var i = 0; i < div_list.length; i++)
                 div_list[i].style.display = "none";
             div_list[x].style.display = "block";
-            $.get(url_list[x], function (data) {
+            $.post(url_list[x], function (data) {
                 console.log(data);
                 switch (x) {
                     case 0:
@@ -583,10 +576,10 @@
                         document.getElementsByName("infoSexRadio")[data["gender"] - 1].checked = "true";
                         document.getElementById("user_level").innerText = data["user_level"];
                         document.getElementsByName("email")[0].value = data["email"];
-                        document.getElementById("hidden_phone").innerText = data["mobile"].substring(0, 3) + "xxxxx" + data["mobile"].substring(8, 10);
-                        document.getElementById("preview").setAttribute("src", "data:image/jpg;base64," + data["avatar"]);
-                        console.log(data["birthday"]);
-                        document.getElementsByName("birthday")[0].value = data["birthday"];
+                        document.getElementById("hidden_phone").innerText = data["mobile"].substring(0, 3) + "xxxxx" + data["mobile"].substring(8, 11);
+                        document.getElementById("preview").setAttribute("src", "data:image/jpg;base64," + data['avatar']);
+                        document.getElementById("top_avatar").setAttribute("src", "data:image/jpg;base64," + data['avatar']);
+                        document.getElementsByName("birthday")[0].value = data['birthday'];
                         break;
                 }
             })
@@ -596,7 +589,7 @@
     function save_info() {
         var formData = new FormData();
         formData.append("name", document.getElementsByName("account_name")[0].value);
-        formData.append("pic", document.getElementsByName("pic_file")[0].files[0]);
+        formData.append("pic", (document.getElementsByName("pic_file")[0].files[0] === undefined ? null : document.getElementsByName("pic_file")[0].files[0]));
         if (document.getElementsByName("infoSexRadio")[0].checked)
             formData.append("gender", "1");
         else
@@ -604,8 +597,9 @@
         formData.append("email", document.getElementsByName("email")[0].value);
         formData.append("birthday", document.getElementsByName("birthday")[0].value);
         $.ajax({
-            url: 'upload',
+            url: '#',
             type: 'POST',
+            cache: false,
             data: formData,
             processData: false,
             contentType: false,
@@ -642,73 +636,46 @@
 
     function change_phone() {
         var phone_num = prompt("请输入新的手机号：");
-
-        // $.post("", , function (data) {
-        //
-        // }, "json")
-
-        $.ajax({
-            url: 'sendVerificat',
-            type: 'POST',
-            data: JSON.stringify({"userPhone":phone_num}),
-            contentType: "application../../static/json",
-            success: function (data) {
-                if (data === "1") {
-                    var str = prompt("手机验证码已发送成功，请输入验证码：");
-                    $.ajax({
-                        url: 'judgeVerificat',
-                        type: 'POST',
-                        data: JSON.stringify({"userPhone": phone_num, "verification": str}),
-                        contentType: "application../../static/json",
-                        success: function (result) {
-                            if (result === "1") {
-                                document.getElementsByName("phone")[0].value = phone_num;
-                            } else
-                                alert("验证码错误！！")
-                        }
-                    })
-                } else {
-                    alert("验证码发送失败！");
-                }
+        $.post("#", phone_num, function (data) {
+            if (data === "1") {
+                var str = prompt("手机验证码已发送成功，请输入验证码：");
+                $.post("#", str, function (result) {
+                    if (result === "1") {
+                        document.getElementsByName("phone")[0].value = phone_num;
+                    }
+                    else
+                        alert("验证码错误！！")
+                })
+            }
+            else {
+                alert("验证码发送失败！");
             }
         })
     }
 
     function change_password() {
-        var password = document.getElementsByName("new_pwd")[0].value;
         if (document.getElementsByName("new_pwd")[0].value === document.getElementsByName("re_pwd")[0].value) {
-            $.ajax({
-                url: 'changePassword',
-                type: 'POST',
-                data: JSON.stringify({"password": password}),
-                contentType: "application../../static/json",
-                success: function (data) {
-                    if (data == "1")
-                        alert("密码修改成功！！");
-                    else
-                        alert("密码修改失败")
-                }
+            $.post("#", document.getElementsByName("new_pwd")[0].value, function (data) {
+                if (data === "1")
+                    alert("密码修改成功！！");
+                else
+                    alert("密码修改失败")
             })
-        } else
+        }
+        else
             alert("两次密码一致！")
     }
 
     function change_real_info() {
-        var name=document.getElementsByName("real_name")[0].value;
-        var studentNumber=document.getElementsByName("student_number")[0].value;
-        var school=document.getElementsByName("school_name")[0].value;
-        var student={"name":name,"studentNumber":studentNumber,"school":school};
-        $.ajax({
-            url: 'studentCertification',
-            type: 'POST',
-            data: JSON.stringify(student),
-            contentType: "application../../static/json; charset=utf-8",
-            success: function (data) {
-                if (data == "1")
-                    alert("信息修改成功！！");
-                else
-                    alert("信息修改失败！！")
-            }
+        var formData = new FormData();
+        formData.append("real_name", document.getElementsByName("real_name")[0].value);
+        formData.append("real_name", document.getElementsByName("student_number")[0].value);
+        formData.append("real_name", document.getElementsByName("school_name")[0].value);
+        $.post("#", formData, function (data) {
+            if (data === "1")
+                alert("信息修改成功！！");
+            else
+                alert("信息修改失败！！")
         })
     }
 </script>
