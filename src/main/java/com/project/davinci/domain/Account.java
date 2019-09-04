@@ -11,7 +11,7 @@ public class Account implements Serializable {
   private String username;
   private String password;
   private int gender;
-  private Date birthday;
+  private String birthday;
   private Timestamp last_login_time;
   private String last_login_ip;
   private int user_level;
@@ -53,14 +53,6 @@ public class Account implements Serializable {
 
   public void setGender(int gender) {
     this.gender = gender;
-  }
-
-  public Date getBirthday() {
-    return birthday;
-  }
-
-  public void setBirthday(Date birthday) {
-    this.birthday = birthday;
   }
 
   public Timestamp getLast_login_time() {
@@ -141,5 +133,13 @@ public class Account implements Serializable {
 
   public void setDeleted(String deleted) {
     this.deleted = deleted;
+  }
+
+  public String getBirthday() {
+    return birthday;
+  }
+
+  public void setBirthday(String birthday) {
+    this.birthday = birthday;
   }
 }
