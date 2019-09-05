@@ -14,7 +14,7 @@
     <link href="../../static/css/account/personal_center.css" rel="stylesheet">
     <script src="../../static/js/index_need/jquery.js"></script>
     <script src="../../static/js/index_need/common.js"></script>
-    <title>站内商品</title>
+    <title>订单确定</title>
     <style>
         html, body {
             position: relative;
@@ -23,6 +23,10 @@
 
         a {
             color: black;
+        }
+
+        .swiper-container-vertical > .swiper-pagination-bullets .swiper-pagination-bullet {
+            margin: 20px 0;
         }
 
         @media screen and (max-width: 1140px) {
@@ -113,6 +117,10 @@
             position: fixed;
             right: 30px;
         }
+
+        p {
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -171,9 +179,7 @@
         </div>
     </div>
 </header>
-<!-- Swiper -->
 <div style="margin-top: 70px">
-    <!--搜索栏-->
     <div class="search_div">
         <div style="display: inline-block;width: 380px;text-align: center;vertical-align: top">
             <img src="../../static/img/product/cpys02.png" width="50px" height="50px"
@@ -229,176 +235,111 @@
         <a class="sub_category_a">标签</a>
     </div>
     <!--标题-->
-    <span style="margin-left: 30px;font-weight: 700;font-size: 30px" id="DBZT">为你推荐</span>
-    <!--商品-->
-    <div>
+    <h1 style="margin-left: 120px" id="up">确认订单</h1>
+    <!--订单信息-->
+    <div style="margin-left: 120px;min-height: 800px">
         <div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
+            <div class="inline_block order_up_head" style="width: 255px;">店铺宝贝</div>
+            <div class="inline_block order_up_head" style="width: 180px;">商品属性</div>
+            <div class="inline_block order_up_head" style="width: 120px;">单价</div>
+            <div class="inline_block order_up_head" style="width: 120px;">数量</div>
+            <div class="inline_block order_up_head" style="width: 180px;">优惠方式</div>
+            <div class="inline_block order_up_head" style="width: 130px;">小计</div>
+        </div>
+        <div class="order_shop">
+            <p>达分期站内店铺</p>
+        </div>
+        <!--订单表格-->
+        <div style="height: 75px;text-align: center;width: 1009px;padding-top: 10px">
+            <div class="inline_block" style="width: 255px;text-align: left">
+                <img th:src="${}" width="50" height="50">
+                <div class="inline_block">
+                    <p th:text="${}" th:id="${}" class="pname">商品的名字</p>
+                </div>
             </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
+            <div class="inline_block" style="width: 180px;color: #7a7a7a">
+                <span th:each="info, infoStat : ${}" th:text="${info}">规格</span>
             </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
+            <div class="inline_block" style="width: 120px;">
+                <p>￥<span th:text="${}">100.00</span></p>
             </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
+            <div class="inline_block" style="width: 120px;">
+                <a class="SL_btn" id="sub_btn"><i>-</i></a>
+                <input value="1" type="number" id="num"
+                       style="text-align:center;width: 50px;height: 26px;border: 1px solid #e6e7eb;display: inline-block;vertical-align: bottom">
+                <a class="SL_btn" id="add_btn"><i>+</i></a>
             </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
+            <div class="inline_block" style="width: 180px;">
+                <p>无折扣</p>
+            </div>
+            <div class="inline_block" style="width: 130px;">
+                <b style="color: red;font-size: 16px">￥<span th:text="${}">9.90</span></b>
             </div>
         </div>
-        <div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
+        <!--订单默认结尾-->
+        <div style="border-top: 1px dotted #d3eaff;width: 1009px;font-size: 12px;border-bottom: 1px solid #8c9da8">
+            <div class="inline_block order_down" style="width: 490px;height: 50px;padding-left: 30px;">
+                <input type="checkbox" class="KJFP">&nbsp;&nbsp;&nbsp;开具发票
             </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
+            <div class="inline_block order_down" style="width: 511px;height: 50px;padding-left: 30px">
+                <p>运送方式：普通配送快递 免邮</p>
+                <p>运费险： &nbsp;&nbsp;运费险卖家送,确认收货前退货可赔</p>
             </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
+            <div class="inline_block order_down"
+                 style="width: 490px;height: 120px;padding-left: 30px;padding-top: 20px">
+                <p>
+                    买家备注：
+                    <textarea id="BZ" maxlength="100" class="_2uDW_ inline_block"
+                              style="width: 380px;height: 26px"></textarea>
+                </p>
+                <p style="margin-top: 5px">
+                    详细地址：
+                    <textarea id="XXDZ" maxlength="100" class="_2uDW_ inline_block"
+                              style="width: 380px;height: 60px"></textarea>
+                </p>
             </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
+            <div class="inline_block order_down"
+                 style="width: 511px;height: 120px;padding-left: 30px;padding-top: 20px">
+                <p>
+                    收货人：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input id="SHR" placeholder="必填" type="text" class="_1YMqD" style="height: 25px;width: 200px">
+                </p>
+                <br>
+                <p>
+                    收货人电话：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input id="SHRDH" type="number" placeholder="必填" class="_1YMqD" style="height: 25px;width: 200px">
+                </p>
             </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
+            <div style="width: 1008px;text-align: right;font-size: 16px;padding-right: 20px" class="order_down">
+                <p>
+                    店铺合计(含运费)
+                    <span style="color: red;font-weight: bold">￥9.90</span>
+                </p>
             </div>
         </div>
-        <div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
-            </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
-            </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
-            </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
-            </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
-            </div>
+        <div style="text-align: right;padding-right: 20px;width: 1009px;height: 40px;padding-top: 5px">
+            <label class="_2YvKE" for="pydf">
+                <input type="checkbox" name="infoSexRadio"
+                       id="pydf" value="1" checked>&nbsp;朋友代付
+            </label>
+            <label class="_2YvKE" for="nmgm">
+                <input type="checkbox" name="infoSexRadio"
+                       id="nmgm" value="2">&nbsp; 匿名购买
+            </label>
         </div>
-    </div>
-    <!--页码-->
-    <div class="page_div">
-        <a>1&nbsp;&nbsp;&nbsp;&nbsp;</a>
-        <a>2&nbsp;&nbsp;&nbsp;&nbsp;</a>
-        <a>3&nbsp;&nbsp;&nbsp;&nbsp;</a>
-        <a>4&nbsp;&nbsp;&nbsp;&nbsp;</a>......
-        <a>&nbsp;&nbsp;&nbsp;&nbsp;下页</a>
-        <a>&nbsp;&nbsp;&nbsp;&nbsp;末页</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a>跳转到&nbsp;&nbsp;&nbsp;&nbsp;</a>
-        <input type="text" style="width: 30px;border: 1px solid black">
+        <div style="height: 40px;text-align: right;width: 1009px;padding-left: 830px;padding-top: 30px">
+            <a class="addto_cart inline_block" id="real_pay">付款</a>
+        </div>
+        <div style="text-align: right;width: 1009px;height: 50px;padding-top:50px">
+            支付方式:
+            <select id="pay_way_select">
+                <option name="BTZF3" value="1">白条支付(3期)</option>
+                <option name="BTZF6" value="2">白条支付(6期)</option>
+                <option name="BTZF9" value="3">白条支付(9期)</option>
+                <option name="BTZF12" value="4">白条支付(12期)</option>
+                <option name="ZFB" value="5">支付宝支付</option>
+            </select>
+        </div>
     </div>
     <!--右栏-->
     <div class="right_bar">
@@ -451,6 +392,20 @@
         </div>
     </div>
 </footer>
+<div id="cover" style=""></div>
+<div class="pay_img">
+    <h3>用支付宝扫一扫</h3>
+    <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+         style="width: 320px;height: 320px" id="QRcode">
+    <a class="close_btn">X</a>
+</div>
+<div id="pay_password">
+    <h2>请输入支付密码：</h2>
+    <br>
+    <input type="password" id="pay_password_input" class="_1YMqD" style="width: 200px;border: 1px solid black">
+    <a class="_2uLFV" id="pay_password_submit">确定</a>
+    <a class="close_btn">X</a>
+</div>
 <script>
     var head_pic = document.getElementById("head_pic");
     var head_pic_list = document.getElementById("head_pic_list");
@@ -459,31 +414,9 @@
     };
     head_pic_list.onmouseleave = function () {
         document.getElementsByClassName("two")[0].style.visibility = "hidden";
-    }
-
-    $('.inline_div').hover(function () {
-        this.style.borderColor = "black";
-    })
-
-    $('.inline_div').mouseleave(function () {
-        this.style.borderColor = "#d6d6d6";
-    })
+    };
 
     $('.category_a').hover(function () {
-        // var category_list = [
-        //     [{"id": "1008002", "value": "布艺软装"}, {"id": "1008008", "value": "被枕"}, {"id": "1008009", "value": "床品件套"},
-        //         {"id": "1008016", "value": "灯具"}, {"id": "1010003", "value": "地垫"}, {"id": "1011003", "value": "床垫"},
-        //         {"id": "1011004", "value": "家饰"}, {"id": "1015000", "value": "家具"}, {"id": "1017000", "value": "宠物"},
-        //         {"id": "1036000", "value": "夏凉"}],
-        //     [{"id": "1005007", "value": "锅具"}, {"id": "1005008", "value": "餐具"}, {"id": "1005009", "value": "清洁"}],
-        //     [],
-        //     [],
-        //     [],
-        //     [],
-        //     [],
-        //     [],
-        //     []
-        // ];
         var category_list = [
             [{"id": "1008002", "value": "布艺软装"}, {"id": "1008008", "value": "被枕"}, {"id": "1008009", "value": "床品件套"},
                 {"id": "1008016", "value": "灯具"}, {"id": "1010003", "value": "地垫"}, {"id": "1011003", "value": "床垫"},
@@ -568,56 +501,97 @@
         }
     });
 
-    $('.sub_category_a').click(function () {
-        var id = {"id": this.id};
-        var pname = this.innerText;
+    $("#real_pay").click(function () {
+        switch ($('#pay_way_select option:selected').val()) {
+            case "1":
+            case '2':
+            case '3':
+            case '4':
+                document.getElementById("pay_password").style.display = "block";
+                document.getElementById("cover").style.display = "block";
+                break;
+            case '5':
+                $.get('#', function (data) {
+                    document.getElementById("QRcode").setAttribute("src", "data:image/jpg;base64," + data["QRcode"]);
+                });
+                document.getElementById("cover").style.display = "block";
+                document.getElementsByClassName("pay_img")[0].style.display = "block";
+                break;
+        }
+    })
+
+    $('#pay_password_submit').click(function () {
+        var password = {'password': document.getElementById("pay_password_input").value};
+        $.ajax({
+            url: '#',
+            type: 'POST',
+            data: JSON.stringify(password),
+            contentType: "application../../static/json",
+            success: function (data) {
+                if (data == "1") {
+
+                }
+                else {
+
+                }
+            }
+        })
+    })
+
+    $('.close_btn').click(function () {
+        document.getElementById("pay_password").style.display = "none";
+        document.getElementById("cover").style.display = "none";
+        document.getElementsByClassName("pay_img")[0].style.display = "none";
+    })
+
+    $('#sub_btn').click(function () {
+        document.getElementById("num").value = document.getElementById("num").value - 1;
+    })
+
+    $('#add_btn').click(function () {
+        document.getElementById("num").value = Number(document.getElementById("num").value) + 1;
+    })
+
+    function trade_complete() {
+        var id = document.getElementsByClassName("pname").id;
+        var num = document.getElementById('num').value;
+        var BZ = document.getElementById('BZ').value;//备注
+        var XXDZ = document.getElementById('XXDZ').value;//详细地址
+        var SHR = document.getElementById('SHR').value;//收货人
+        var SHRDH = document.getElementById('SHRDH').value;//收货人电话
+        var dataMap = {
+            'id': id,
+            'num': num,
+            'BZ': BZ,
+            'XXDZ': XXDZ,
+            'SHR': SHR,
+            'SHRDH': SHRDH
+        };
         $.ajax({
             url: "#",
             type: "post",
-            datatype: "text",
+            data: JSON.stringify(dataMap),
             contentType: "application../../static/json",
-            data: JSON.stringify(id),
-            async: true,
             success: function (data) {
-                var img_list = document.getElementsByClassName("product_img");
-                var price_list = document.getElementsByClassName("product_price");
-                var pname_list = document.getElementsByClassName("product_name");
-                var pintroduce_list = document.getElementsByClassName('product_introduce');
-                var plink_list = document.getElementsByClassName('product_link');
-                for (var i = 0; i < 15; i++) {
-                    img_list[i].setAttribute("src", data[i]["picUrl"]);
-                    price_list[i].textContent = "￥" + data[i]["retailPrice"];
-                    pname_list[i].textContent = data[i]['name'];
-                    pintroduce_list[i].textContent = data[i]['brief'];
-                    plink_list[i].setAttribute("href", "#?id=" + data[i]["id"])
+                if (data !== "1") {
+                    alert('支付成功！');
+                    document.getElementById('num').setAttribute("readonly", "true");
+                    document.getElementById('sub_btn').style.display = "none";
+                    document.getElementById('add_btn').style.display = "none";
+                    document.getElementById('BZ').setAttribute("readonly", "true");
+                    document.getElementById('XXDZ').setAttribute("readonly", "true");
+                    document.getElementById('SHR').setAttribute("readonly", "true");
+                    document.getElementById('SHRDH').setAttribute("readonly", "true");
+                    document.getElementById('pay_way_select').disabled = true;
+                    document.getElementById('real_pay').style.display = "none";
+                    document.getElementById('up').innerText = '订单完成';
+                } else {
+                    alert('支付失败！')
                 }
-                document.getElementById("DBZT").innerText = "分类：" + pname;
             }
         })
-    });
-
-    //////////////////////////////////
-    //                              //
-    //打开页面后获取推荐的函数      //
-    //                              //
-    //////////////////////////////////
-    //
-    // $(function () {
-    //     $.get("#", function (data) {
-    //         var img_list = document.getElementsByClassName("product_img");
-    //         var price_list = document.getElementsByClassName("product_price");
-    //         var pname_list = document.getElementsByClassName("product_name");
-    //         var pintroduce_list = document.getElementsByClassName('product_introduce');
-    //         for (var i = 0; i < 15; i++) {
-    //             img_list[i].setAttribute("src", data[i]["picUrl"]);
-    //             price_list[i].textContent = "￥" + data[i]["retailPrice"];
-    //             pname_list[i].textContent = data[i]['name'];
-    //             pintroduce_list[i].textContent = data[i]['brief'];
-    //             plink_list[i].setAttribute("href", "#?id=" + data[i]["id"])
-    //         }
-    //     })
-    // })
-
+    }
 </script>
+
 </body>
 </html>

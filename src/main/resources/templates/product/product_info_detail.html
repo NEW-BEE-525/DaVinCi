@@ -14,7 +14,7 @@
     <link href="../../static/css/account/personal_center.css" rel="stylesheet">
     <script src="../../static/js/index_need/jquery.js"></script>
     <script src="../../static/js/index_need/common.js"></script>
-    <title>达分期</title>
+    <title>商品详情</title>
     <style>
         html, body {
             position: relative;
@@ -23,10 +23,6 @@
 
         a {
             color: black;
-        }
-
-        .swiper-container-vertical > .swiper-pagination-bullets .swiper-pagination-bullet {
-            margin: 20px 0;
         }
 
         @media screen and (max-width: 1140px) {
@@ -117,6 +113,7 @@
             position: fixed;
             right: 30px;
         }
+
     </style>
 </head>
 <body>
@@ -175,7 +172,7 @@
         </div>
     </div>
 </header>
-<!-- Swiper -->
+
 <div style="margin-top: 70px">
     <div class="search_div">
         <div style="display: inline-block;width: 380px;text-align: center;vertical-align: top">
@@ -194,17 +191,8 @@
             <a>衣服&nbsp;&nbsp;</a><a>学习用品&nbsp;&nbsp;</a><a>帽子&nbsp;&nbsp;</a><a>零食&nbsp;&nbsp;</a>
         </div>
     </div>
+    <!--分类-->
     <div style="padding-left: 300px">
-        分类:<a>&nbsp;&nbsp;&nbsp;&nbsp;居家&nbsp;&nbsp;</a>
-        <a>&nbsp;&nbsp;餐厨&nbsp;&nbsp;</a>
-        <a>&nbsp;&nbsp;饮食&nbsp;&nbsp;</a>
-        <a>&nbsp;&nbsp;配件&nbsp;&nbsp;</a>
-        <a>&nbsp;&nbsp;服装&nbsp;&nbsp;</a>
-        <a>&nbsp;&nbsp;婴童&nbsp;&nbsp;</a>
-        <a>&nbsp;&nbsp;杂货&nbsp;&nbsp;</a>
-        <a>&nbsp;&nbsp;洗护&nbsp;&nbsp;</a>
-        <a>&nbsp;&nbsp;志趣&nbsp;&nbsp;</a>
-        <br>
         筛选:<a>&nbsp;&nbsp;&nbsp;&nbsp;最新&nbsp;&nbsp;</a>
         <a>&nbsp;&nbsp;最便宜&nbsp;&nbsp;</a>
         <a>&nbsp;&nbsp;可分期&nbsp;&nbsp;</a>
@@ -214,8 +202,102 @@
         <a>&nbsp;&nbsp;买一送一&nbsp;&nbsp;</a>
         <a>&nbsp;&nbsp;折扣&nbsp;&nbsp;</a>
         <a>&nbsp;&nbsp;减息&nbsp;&nbsp;</a>
-    </div>
+        <br>
+        分类:&nbsp;&nbsp;
+        <a class="category_a">&nbsp;&nbsp;居家&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;餐厨&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;饮食&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;配件&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;服装&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;婴童&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;杂货&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;洗护&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;志趣&nbsp;&nbsp;</a>
 
+    </div>
+    <div class="sub_category_div">
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+    </div>
+    <h1 style="margin-left: 100px">达分期站内商店</h1>
+    <div class="product_main_div">
+        <div class="product_img_div inline_block">
+            <img width="418px" height="418px" src="http://yanxuan.nosdn.127.net/654b02045fde802b51d5bbf09a8b75f2.png"
+                 id="big_img" th:src="${info?.gallery[0]}">
+            <div class="imgs_nav">
+                <a class="imglist"><img src="http://yanxuan.nosdn.127.net/654b02045fde802b51d5bbf09a8b75f2.png"
+                                        th:src="${info?.gallery[0]}"></a>
+                <a class="imglist"><img src="http://yanxuan.nosdn.127.net/654b02045fde802b51d5bbf09a8b75f2.png"
+                                        th:src="${info?.gallery[1]}"></a>
+                <a class="imglist"><img src="http://yanxuan.nosdn.127.net/654b02045fde802b51d5bbf09a8b75f2.png"
+                                        th:src="${info?.gallery[2]}"></a>
+                <a class="imglist"><img src="http://yanxuan.nosdn.127.net/654b02045fde802b51d5bbf09a8b75f2.png"
+                                        th:src="${info?.gallery[3]}"></a>
+                <a class="imglist"><img src="http://yanxuan.nosdn.127.net/654b02045fde802b51d5bbf09a8b75f2.png"
+                                        th:src="${info?.gallery[4]}"></a>
+            </div>
+        </div>
+        <div class="product_info_div inline_block">
+            <b style="font-size: 16px;font-weight: 700" th:text="${info?.name}" id="pname">很仙的上衣洋气卫衣女2019新款秋装潮ins长袖宽松拼接木耳荷叶边</b>
+            <p style="color: red" th:text="${info?.detail}">时尚字母印染 个性蕾丝 舒适面料 潮流洋气</p>
+            <p>
+                <span style="font-size: 14px;">价格</span><span style="color: red;margin-left: 100px">￥</span>
+                <span style="color: red;font-size: 24px;font-weight: 700" th:text="${productList[0]?.price}" id="price">178.00</span>
+            </p>
+            <p>
+                <span style="font-size: 14px;">运费</span><span style="margin-left: 100px">￥</span>
+                <span style="font-size: 16px;font-weight: 700">10.00</span>
+            </p>
+            <p>
+                <span style="font-size: 14px;">尺码</span>
+                <select style="margin-left: 100px;width: 80px" title="尺码">
+                    <option>30</option>
+                    <option>31</option>
+                    <option>32</option>
+                    <option>33</option>
+                    <option>34</option>
+                </select>
+            </p>
+            <p>
+                <span style="font-size: 14px;margin-right: 72px">产品规格</span>
+                <a class="select_block col" th:id="${productList[0]?.price}" style="border-color: red"
+                   th:name="${productList[0]?.id}">
+                    <span th:each="info, infoStat : ${productList[0]?.specifications}" th:text="${info}">规格</span>
+                </a>
+                <a class="select_block col" th:id="${productList[1]?.price}" th:name="${productList[1]?.id}">
+                    <span th:each="info, infoStat : ${productList[1]?.specifications}" th:text="${info}">规格</span>
+                </a>
+                <a class="select_block col" th:id="${productList[2]?.price}" th:name="${productList[2]?.id}">
+                    <span th:each="info, infoStat : ${productList[2]?.specifications}" th:text="${info}">规格</span>
+                </a>
+                <a class="select_block col" th:id="${productList[3]?.price}" th:name="${productList[3]?.id}">
+                    <span th:each="info, infoStat : ${productList[3]?.specifications}" th:text="${info}">规格</span>
+                </a>
+            </p>
+            <p>
+                <span style="font-size: 14px;margin-right: 100px">数量</span>
+                <input type="number" class="_1YMqD" style="width: 80px" placeholder="1" id="pnum">
+            </p>
+            <p th:each="info,infoStat : ${attribute}" style="margin-bottom:4px">
+                <span th:text="${info.attribute}" style="width: 133px;display: inline-block"></span>
+                <span th:text="${info.value}" style="width: 400px;display: inline-block"></span>
+            </p>
+            <br>
+            <p style="position: absolute;top: 647px;">
+                <a class="buy_now">立即购买</a>
+                <a class="addto_cart">加入购物车</a>
+            </p>
+        </div>
+    </div>
     <div class="right_bar">
         <a href="#top"><img src="../../static/img/product/arrow_up.png" title="回顶部" width="30px" height="30px"></a>
         <br><br>
@@ -274,14 +356,123 @@
     };
     head_pic_list.onmouseleave = function () {
         document.getElementsByClassName("two")[0].style.visibility = "hidden";
-    }
+    };
 
-    $('.inline_div').hover(function () {
-        this.style.borderColor = "black";
-    })
-    
-    $('.inline_div').mouseleave(function () {
-        this.style.borderColor = "#d6d6d6";
+    $('.buy_now').click(function () {
+        var id = "";
+        for (var i = 0; i < document.getElementsByClassName('col').length; i++) {
+            if (document.getElementsByClassName('col')[i].style.borderColor === "red") {
+                id = document.getElementsByClassName('col')[i].getAttribute('name');
+                break;
+            }
+        }
+        //传参同时跳转
+        window.location.href = "#?id=" +id;
+    });
+
+    $('.col').click(function () {
+        for (var i = 0; i < document.getElementsByClassName("col").length; i++)
+            document.getElementsByClassName("col")[i].style.borderColor = "#efefef"
+        this.style.borderColor = "red";
+        document.getElementById('price').value = this.id;
+    });
+
+    $('.fq').click(function () {
+        for (var i = 0; i < document.getElementsByClassName("fq").length; i++)
+            document.getElementsByClassName("fq")[i].style.borderColor = "#efefef"
+        this.style.borderColor = "red";
+    });
+
+    $('.imglist').click(function () {
+        for (var i = 0; i < document.getElementsByClassName("imglist").length; i++)
+            document.getElementsByClassName("imglist")[i].style.borderColor = "#c0c0c0"
+        this.style.borderColor = "red";
+        document.getElementById("big_img").setAttribute("src", this.getElementsByTagName("img")[0].src);
+    });
+
+    $('.category_a').hover(function () {
+        var category_list = [
+            [{"id": "1008002", "value": "布艺软装"}, {"id": "1008008", "value": "被枕"}, {"id": "1008009", "value": "床品件套"},
+                {"id": "1008016", "value": "灯具"}, {"id": "1010003", "value": "地垫"}, {"id": "1011003", "value": "床垫"},
+                {"id": "1011004", "value": "家饰"}, {"id": "1015000", "value": "家具"}, {"id": "1017000", "value": "宠物"},
+                {"id": "1036000", "value": "夏凉"}],
+            [{"id": "1005007", "value": "锅具"}, {"id": "1005008", "value": "餐具"}, {"id": "1005009", "value": "清洁"},
+                {"id": "1007000", "value": "杯壶"}, {"id": "1008011", "value": "清洁保鲜"}, {
+                "id": "1008012",
+                "value": "功能厨具"
+            },
+                {"id": "1008013", "value": "茶具咖啡具"}, {"id": "1013005", "value": "刀剪砧板"}, {
+                "id": "1023000",
+                "value": "厨房小电"
+            }],
+            [{"id": "1005010", "value": "炒货"}, {"id": "1005011", "value": "小食"}, {"id": "1005012", "value": "食材"},
+                {"id": "1005013", "value": "冲饮"}, {"id": "1008014", "value": "糖巧"}, {"id": "1008015", "value": "糕点"},
+                {"id": "1027000", "value": "茗茶"}, {"id": "1027001", "value": "果干"}, {"id": "1035003", "value": "肉制品"},
+                {"id": "1036003", "value": "调味"}],
+            [{"id": "1008003", "value": "鞋"}, {"id": "1008007", "value": "围巾"}, {"id": "1008010", "value": "拖鞋"},
+                {"id": "1008018", "value": "单肩包"}, {"id": "1010004", "value": "双肩包"}, {
+                "id": "1012001",
+                "value": "功能箱包"
+            },
+                {"id": "1013000", "value": "靴"}, {"id": "1020008", "value": "配饰"}, {"id": "1022000", "value": "数码"}],
+            [{"id": "1008004", "value": "袜子"}, {"id": "1010001", "value": "内衣"}, {"id": "1010002", "value": "内裤"},
+                {"id": "1013006", "value": "家居服"}, {"id": "1015001", "value": "T恤"}, {"id": "1020009", "value": "外衣"},
+                {"id": "1020010", "value": "衬衫"}, {"id": "1034000", "value": "丝袜"}, {"id": "1035000", "value": "卫衣"},
+                {"id": "1035001", "value": "毛衣"}, {"id": "1035002", "value": "裤装"}],
+            [{"id": "1011001", "value": "妈咪"}, {"id": "1020003", "value": "服饰"}, {"id": "1020004", "value": "婴童洗护"},
+                {"id": "1020005", "value": "寝居"}, {"id": "1020006", "value": "玩具"}, {"id": "1020007", "value": "喂养"},
+                {"id": "1034001", "value": "童车童椅"}],
+            [{"id": "1008005", "value": "户外"}, {"id": "1008006", "value": "口罩"}, {"id": "1008017", "value": "收纳"},
+                {"id": "1011002", "value": "海外"}, {"id": "1012002", "value": "雨具"}, {"id": "1012003", "value": "文具"},
+                {"id": "1020000", "value": "出行用品"}, {"id": "1021000", "value": "节日礼盒"}, {
+                "id": "1036001",
+                "value": "眼睛"
+            },
+                {"id": "1036002", "value": "汽车用品"}],
+            [{"id": "1008001", "value": "毛巾"}, {"id": "1009000", "value": "日用清洁"}, {"id": "1013002", "value": "美妆"},
+                {"id": "1013003", "value": "护发"}, {"id": "1013004", "value": "香薰"}, {"id": "1020001", "value": "面部护理"},
+                {"id": "1020002", "value": "用具"}],
+            [{"id": "1018000", "value": "夏日甜心"}, {"id": "1025000", "value": "礼品卡"}, {"id": "1028001", "value": "唱片"},
+                {"id": "1032000", "value": "魔兽世界"}, {"id": "1032001", "value": "炉石传说"}, {
+                "id": "1032002",
+                "value": "守望先锋"
+            },
+                {"id": "1032003", "value": "暗黑破坏神III"}, {"id": "1032004", "value": "星际争霸II"}, {
+                "id": "1032005",
+                "value": "风暴英雄"
+            },
+                {"id": "1033000", "value": "梦幻西游"}, {"id": "1036004", "value": "大话西游"}]
+        ];
+
+        var x;
+        this.style.backgroundColor = "white";
+        for (var i = 0; i < document.getElementsByClassName("category_a").length; i++) {
+            if (document.getElementsByClassName("category_a")[i].style.backgroundColor === "white")
+                x = i;
+            document.getElementsByClassName("category_a")[i].style.border = "0px";
+            document.getElementsByClassName("category_a")[i].style.backgroundColor = "transparent"
+        }
+        this.style.borderLeft = "1px solid black";
+        this.style.borderRight = "1px solid black";
+        this.style.borderTop = "1px solid black";
+        this.style.backgroundColor = "white";
+        for (var k = 0; k < 11; k++) {
+            document.getElementsByClassName("sub_category_a")[k].id = "hide";
+            document.getElementsByClassName("sub_category_a")[k].textContent = "";
+        }
+        for (var j = 0; j < category_list[x].length; j++) {
+            document.getElementsByClassName("sub_category_a")[j].id = category_list[x][j]["id"];
+            document.getElementsByClassName("sub_category_a")[j].textContent = category_list[x][j]["value"];
+        }
+        document.getElementsByClassName("sub_category_div")[0].style.display = "block";
+    });
+
+    $('.sub_category_div').mouseleave(function () {
+        this.style.display = "none";
+        for (var i = 0; i < document.getElementsByClassName("category_a").length; i++) {
+            document.getElementsByClassName("category_a")[i].style.border = "0px";
+            document.getElementsByClassName("category_a")[i].style.backgroundColor = "transparent"
+        }
     })
 </script>
 </body>

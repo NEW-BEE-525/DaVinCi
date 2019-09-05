@@ -164,8 +164,7 @@
                                                     <td>个性签名：</td>
                                                     <td>
                         <textarea maxlength="20" class="_2uDW_"
-                                  placeholder="请填写签名，20个字内">
-                        </textarea>
+                                  placeholder="请填写签名，20个字内"></textarea>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -650,7 +649,7 @@
         $.ajax({
             url: 'sendVerificat',
             type: 'POST',
-            data: JSON.stringify({"userPhone":phone_num}),
+            data: JSON.stringify({"userPhone": phone_num}),
             contentType: "application../../static/json",
             success: function (data) {
                 if (data === "1") {
@@ -694,10 +693,10 @@
     }
 
     function change_real_info() {
-        var name=document.getElementsByName("real_name")[0].value;
-        var studentNumber=document.getElementsByName("student_number")[0].value;
-        var school=document.getElementsByName("school_name")[0].value;
-        var student={"name":name,"studentNumber":studentNumber,"school":school};
+        var name = document.getElementsByName("real_name")[0].value;
+        var studentNumber = document.getElementsByName("student_number")[0].value;
+        var school = document.getElementsByName("school_name")[0].value;
+        var student = {"name": name, "studentNumber": studentNumber, "school": school};
         $.ajax({
             url: 'studentCertification',
             type: 'POST',
