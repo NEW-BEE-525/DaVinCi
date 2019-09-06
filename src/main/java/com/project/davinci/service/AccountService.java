@@ -76,7 +76,7 @@ public class AccountService {
         return  0;//验证码发送失败
     }
 
-    public Account personalCenter(int id){
+    public Account getAccount(int id){
         return accountDAO.getAccountById(id);
     }
 
