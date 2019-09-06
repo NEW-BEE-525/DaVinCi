@@ -329,6 +329,7 @@
         </div>
         <div style="height: 40px;text-align: right;width: 1009px;padding-left: 830px;padding-top: 30px">
             <a class="addto_cart inline_block" id="submit_order">提交订单</a>
+            <a class="addto_cart inline_block" id="real_pay" style="display: none">立即支付</a>
         </div>
         <div id="pay_way_div" style="text-align: right;width: 1009px;height: 50px;padding-top:50px;display: none">
             支付方式:
@@ -410,6 +411,7 @@
     var head_pic = document.getElementById("head_pic");
     var head_pic_list = document.getElementById("head_pic_list");
     var fq = 0;
+    var order_id = '';
     head_pic.onmouseover = function () {
         document.getElementsByClassName("two")[0].style.visibility = "visible";
     };
@@ -503,10 +505,10 @@
     });
 
     $('#submit_order').click(function () {
-        this.id = 'real_pay';
-        this.innerText = '付款';
         document.getElementById('pay_way_div').style.display = 'block';
         trade_complete();
+        this.style.display = 'none';
+        document.getElementById('real_pay').style.display = 'block';
     })
 
     $("#real_pay").click(function () {
@@ -523,13 +525,25 @@
                 document.getElementById("cover").style.display = "block";
                 break;
             case '5':
-                $.get('#', function (data) {
-                    document.getElementById("QRcode").setAttribute("src", "data:image/jpg;base64," + data["QRcode"]);
+                var dataMap = {
+                    'out_trade_no': order_id,
+                    'total_amount': document.getElementById('XJ').textContent,
+                    'subject': document.getElementsByClassName('pname')[0].textContent
+                };
+                console.log(dataMap);
+                $.ajax({
+                    url: 'alipay.trade.pay',
+                    type: "post",
+                    data: JSON.stringify(dataMap),
+                    contentType: "application/json",
+                    success: function (data) {
+                        document.getElementById("QRcode").setAttribute("src", "data:image/jpg;base64," + data);
+                    }
                 });
                 document.getElementById("cover").style.display = "block";
                 document.getElementsByClassName("pay_img")[0].style.display = "block";
                 $.ajax({
-                    url: "#",
+                    url: "/is_trade_success",
                     type: 'GET',
                     async: false,
                     success: function (data) {
@@ -609,8 +623,8 @@
                     document.getElementById('XXDZ').setAttribute("readonly", "true");
                     document.getElementById('SHR').setAttribute("readonly", "true");
                     document.getElementById('SHRDH').setAttribute("readonly", "true");
-                    document.getElementById('pay_way_select').disabled = true;
                     document.getElementById('up').innerText = '订单编号:' + data;
+                    order_id = data;
                 } else {
                     alert('支付失败！')
                 }

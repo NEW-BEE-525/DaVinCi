@@ -13,25 +13,25 @@ var phoneCheckPassword=false;
 var phoneNotNullCheck=false;
 
 var usedsend=false;
-$(function() { 
+$(function() {
 	//用户名失去焦点的时候检测用户格式和查询用户是否已经存在
-	$('#user_name').focus(function(){
-		$("#user_name").next().remove();
-		$("#user_name").after("<span id='user_name_error' style='color:#aaa;margin-left: 15px;'>以字母开头,长度为4-30（可用字母、数字、下划线）</span>");
-	});
-	$('#user_email').focus(function(){
-		$("#user_email").next().remove();
-		$("#user_email").after("<span id='user_email_error' style='color:#aaa;margin-left: 15px;'>请输入邮箱地址</span>");
-	});
-	$('#user_password').focus(function(){
-		$("#user_password").next().remove();
-		$("#user_password").after("<span id='user_password_error' style='color:#aaa;margin-left: 15px;'>密码长度为6-20</span>");
-	});
-	$('#user_check_password').focus(function(){
-		$("#user_check_password").next().remove();
-		$("#user_check_password").after("<span id='user_check_password_error' style='color:#aaa;margin-left: 15px;'>请再次输入密码</span>");
-	});
-	
+	// $('#user_name').focus(function(){
+	// 	$("#user_name").next().remove();
+	// 	$("#user_name").after("<span id='user_name_error' style='color:#aaa;margin-left: 15px;'>以字母开头,长度为4-30（可用字母、数字、下划线）</span>");
+	// });
+	// $('#user_email').focus(function(){
+	// 	$("#user_email").next().remove();
+	// 	$("#user_email").after("<span id='user_email_error' style='color:#aaa;margin-left: 15px;'>请输入邮箱地址</span>");
+	// });
+	// $('#user_password').focus(function(){
+	// 	$("#user_password").next().remove();
+	// 	$("#user_password").after("<span id='user_password_error' style='color:#aaa;margin-left: 15px;'>密码长度为6-20</span>");
+	// });
+	// $('#user_check_password').focus(function(){
+	// 	$("#user_check_password").next().remove();
+	// 	$("#user_check_password").after("<span id='user_check_password_error' style='color:#aaa;margin-left: 15px;'>请再次输入密码</span>");
+	// });
+
 	$('#phone_password').focus(function(){
 		$("#phone_password").next().remove();
 		$("#phone_password").after("<span id='phone_password_error' style='color:#aaa;margin-left: 15px;'>密码长度为6-20</span>");
@@ -42,8 +42,8 @@ $(function() {
 	});
 
 
-	
-	
+
+
 	$('#user_name').blur(function(){
 		$("#user_name_error").remove();
 		var user_name_length = getBytesCount($("#user_name").val());
@@ -65,8 +65,8 @@ $(function() {
 		} else {
 			showMessage("user_name","warn","用户名格式不正确");
 		}
-	}); 
-	
+	});
+
 	//邮箱检测，查看是否已经使用
 	$('#user_email').blur(function(){
 		if( /^([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\\.][A-Za-z]{2,3}([\\.][A-Za-z]{2})?$/g.test($("#user_email").val())){
@@ -81,13 +81,13 @@ $(function() {
 					showMessage("user_email","right","邮箱可用");
 				}
 			});
-			
+
 		} else {
 			showMessage("user_email","warn","邮箱格式不正确");
 			userEmail = false;
 		}
-	}); 
-	
+	});
+
 	$('#user_password').blur(function(){
 		var user_pass_length = getBytesCount($("#user_password").val());
 		var reg=/[\u4E00-\u9FA5]/i;
@@ -102,7 +102,7 @@ $(function() {
 			userPassword = true;
 		}
 	});
-	
+
 	$('#user_check_password').blur(function(){
 		if($("#user_check_password").val() == "" ){
 			showMessage("user_check_password","warn","确认密码为空");
@@ -115,7 +115,7 @@ $(function() {
 			userCheckPassword = true;
 		}
 	});
-	
+
 	$('#user_code').blur(function(){
 		var url = "/new/registers/checkAuthCode.reg";
 		var param = {codeKey : codeKey , code : $("#user_code").val()};
@@ -129,7 +129,7 @@ $(function() {
 			}
 		});
 	});
-	
+
 	//手机注册页面的验证码验证
 	$('#phone_code').blur(function(){
 		if($("#phone_code").val() == ""){
@@ -148,11 +148,11 @@ $(function() {
 			}
 		});
 	});
-	
+
 	$('#user_phone').focus(function(){
 		usedsend=false;
 	});
-	
+
 	$('#user_phone').blur(function(){
 		if(/^1\d{10}$/.test($("#user_phone").val())){
 			var url = "/new/registers/checkEmailAndPhone.reg";
@@ -177,7 +177,7 @@ $(function() {
 			usedsend=false;
 		}
 	});
-	
+
 	$("#phone_authcode").blur(function(){
 		var url = "/new/registers/checkAuthCode.reg";
 		var param = {codeKey : $("#user_phone").val() , code : $("#phone_authcode").val()};
@@ -191,7 +191,7 @@ $(function() {
 			}
 		});
 	});
-	
+
 	$("#phone_password").blur(function(){
 		var user_pass_length = getBytesCount($("#phone_password").val());
 		var reg=/[\u4E00-\u9FA5]/i;
@@ -206,7 +206,7 @@ $(function() {
 			showMessage("phone_password","right","输入正确");
 		}
 	});
-	
+
 	$("#phone_check_password").blur(function(){
 		if($("#phone_check_password").val() == "" ){
 			showMessage("phone_check_password","warn","确认密码为空");
@@ -234,7 +234,7 @@ $(function() {
 			$("#userPhoneAccept").attr("checked","checked");
 		}
 	});
-	
+
 });
 
 /**
@@ -243,10 +243,10 @@ $(function() {
  */
 function showMessage(key,className,desc){
 	$("#"+key).next().remove();
-	$("#"+key).after("<span class="+className+"><img src=\"/registers/"+regName+"/images/"+className+".png\">"+desc+"</span>");
+	$("#"+key).after("<span class="+className+"><img src=\"/img/account/"+className+".png\">"+desc+"</span>");
 }
 
-
+// ../../images/
 
 function removeWarnMessage(className){
 	$("."+className).remove();
@@ -254,7 +254,7 @@ function removeWarnMessage(className){
 
 function showCodeMessage(key,className,desc){
 	$("#"+key).next().next().remove();
-	$("#"+key).next().after("<span class="+className+"><img src=\"/registers/"+regName+"/images/"+className+".png\">"+desc+"</span>");
+	$("#"+key).next().after("<span class="+className+"><img src=\"/img/"+className+".png\">"+desc+"</span>");
 }
 
 
@@ -344,7 +344,7 @@ function register(codeKey,fromsystem,redirectUrl){
 			if(data[0].isExists == 1){
 				showMessage("user_name","warn","用户已经存在");
 				return;
-			} 
+			}
 		});
 	} else {
 		showMessage("user_name","warn","用户名格式不正确");
@@ -358,7 +358,7 @@ function register(codeKey,fromsystem,redirectUrl){
 		codeKey: codeKey,
 		from_system: fromsystem};
 	userRegisterNotCheck();
-	
+
 	if(userNotNullCheck && userName && userEmail && userPassword && userCheckPassword && userCode){
 		$("#userRegister").attr("href","javascript:void(0);");
 		$.post(url, param,function(data, textStatus){
@@ -374,7 +374,7 @@ function register(codeKey,fromsystem,redirectUrl){
 				alert("错误");
 			}
 		},"json");
-	}	
+	}
 }
 
 //发送验证码
@@ -388,7 +388,7 @@ function sendAuthCode(){
 		showMessage("reg_phone_img","warn","请输入验证码");
 		return;
 	}
-	
+
 	if(!phoneCode){
 		if($("#phone_code").val() == ""){
 			showMessage("reg_phone_img","warn","请输入验证码");
@@ -411,33 +411,33 @@ function sendAuthCode(){
 	if(!phoneCode){
 		return;
 	}
-	
+
 	if(/^1\d{10}$/.test($("#user_phone").val())){
 	} else {
 		userPhone = false;
 		showMessage("user_phone","warn","手机格式不正确");
 		return;
 	}
-	
+
 	if(usedsend){
 		removeWarnMessage("warn");
-		
+
 		var url = "/common/new/registers/sendAuthCode";
 		param ={ user_phone: $("#user_phone").val() };
 		$.post(url, param,function(data, textStatus){
 			setTime();
 		},"json");
 	}
-	
+
 }
 
 //倒数计时
 var i = 30;
-var intervalid; 
+var intervalid;
 
 function setTime(){
 	i=60;
-	intervalid = setInterval("fun()", 1000); 
+	intervalid = setInterval("fun()", 1000);
 }
 
 function fun() {
@@ -448,14 +448,14 @@ function fun() {
 		$("#get_confirm_num").css("background", "#2BB118");
 		clearInterval(intervalid);
 	}else{
-		
-        document.getElementById("get_confirm_num").innerHTML = "重新获取(" + i + ")";
-        $("#get_confirm_num").css("cursor", "default");
-        $("#get_confirm_num").css("background", "#8F968E");	
-        $("#get_confirm_num").removeAttr("href");
-        i--; 
+
+		document.getElementById("get_confirm_num").innerHTML = "重新获取(" + i + ")";
+		$("#get_confirm_num").css("cursor", "default");
+		$("#get_confirm_num").css("background", "#8F968E");
+		$("#get_confirm_num").removeAttr("href");
+		i--;
 	}
-} 
+}
 
 //手机提交注册
 function registerphone(fromsystem,redirectUrl){
@@ -478,7 +478,7 @@ function registerphone(fromsystem,redirectUrl){
 	}
 	phoneRegisterNotCheck();
 	var url = "/common/new/registers/phone_register";
-	if(phoneNotNullCheck && userPhone && phoneAuthCode && phonePassword && phoneCheckPassword){		
+	if(phoneNotNullCheck && userPhone && phoneAuthCode && phonePassword && phoneCheckPassword){
 		$("#phoneRegister").attr("href","javascript:void(0);");
 		param = {user_phone: $("#user_phone").val(),
 			phone_authcode: $("#phone_authcode").val(),
