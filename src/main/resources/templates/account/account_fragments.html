@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no,email=no,address=no"><!-- 清除页面缓存 -->
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <link rel="shortcut icon" href="../../static/img/index_need/dfq_logo.ico">
+    <link rel="shortcut icon" href="/img/index_need/dfq_logo.ico">
     <title th:text="${title}">个人中心</title>
-    <link href="../../static/css/account/personal_center.css" rel="stylesheet">
-    <link href="../../static/css/account/my_order_and_bill.css" rel="stylesheet">
-    <script src="../../static/js/index_need/jquery.js"></script>
+    <link href="/css/account/personal_center.css" rel="stylesheet">
+    <link href="/css/account/my_order_and_bill.css" rel="stylesheet">
+    <script src="/js/index_need/jquery.js"></script>
     <style>
         .header_a:hover {
             color: #FFAC00;
@@ -26,7 +26,7 @@
         <div class="_3UHJr">
             <div class="_3yuli">
                 <a href="/">
-                    <img src="../../static/img/index_need/dfqlogo.png" alt="logo">
+                    <img src="/img/index_need/dfqlogo.png" alt="logo">
                 </a>
             </div>
             <div class="JS7zp">
@@ -40,9 +40,9 @@
                 <a>搜索</a>
             </div>
             <div class="_28XjI" style="position: relative;">
-                <img th:title="${session.account?.getUsename()}?${session.account?.getUsename()}:'用户头像'"
-                     th:src="${session.account?.getAvatar()}?${session.account?.getAvatar}:'../../static/img/account/common_head_pic.jpg'"
-                     alt="16期-来坛天子笑" id="top_avatar">
+                <img title="16期-来坛天子笑"
+                     src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
+                     alt="16期-来坛天子笑">
                 <span class="_1s24Z"></span>
                 <ul>
                     <li><a href="#">退出登录</a></li>
@@ -164,7 +164,8 @@
                                                     <td>个性签名：</td>
                                                     <td>
                         <textarea maxlength="20" class="_2uDW_"
-                                  placeholder="请填写签名，20个字内"></textarea>
+                                  placeholder="请填写签名，20个字内">
+                        </textarea>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -453,17 +454,17 @@
                 <a href="#">
                     <img src="data:image/png;base64,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"
                          alt="关注微博">
-                    <img src="../../static/img/index_need/QRcode.png"
+                    <img src="/img/index_need/QRcode.png"
                          alt="大图" class="_2zzbZ">
                 </a>
                 <a href="#">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAExklEQVRYhc2Zy1MjVRSHv+7qNJ0hL4iQhEcCIWA5C0FnLGrcOVZpQZU7/QuchUtn6cqVLNWq2ViW/gXjzsWoZTk7hdKpAawaeRoY3o8J9EDSDHngohtIN3lcEsD57W7uufd86b733HNuS8lkkhqlAreAd4DXgT4gAnis/n1gDZgBJoGHwB/AYS3OpBpA3wA+AT4Ems85dge4D3wDPD7PwPOA9gMjwBAgncdJCR0BPwGfARMiA2QBGw34EvgLGKZ+SKw5hqw5v7J8VFQ10ATmuroLKPXSlZACfGr5SFQyrAT6FvA7MHBxXGU1AIwCg+UMyoEOAr8BLZcAVU5B4FfKwJYCTQA/chpmrlIey/eZZeAE1TDDx1U+SadaLAbbBnOCjnA1a7KaBoAvin8ojqP9mOHiMnZ3LcoBNzBPNdsTHeHlgQSTZaS4AeaxOHSeWdLpNOvrG+i6jmEcUCgUcLlceDwempubaG1tQVHq/t/DFtvj41f/HfCxyMh8Ps/8/L+sr29UtFMUhXi8i3A4XC/s98AdKZlMNgAbgL/aiGw2y+Tk36TTGWEv7e1t9PTEa8cEHQjJmAG2KiTA9PTsCaTL5SIa7aSxsdFm4/P56OzsQJbN5b+yssrq6lo9oH5gUAZui1jr+nNSqdRJOxwO0dUVo6OjzWbX15egu7sLv9938tvCwiL5fL4e2NsKZliqqu3tbVt7dXWNQqFAKrVj+31qahqfz8furo4sy3g8HlTVRSZj4PXWfNj1K5iZeVVlMoatnc/nWVlZPWO3v58mm80Sj3dTKBTQdZ1MJsPU1BSq2kAg4CccDtHQ0HAe0D4FCInZHglZeb1eIpEwyWSSbDZn6zOMA3Rd5+nTJWKxKNFopyhoSAa8IpYeT/XXpqoqra0tzMzMnoEs1tHREQsLi8zNzYuCekUyfABCoRCSVDm5b2uLsLCwaGu3tUVO2m63Rm9vAlVVAXOdF2/QSpKBPRHDa9fcdHS0l+2XJIlCoWDb3YFAgObm0/pP0zSCwaBtfS4vn13nJbSnYAb7oIh1V1eMXC7H2tr6mT5N0zAM+4Z78uQfW3tnZ5fR0TE7wZ7Qc9qQMetuIUmSRG9vgmDwbJUsyxdR85XVjIxguVqsvb19NK2BWCxKOBzC7/ejKIrQhnOqqSkgYjahYNZGn4tObBjGCaBzcx0eZllaWiaXK7/jiyVJkmiIeigDY5gHv5DcbjeRSLhkBFBVF729iarR4Vg9PXGRt/AcGJWBF8APoqDV1NLyCtevv4bL5apo19MTt4WuCroPvDjOR98EHtVNWaR8Ps/m5hapVArDOACO0DQNt9vN5uYWsVhUFPQm8Ki4ZvoZeO8iYcspl8uh6zrBYNWo+AvwPtiLuwHgT16euimH+TQnwF7cjQP3/g+iMrpHUeh0Xju6ubr7pkqawLwkPjnqnEmJAXwEbF0hlFNbmJfEtvO4VPY0B3wApK8Ayqm05XvO2VEuzRsD3gWeXSKUU88sn2OlOivlo2OY62T8EqCcGgfepgwkVL9xnsWE/RozXFy0ctbct6iSxYlk+AeYV+M3gQd1o53qgTXnXctHRQmXIpghYxjzuP0WEKsh7Nqxxt6w5hJOMWv5znQs5wexVyn9QWyaC/gg9h+1Y2MlXBO6gQAAAABJRU5ErkJggg=="
                          alt="关注微信">
-                    <img src="../../static/img/index_need/QRcode.png"
+                    <img src="/img/index_need/QRcode.png"
                          alt="大图" class="_2zzbZ">
                 </a>
             </p>
-            <img src="../../static/img/account/phone_number.png"
+            <img src="/img/account/phone_number.png"
                  alt="联系方式">
         </div>
         <div class="yd8x8">
@@ -481,7 +482,7 @@
                            href="#">资质证书</a>
                         <a href="#" target="_blank" rel="noopener noreferrer" title="行业认证">
                             <img height="15"
-                                 src="../../static/img/index_need/dfq_logo.ico" alt="lm">
+                                 src="/img/index_need/dfq_logo.ico" alt="lm">
                         </a>
                     </div>
                     <p> Ccpyright@2019 铁道软件商务咨询（长沙）有限公司 版权所有</p>
@@ -538,7 +539,7 @@
                             type: "POST",
                             url: "judgeVerificat",
                             datatype: "text",
-                            contentType: "application../../static/json",
+                            contentType: "application/json",
                             data: JSON.stringify(record),
                             async: true,
                             success: function (result) {
@@ -554,12 +555,12 @@
                                         console.log(data);
                                         document.getElementsByName("phone")[0].value = data['mobile'];
                                         document.getElementsByName("real_name")[0].value = data['name'];
-                                        document.getElementsByName('student_number')[0].value = data['studentNumber'];
+                                        document.getElementsByName('student_number')[0].value = data['studentNumber']
                                         document.getElementsByName('school_name')[0].value = data['school'];
                                     })
                                 } else
                                     alert("验证码错误！！")
-                            }
+                            },
                         })
                     } else {
                         alert("验证码发送失败！");
@@ -649,8 +650,8 @@
         $.ajax({
             url: 'sendVerificat',
             type: 'POST',
-            data: JSON.stringify({"userPhone": phone_num}),
-            contentType: "application../../static/json",
+            data: JSON.stringify({"userPhone":phone_num}),
+            contentType: "application/json",
             success: function (data) {
                 if (data === "1") {
                     var str = prompt("手机验证码已发送成功，请输入验证码：");
@@ -658,7 +659,7 @@
                         url: 'judgeVerificat',
                         type: 'POST',
                         data: JSON.stringify({"userPhone": phone_num, "verification": str}),
-                        contentType: "application../../static/json",
+                        contentType: "application/json",
                         success: function (result) {
                             if (result === "1") {
                                 document.getElementsByName("phone")[0].value = phone_num;
@@ -680,7 +681,7 @@
                 url: 'changePassword',
                 type: 'POST',
                 data: JSON.stringify({"password": password}),
-                contentType: "application../../static/json",
+                contentType: "application/json",
                 success: function (data) {
                     if (data == "1")
                         alert("密码修改成功！！");
@@ -693,15 +694,15 @@
     }
 
     function change_real_info() {
-        var name = document.getElementsByName("real_name")[0].value;
-        var studentNumber = document.getElementsByName("student_number")[0].value;
-        var school = document.getElementsByName("school_name")[0].value;
-        var student = {"name": name, "studentNumber": studentNumber, "school": school};
+        var name=document.getElementsByName("real_name")[0].value;
+        var studentNumber=document.getElementsByName("student_number")[0].value;
+        var school=document.getElementsByName("school_name")[0].value;
+        var student={"name":name,"studentNumber":studentNumber,"school":school};
         $.ajax({
             url: 'studentCertification',
             type: 'POST',
             data: JSON.stringify(student),
-            contentType: "application../../static/json; charset=utf-8",
+            contentType: "application/json; charset=utf-8",
             success: function (data) {
                 if (data == "1")
                     alert("信息修改成功！！");

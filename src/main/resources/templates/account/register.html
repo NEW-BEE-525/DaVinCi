@@ -1,0 +1,163 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  	<head>
+	  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="问答,文档,代码,控件,视频,案例,开发工具,知识聚集,分享,机器人"/> 
+		<meta name="description" content=""/> 
+		<link rel="stylesheet" type="text/css" href="/css/account/css_rest.css" />
+		<link rel="stylesheet" type="text/css" href="/css/account/cloud_index.css" />
+		<script src="/js/account_need/jquery-1.11.1.js" type="text/javascript" ></script>
+    	<title>注册</title>
+	</head>	
+	<script type="text/javascript">
+
+		function regist()
+		{
+			var userPhone = $("#user_phone").val();
+			var passWord = $("#phone_password").val();
+			var phoneCheck = $("#phone_authcode").val();
+
+
+			var record = {
+				"userPhone": userPhone,
+				"password": passWord,
+				"phoneCheck": phoneCheck
+			}
+			$.ajax({
+				type : "POST",
+				url : "register",
+				datatype : "json",
+				contentType : "application/json",
+				data : JSON.stringify(record),
+				async : true,
+				success : function(result) {
+					if(result == '1')
+					{
+						window.location.href = "/login";
+
+					}
+					if(result == '0')
+					{
+						alert('注册失败');
+					}
+
+				},
+				error : function(result) {
+					alert('注册失败', {
+						icon : 0
+					});
+				}
+			})
+		}
+		function sendCode() {
+			var userPhone = $("#user_phone").val();
+			alert(userPhone)
+			var record = {
+				"userPhone": userPhone,
+			}
+			$.ajax({
+				type: "POST",
+				url: "sendVerificat",
+				datatype: "text",
+				contentType: "application/json",
+				data: JSON.stringify(record),
+				async: true,
+				success : function(result) {
+					if(result == '1')
+					{
+						alert('发送成功');
+
+					}
+					if(result == '0')
+					{
+						alert('发送失败');
+					}
+
+				}
+			})
+
+		}
+
+	</script>
+	<body class="gray">
+	<div class="ruanko_body">
+		<h1 class="logo">
+			<a href="#">达分期</a>
+		</h1>
+		<div class="ruanko_login_main clear">
+			<div class="register_data_header">
+				<p class="goto_login">已有账号，<a href="login.html">去登录</a></p>
+				<p class="register_nav"><a>手机注册</a></p>
+				<!--			  <a class="curr">账号注册</a>-->
+			</div>
+			<div class="register_data_box">
+				<!--  		  <div class="register_data clear">-->
+				<!--  		    <ul class="register_input">-->
+				<!--  		      <li>-->
+				<!--  		        <p class="massage">帐号</p>-->
+				<!--  		        <input type="text" id="user_name">-->
+				<!--  		      </li>-->
+				<!--  		      <li>-->
+				<!--  		        <p class="massage">邮箱</p>-->
+				<!--  		        <input type="text" id="user_email">-->
+				<!--  		      </li>-->
+				<!--  		      <li>-->
+				<!--  		        <p class="massage">密码</p>-->
+				<!--  		        <input type="password" id="user_password">-->
+				<!--  		      </li>-->
+				<!--  		      <li>-->
+				<!--  		        <p class="massage">确认密码</p>-->
+				<!--  		        <input type="password" id="user_check_password">-->
+				<!--  		      </li>-->
+				<!--  		      <li>-->
+				<!--  		        <p class="massage">验证码</p>-->
+				<!--  		        <input class="code" type="text" id="user_code">-->
+				<!--  		        <img class="code_pic" id="reg_code_img" onClick="javascript:reloadImage();" src="../../static/jsp/validateImage.jsp?checkKey=ACCOUNT_REGISTER_CODE_KEY_0B5AE99EB9D94BA99FD03086C0926D7A" style="width: 89px;height: 40px;">-->
+				<!--  		      </li>-->
+				<!--  		    </ul>-->
+				<!--  		    <p class="accept"><input type="checkbox" checked="checked" id="userRegisterAccept"/>我接受<a target="_blank" href="http://system.ruanko.com/portal/register_viewProtocol">《个人会员服务协议》</a></p>-->
+				<!--  		    <a href="javascript: register('ACCOUNT_REGISTER_CODE_KEY_0B5AE99EB9D94BA99FD03086C0926D7A','ruanko','http://system.ruanko.com/portal/none/login.do?method=loginRegRedirect&redirect_url=null');" id="userRegister" class="login">立即注册</a>-->
+				<!--  		  </div>-->
+				<div class="register_data clear">
+					<ul class="register_input">
+						<li>
+							<p class="massage">手机号</p>
+							<input type="text" id="user_phone">
+						</li>
+						<!--  		      <li>-->
+						<!--  		        <p class="massage">验证码</p>-->
+						<!--  		        <input class="code" type="text" id="phone_code">-->
+						<!--  		        <img class="code_pic" id="reg_phone_img" onClick="javascript:reloadImage();" src="../../static/jsp/validateImage.jsp?checkKey=ACCOUNT_REGISTER_CODE_KEY_0B5AE99EB9D94BA99FD03086C0926D7A" style="width: 89px;height: 40px;">-->
+						<!--  		      </li>-->
+						<li>
+							<p class="massage">手机验证码</p>
+							<input type="text" class="confirm_num" id="phone_authcode">
+							<a style="background:#2BB118;color:#ffffff" class="get_confirm_num" id="get_confirm_num" onclick="sendCode()">免费获取</a>
+						</li>
+						<li>
+							<p class="massage">密码</p>
+							<input type="password" id="phone_password">
+						</li>
+						<li>
+							<p class="massage">确认密码</p>
+							<input type="password" id="phone_check_password">
+						</li>
+					</ul>
+					<p class="accept"><input type="checkbox" checked="checked" id="userPhoneAccept">我接受<a target="_blank" href="http://system.ruanko.com/portal/register_viewProtocol">《个人会员服务协议》</a></p>
+					<a href="#" id="phoneRegister" class="login" onclick="regist()">立即注册</a>
+				</div>
+			</div>
+		</div>
+		<div class="ruanko_footer">
+			<a href="http://system.ruanko.com/portal/none/ruankubm/showWebsite/29.html" target="_blank">关于软酷</a>
+			<a href="http://blog.sina.com.cn/u/2414427812" target="_blank">官方博客</a>
+			<a href="http://system.ruanko.com/portal/none/ruankubm/showWebsite/26.html" target="_blank">版权声明</a>
+			<a href="http://express.ruanko.com/" target="_blank">软酷快讯</a>
+			<a href="http://system.ruanko.com/portal/none/ruankubm/showWebsite/21.html" target="_blank">联系我们</a>
+			<a href="http://news.ruanko.com/" target="_blank">软酷新闻</a>
+			<p>Copyright© 2007-2015 Ruankosoft Technologies Co., Ltd. 粤B2-20100246 <a target="_blank" href="http://www.miitbeian.gov.cn">粤ICP备12081495号</a></p>
+		</div>
+	</div>
+	</body>
+</html>

@@ -1,6 +1,7 @@
 package com.project.davinci.persistence;
 
 import com.project.davinci.domain.Account;
+import com.project.davinci.domain.Student;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -10,6 +11,18 @@ public interface AccountDAO {
     int updateAvatarById(Account account);
 
     int insertAccount(Account account);
+
+    Account getAccountById(int id);
+
+    int updateLoginTime(Account account);
+
+    int insertSthdent(Student student);
+
+    Student getStudentById(int id);
+
+    int updateMobile(Account account);
+
+    int upfatePassword(Account account);
 }
 
 //    Account getAccountByUsernameAndPassword(Account account);

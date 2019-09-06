@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--<meta name="keywords" content="达分期、消费金融服务平台、教育分期、家居家电分期、低至0利息0首付">-->
     <!--<meta name="description" content="达分期是达飞纷期推出的消费金融服务平台，专注为中国家庭用户提供“家·生活”消费金融服务，涵盖亲子教育、家居家电等家庭领域，让幸福“家·生活”走进中国亿万家庭。">-->
-    <link rel="shortcut icon" href="../../static/img/index_need/dfq_logo.ico">
-    <link href=" ../../static/css/index_need/bootstrap.min.css" rel="stylesheet">
-    <link href="../../static/css/index_need/myclass.css" rel="stylesheet">
-    <link href="../../static/css/index_need/media.css" rel="stylesheet">
-    <link href="../../static/css/product/in_out_product.css" rel="stylesheet">
-    <link href="../../static/css/account/personal_center.css" rel="stylesheet">
-    <script src="../../static/js/index_need/jquery.js"></script>
-    <script src="../../static/js/index_need/common.js"></script>
+    <link rel="shortcut icon" href="/img/index_need/dfq_logo.ico">
+    <link href=" /css/index_need/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/index_need/myclass.css" rel="stylesheet">
+    <link href="/css/index_need/media.css" rel="stylesheet">
+    <link href="/css/product/in_out_product.css" rel="stylesheet">
+    <link href="/css/account/personal_center.css" rel="stylesheet">
+    <script src="/js/index_need/jquery.js"></script>
+    <script src="/js/index_need/common.js"></script>
     <title>订单确定</title>
     <style>
         html, body {
@@ -127,7 +127,7 @@
 <header class="hd-bgc hd-bgcpc header" style="position: fixed;width: 100%;background: #3D3D3D;top: 0;z-index: 100;">
     <div class="clearfix" style="width: 1200px;margin: 0 auto;">
         <div class="pull-left" style="padding: 0 50px 0 0;">
-            <img src="../../static/img/index_need/dfqlogo.png" height="50px" width="100px" id="indexicon" alt="图标">
+            <img src="/img/index_need/dfqlogo.png" height="50px" width="100px" id="indexicon" alt="图标">
         </div>
         <div class="pull-left">
             <ul id="menu_list">
@@ -149,13 +149,13 @@
             </ul>
         </div>
         <div class="pull-right telephone font_color-3">
-            <img src="../../static/img/index_need/telephonewhite.png" width="20px" height="14px"
+            <img src="/img/index_need/telephonewhite.png" width="20px" height="14px"
                  style="padding-right: 5px;" id="telephone">400-888-8888
         </div>
         <div class="pic">
             <a href="#" id="head_pic">
-                <img th:title="${session.account?.getUsename()}?${session.account?.getUsename()}:'用户头像'"
-                     th:src="${session.account?.getAvatar()}?${session.account?.getAvatar}:'../../static/img/account/common_head_pic.jpg'"
+                <img th:title="${session.account?.getUsername()}?${session.account?.getUsername()}:'用户头像'"
+                     th:src="${session.account?.getAvatar()}?${session.account?.getAvatar()}:'/img/account/common_head_pic.jpg'"
                      alt="头像" style="position: relative;">
             </a>
             <div class="two" id="head_pic_list" th:if="${session.account} eq null">
@@ -182,13 +182,13 @@
 <div style="margin-top: 70px">
     <div class="search_div">
         <div style="display: inline-block;width: 380px;text-align: center;vertical-align: top">
-            <img src="../../static/img/product/cpys02.png" width="50px" height="50px"
+            <img src="/img/product/cpys02.png" width="50px" height="50px"
                  style="vertical-align: top;margin-top: 5px">
             <span style="font-size: 40px;font-weight: 900">站内商品</span>
         </div>
         <div style="display: inline-block;vertical-align: top">
             <form action="#" method="post">
-                <img src="../../static/img/product/search_ico.jpg" width="28px" height="28px">
+                <img src="/img/product/search_ico.jpg" width="28px" height="28px">
                 <input class="_1YMqD" type="text" placeholder="输入关键词搜索产品">
                 <input type="submit" class="submit_btn" value="搜索">
                 <!--<a class="cart_a _2uLFV" style="margin-left: 230px">购物车</a>-->
@@ -252,16 +252,16 @@
         <!--订单表格-->
         <div style="height: 75px;text-align: center;width: 1009px;padding-top: 10px">
             <div class="inline_block" style="width: 255px;text-align: left">
-                <img th:src="${}" width="50" height="50">
+                <img th:src="${cart.getPicUrl()}" width="50" height="50">
                 <div class="inline_block">
-                    <p th:text="${}" th:id="${}" class="pname">商品的名字</p>
+                    <p th:text="${cart.getGoodsName()}" th:id="${cart.getProductId()}" class="pname">商品的名字</p>
                 </div>
             </div>
             <div class="inline_block" style="width: 180px;color: #7a7a7a">
-                <span th:each="info, infoStat : ${}" th:text="${info}">规格</span>
+                <span th:each="info, infoStat : ${cart.getSpecifications()}" th:text="${info}">规格</span>
             </div>
             <div class="inline_block" style="width: 120px;">
-                <p>￥<span th:text="${}">100.00</span></p>
+                <p>￥<span th:text="${cart.getPrice()}" id="DJ">100.00</span></p>
             </div>
             <div class="inline_block" style="width: 120px;">
                 <a class="SL_btn" id="sub_btn"><i>-</i></a>
@@ -273,7 +273,7 @@
                 <p>无折扣</p>
             </div>
             <div class="inline_block" style="width: 130px;">
-                <b style="color: red;font-size: 16px">￥<span th:text="${}">9.90</span></b>
+                <b style="color: red;font-size: 16px">￥<span th:text="${cart.getPrice()}" id="XJ">9.90</span></b>
             </div>
         </div>
         <!--订单默认结尾-->
@@ -313,7 +313,7 @@
             <div style="width: 1008px;text-align: right;font-size: 16px;padding-right: 20px" class="order_down">
                 <p>
                     店铺合计(含运费)
-                    <span style="color: red;font-weight: bold">￥9.90</span>
+                    <span style="color: red;font-weight: bold" id="HJ" th:text="${cart.getPrice()}">￥9.90</span>
                 </p>
             </div>
         </div>
@@ -328,9 +328,9 @@
             </label>
         </div>
         <div style="height: 40px;text-align: right;width: 1009px;padding-left: 830px;padding-top: 30px">
-            <a class="addto_cart inline_block" id="real_pay">付款</a>
+            <a class="addto_cart inline_block" id="submit_order">提交订单</a>
         </div>
-        <div style="text-align: right;width: 1009px;height: 50px;padding-top:50px">
+        <div id="pay_way_div" style="text-align: right;width: 1009px;height: 50px;padding-top:50px;display: none">
             支付方式:
             <select id="pay_way_select">
                 <option name="BTZF3" value="1">白条支付(3期)</option>
@@ -343,20 +343,20 @@
     </div>
     <!--右栏-->
     <div class="right_bar">
-        <a href="#top"><img src="../../static/img/product/arrow_up.png" title="回顶部" width="30px" height="30px"></a>
+        <a href="#top"><img src="/img/product/arrow_up.png" title="回顶部" width="30px" height="30px"></a>
         <br><br>
-        <a><img src="../../static/img/product/star.png" title="收藏" width="30px" height="30px"></a>
+        <a><img src="/img/product/star.png" title="收藏" width="30px" height="30px"></a>
         <br><br>
         <a><span style="color: white;font-size: 30px;">￥</span></a>
         <br><br>
-        <a><img src="../../static/img/product/cart.png" title="购物车" width="32px" height="32px"></a>
+        <a><img src="/img/product/cart.png" title="购物车" width="32px" height="32px"></a>
     </div>
 </div>
 <footer class="main-footer main-footer1" style="position: inherit;left: 0;">
     <div class="container">
         <div class="row">
             <div class="col-sm-3 text-l">
-                <img src="../../static/img/index_need/dfq_logo03.png">
+                <img src="/img/index_need/dfq_logo03.png">
             </div>
 
             <div class="col-sm-6 text-l">
@@ -371,11 +371,11 @@
             <div class="col-sm-3">
                 <div class="clearfix font_color-5 font-size-6 text-c" style="padding-bottom: 20px;">
                     <div class="pull-right">
-                        <img src="../../static/img/index_need/QRcode.png">
+                        <img src="/img/index_need/QRcode.png">
                         <p>达分期服务号</p>
                     </div>
                     <div class="pull-right" style="padding-right: 30px;">
-                        <img src="../../static/img/index_need/QRcode.png">
+                        <img src="/img/index_need/QRcode.png">
                         <p>达分期订阅号</p>
                     </div>
                 </div>
@@ -409,6 +409,7 @@
 <script>
     var head_pic = document.getElementById("head_pic");
     var head_pic_list = document.getElementById("head_pic_list");
+    var fq = 0;
     head_pic.onmouseover = function () {
         document.getElementsByClassName("two")[0].style.visibility = "visible";
     };
@@ -501,12 +502,23 @@
         }
     });
 
+    $('#submit_order').click(function () {
+        this.id = 'real_pay';
+        this.innerText = '付款';
+        document.getElementById('pay_way_div').style.display = 'block';
+        trade_complete();
+    })
+
     $("#real_pay").click(function () {
         switch ($('#pay_way_select option:selected').val()) {
             case "1":
+                fq = 1;
             case '2':
+                fq = 2;
             case '3':
+                fq = 3;
             case '4':
+                fq = 4;
                 document.getElementById("pay_password").style.display = "block";
                 document.getElementById("cover").style.display = "block";
                 break;
@@ -516,27 +528,36 @@
                 });
                 document.getElementById("cover").style.display = "block";
                 document.getElementsByClassName("pay_img")[0].style.display = "block";
+                $.ajax({
+                    url: "#",
+                    type: 'GET',
+                    async: false,
+                    success: function (data) {
+                        if (data) {
+                            alert("支付成功！")
+                        }
+                    }
+                });
                 break;
         }
     })
 
     $('#pay_password_submit').click(function () {
-        var password = {'password': document.getElementById("pay_password_input").value};
-        $.ajax({
-            url: '#',
-            type: 'POST',
-            data: JSON.stringify(password),
-            contentType: "application../../static/json",
-            success: function (data) {
-                if (data == "1") {
-
-                }
-                else {
-
-                }
-            }
-        })
-    })
+        // var password = {'password': document.getElementById("pay_password_input").value};
+        // $.ajax({
+        //     url: '#',
+        //     type: 'POST',
+        //     data: JSON.stringify(password),
+        //     contentType: "application../../static/json",
+        //     success: function (data) {
+        //         if (data == "1") {
+        //         }
+        //         else {
+        //             alert("密码错误，交易失败！")
+        //         }
+        //     }
+        // })
+    });
 
     $('.close_btn').click(function () {
         document.getElementById("pay_password").style.display = "none";
@@ -545,36 +566,42 @@
     })
 
     $('#sub_btn').click(function () {
-        document.getElementById("num").value = document.getElementById("num").value - 1;
-    })
+        document.getElementById("num").value--;
+        document.getElementById('XJ').innerText = document.getElementById('DJ').innerText * document.getElementById("num").value;
+        document.getElementById('HJ').innerText = "￥" + document.getElementById('XJ').innerText
+    });
 
     $('#add_btn').click(function () {
-        document.getElementById("num").value = Number(document.getElementById("num").value) + 1;
-    })
+        document.getElementById("num").value++;
+        document.getElementById('XJ').innerText = document.getElementById('DJ').innerText * document.getElementById("num").value;
+        document.getElementById('HJ').innerText = '￥' + document.getElementById('XJ').innerText
+    });
 
     function trade_complete() {
-        var id = document.getElementsByClassName("pname").id;
+        var id = document.getElementsByClassName("pname")[0].id;
         var num = document.getElementById('num').value;
         var BZ = document.getElementById('BZ').value;//备注
         var XXDZ = document.getElementById('XXDZ').value;//详细地址
         var SHR = document.getElementById('SHR').value;//收货人
         var SHRDH = document.getElementById('SHRDH').value;//收货人电话
         var dataMap = {
-            'id': id,
+            'productId': id,
             'num': num,
-            'BZ': BZ,
-            'XXDZ': XXDZ,
-            'SHR': SHR,
-            'SHRDH': SHRDH
+            'message': BZ,
+            'addressDesc': XXDZ,
+            'name': SHR,
+            'mobile': SHRDH,
+            'cartId': "0",
+            'fq': fq
         };
+        console.log(dataMap);
         $.ajax({
-            url: "#",
+            url: "submit",
             type: "post",
             data: JSON.stringify(dataMap),
-            contentType: "application../../static/json",
+            contentType: "application/json",
             success: function (data) {
-                if (data !== "1") {
-                    alert('支付成功！');
+                if (data) {
                     document.getElementById('num').setAttribute("readonly", "true");
                     document.getElementById('sub_btn').style.display = "none";
                     document.getElementById('add_btn').style.display = "none";
@@ -583,8 +610,7 @@
                     document.getElementById('SHR').setAttribute("readonly", "true");
                     document.getElementById('SHRDH').setAttribute("readonly", "true");
                     document.getElementById('pay_way_select').disabled = true;
-                    document.getElementById('real_pay').style.display = "none";
-                    document.getElementById('up').innerText = '订单完成';
+                    document.getElementById('up').innerText = '订单编号:' + data;
                 } else {
                     alert('支付失败！')
                 }

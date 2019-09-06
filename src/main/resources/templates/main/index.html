@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--<meta name="keywords" content="达分期、消费金融服务平台、教育分期、家居家电分期、低至0利息0首付">-->
     <!--<meta name="description" content="达分期是达飞纷期推出的消费金融服务平台，专注为中国家庭用户提供“家·生活”消费金融服务，涵盖亲子教育、家居家电等家庭领域，让幸福“家·生活”走进中国亿万家庭。">-->
-    <link rel="shortcut icon" href="../../static/img/index_need/dfq_logo.ico">
-    <link href=" ../../static/css/index_need/bootstrap.min.css" rel="stylesheet">
-    <link href="../../static/css/index_need/swiper.min.css" rel="stylesheet">
-    <link href="../../static/css/index_need/animate.min.css" rel="stylesheet">
-    <link href="../../static/css/index_need/myclass.css" rel="stylesheet">
-    <link href="../../static/css/index_need/media.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/index_need/dfq_logo.ico">
+    <link href=" /css/index_need/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/index_need/swiper.min.css" rel="stylesheet">
+    <link href="/css/index_need/animate.min.css" rel="stylesheet">
+    <link href="/css/index_need/myclass.css" rel="stylesheet">
+    <link href="/css/index_need/media.css" rel="stylesheet">
     <title>达分期</title>
     <style>
         html, body {
@@ -117,14 +117,14 @@
 <header class="hd-bgc hd-bgcpc header" style="position: fixed;width: 100%;background: none;top: 0;z-index: 100;">
     <div class="clearfix" style="width: 1200px;margin: 0 auto;">
         <div class="pull-left" style="padding: 0 50px 0 0;">
-            <img src="../../static/img/index_need/dfqlogo.png" height="50px" width="100px" id="indexicon" alt="图标">
+            <img src="/img/index_need/dfqlogo.png" height="50px" width="100px" id="indexicon" alt="图标">
         </div>
         <div class="pull-left">
             <ul id="menu_list">
-                <li class="hd_nav-item"><a href="index.html" class='font_color-1 bordbttom'>首页</a>
+                <li class="hd_nav-item"><a href="/" class='font_color-1 bordbttom'>首页</a>
                     <div class="onmoseoveractive"></div>
                 </li>
-                <li class="hd_nav-item"><a href="#" class="fontclass font_color-3">站内产品</a>
+                <li class="hd_nav-item"><a href="/inProduct" class="fontclass font_color-3">站内产品</a>
                     <div class="onmoseover"></div>
                 </li>
                 <li class="hd_nav-item"><a href="#" class='fontclass font_color-3'>站外产品</a>
@@ -139,31 +139,31 @@
             </ul>
         </div>
         <div class="pull-right telephone font_color-3">
-            <img src="../../static/img/index_need/telephonewhite.png" width="20px" height="14px"
+            <img src="/img/index_need/telephonewhite.png" width="20px" height="14px"
                  style="padding-right: 5px;" id="telephone">400-888-8888
         </div>
         <div class="pic">
             <a href="#" id="head_pic">
-                <img th:title="${session.account?.getUsename()}?${session.account?.getUsename()}:'用户头像'"
-                     th:src="${session.account?.getAvatar()}?${session.account?.getAvatar}:'../../static/img/account/common_head_pic.jpg'"
+                <img th:title="${session.account?.getUsername()}?${session.account.getUsername()}:'用户头像'"
+                     th:src="${session.account?.getAvatar()}?${session.account.getAvatar()}:'/upload/f47ac9f901312eafde175fa4652dbe72.jpeg'"
                      alt="头像" style="position: relative;">
             </a>
             <div class="two" id="head_pic_list" th:if="${session.account} eq null">
                 <em class="member-box"></em>
                 <ul>
-                    <li><a href="#">登录</a> \ <a href="#">注册</a></li>
+                    <li><a href="/login">登录</a> \ <a href="/register">注册</a></li>
 
                 </ul>
             </div>
             <div class="two" id="head_pic_list" th:if="${session.account} ne null">
                 <em class="member-box"></em>
                 <ul>
-                    <li><a href="../account/personal_center.html">个人中心</a></li>
-                    <li><a href="#">我的订单</a></li>
-                    <li><a href="#">我的账单</a></li>
-                    <li><a href="#">帮助</a></li>
-                    <li><a href="#">安全中心</a></li>
-                    <li><a href="#">退出登录</a></li>
+                    <li><a href="/showPersonalCenter">个人中心</a></li>
+                    <li><a href="/showAllOrders">我的订单</a></li>
+                    <li><a href="/showAllBills">我的账单</a></li>
+                    <li><a href="/showSafetyCenter">安全中心</a></li>
+                    <li><a href="/showHelp">帮助</a></li>
+                    <li><a href="/logout">退出登录</a></li>
                 </ul>
             </div>
 
@@ -189,11 +189,11 @@
                 <source src="https://file.dafy.com.cn/OSS/20180425/indexvideo_171600226.mp4" type="video/mp4">
             </video>
             <img class="ani imgwh24" swiper-animate-effect="fadeIn" swiper-animate-duration="2s"
-                 swiper-animate-delay="0.1s" src="../../static/img/index_need/t01.png">
+                 swiper-animate-delay="0.1s" src="/img/index_need/t01.png">
             <!--</div>-->
         </div>
         <div class="swiper-slide page"
-             style="background: url(../../static/img/index_need/bg02.png) no-repeat;background-size: 100% 100%;width: 100%;height: 100%;">
+             style="background: url(/img/index_need/bg02.png) no-repeat;background-size: 100% 100%;width: 100%;height: 100%;">
             <div style="">
                 <div class="ani font-size-7 font_color-3" swiper-animate-effect="fadeIn" swiper-animate-duration="2s"
                      swiper-animate-delay="0.1s">优质商家 覆盖众多品牌
@@ -203,70 +203,70 @@
 
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.1s">
-                            <img src="../../static/img/index_need/bg02icon1.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon1.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.2s">
-                            <img src="../../static/img/index_need/bg02icon2.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon2.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">
-                            <img src="../../static/img/index_need/bg02icon3.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon3.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.4s">
-                            <img src="../../static/img/index_need/bg02icon4.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon4.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.5s">
-                            <img src="../../static/img/index_need/bg02icon5.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon5.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.6s">
-                            <img src="../../static/img/index_need/bg02icon6.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon6.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.7s">
-                            <img src="../../static/img/index_need/bg02icon7.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon7.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.8s">
-                            <img src="../../static/img/index_need/bg02icon8.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon8.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.9s">
-                            <img src="../../static/img/index_need/bg02icon9.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon9.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="1s">
-                            <img src="../../static/img/index_need/bg02icon10.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon10.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="1.1s">
-                            <img src="../../static/img/index_need/bg02icon11.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon11.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="1.2s">
-                            <img src="../../static/img/index_need/bg02icon12.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon12.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="1.3s">
-                            <img src="../../static/img/index_need/bg02icon13.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon13.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="1.4s">
-                            <img src="../../static/img/index_need/bg02icon14.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon14.png" class="imgwh27">
                         </div>
                         <div class="ani col-zdlg-2-5 col-xs-4 padd2" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="1.5s">
-                            <img src="../../static/img/index_need/bg02icon15.png" class="imgwh27">
+                            <img src="/img/index_need/bg02icon15.png" class="imgwh27">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="swiper-slide page"
-             style="background: url(../../static/img/index_need/bg01.png) no-repeat;background-size: 100% 100%;width: 100%;height: 100%;">
+             style="background: url(/img/index_need/bg01.png) no-repeat;background-size: 100% 100%;width: 100%;height: 100%;">
             <div class="">
                 <div class="ani font-size-7 font_color-3" swiper-animate-effect="fadeIn" swiper-animate-duration="2s"
                      swiper-animate-delay="0.1s">极致体验 超越价值
@@ -275,32 +275,32 @@
                     <div class="row">
                         <div class="ani col-lg-2 col-xs-6" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.1s">
-                            <img src="../../static/img/index_need/bm03icon1.png" class="imgwh25">
+                            <img src="/img/index_need/bm03icon1.png" class="imgwh25">
                             <div class="font_color-3 font-size-3 padd-top3">提前享受资源</div>
                         </div>
                         <div class="ani col-lg-2 col-xs-6" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.2s">
-                            <img src="../../static/img/index_need/bm03icon2.png" class="imgwh25">
+                            <img src="/img/index_need/bm03icon2.png" class="imgwh25">
                             <div class="font_color-3 font-size-3 padd-top3">减轻经济压力</div>
                         </div>
                         <div class="ani col-lg-2 col-xs-6" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">
-                            <img src="../../static/img/index_need/bm03icon3.png" class="imgwh25">
+                            <img src="/img/index_need/bm03icon3.png" class="imgwh25">
                             <div class="font_color-3 font-size-3 padd-top3">节余现金流</div>
                         </div>
                         <div class="ani col-lg-2 col-xs-6" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.4s">
-                            <img src="../../static/img/index_need/bm03icon4.png" class="imgwh25">
+                            <img src="/img/index_need/bm03icon4.png" class="imgwh25">
                             <div class="font_color-3 font-size-3 padd-top3">形成理财意识</div>
                         </div>
                         <div class="ani col-lg-2 col-xs-6" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.5s">
-                            <img src="../../static/img/index_need/bm03icon5.png" class="imgwh25">
+                            <img src="/img/index_need/bm03icon5.png" class="imgwh25">
                             <div class="font_color-3 font-size-3 padd-top3">建立信用记录</div>
                         </div>
                         <div class="ani col-lg-2 col-xs-6" swiper-animate-effect="fadeInUp"
                              swiper-animate-duration="0.5s" swiper-animate-delay="0.6s">
-                            <img src="../../static/img/index_need/bm03icon6.png" class="imgwh25">
+                            <img src="/img/index_need/bm03icon6.png" class="imgwh25">
                             <div class="font_color-3 font-size-3 padd-top3">消费升级</div>
                         </div>
                     </div>
@@ -308,7 +308,7 @@
             </div>
         </div>
         <div class="swiper-slide page"
-             style="background: url(../../static/img/index_need/bg04.png) no-repeat;background-size: 100% 100%;">
+             style="background: url(/img/index_need/bg04.png) no-repeat;background-size: 100% 100%;">
             <div class="ani posi-abfont" swiper-animate-effect="fadeIn" swiper-animate-duration="2s"
                  swiper-animate-delay="0.1s">
                 <div class="font-size-7 font_color-3">优质生活日 千种钜惠等你来</div>
@@ -318,7 +318,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-3 text-l">
-                            <img src="../../static/img/index_need/dfq_logo03.png">
+                            <img src="/img/index_need/dfq_logo03.png">
                         </div>
 
                         <div class="col-sm-6 text-l">
@@ -333,11 +333,11 @@
                         <div class="col-sm-3">
                             <div class="clearfix font_color-5 font-size-6 text-c" style="padding-bottom: 20px;">
                                 <div class="pull-right">
-                                    <img src="../../static/img/index_need/QRcode.png">
+                                    <img src="/img/index_need/QRcode.png">
                                     <p>达分期服务号</p>
                                 </div>
                                 <div class="pull-right" style="padding-right: 30px;">
-                                    <img src="../../static/img/index_need/QRcode.png">
+                                    <img src="/img/index_need/QRcode.png">
                                     <p>达分期订阅号</p>
                                 </div>
                             </div>
@@ -359,10 +359,10 @@
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
 </div>
-<script src="../../static/js/index_need/jquery.js"></script>
-<script src="../../static/js/index_need/swiper.min.js"></script>
-<script src="../../static/js/index_need/swiper.animate1.0.3.min.js"></script>
-<script src="../../static/js/index_need/common.js"></script>
+<script src="/js/index_need/jquery.js"></script>
+<script src="/js/index_need/swiper.min.js"></script>
+<script src="/js/index_need/swiper.animate1.0.3.min.js"></script>
+<script src="/js/index_need/common.js"></script>
 <script>
     $('.header .hd_nav-item').mouseout(function () {
         $(this).find('div').removeClass('active')
@@ -385,16 +385,16 @@
                 slideChangeTransitionStart: function () {
                     if (this.activeIndex != 0) {
                         $('.header').css('background', '#ffffff')
-                        $("#indexicon").attr('src', '../../static/img/index_need/dfqlogo.png');
+                        $("#indexicon").attr('src', '/img/index_need/dfqlogo.png');
                         $('.fontclass').removeClass('font_color-3').addClass('font_color-6');
                         $('.telephone').removeClass('font_color-3').addClass('font_color-6');
-                        $("#telephone").attr('src', '../../static/img/index_need/telephone.png');
+                        $("#telephone").attr('src', '/img/index_need/telephone.png');
                     } else {
                         $('.header').css('background', 'none')
-                        $("#indexicon").attr('src', '../../static/img/index_need/dfqlogo.png');
+                        $("#indexicon").attr('src', '/img/index_need/dfqlogo.png');
                         $('.fontclass').removeClass('font_color-6').addClass('font_color-3');
                         $('.telephone').removeClass('font_color-6').addClass('font_color-3');
-                        $("#telephone").attr('src', '../../static/img/index_need/telephonewhite.png');
+                        $("#telephone").attr('src', '/img/index_need/telephonewhite.png');
                     }
                 },
                 init: function () {
