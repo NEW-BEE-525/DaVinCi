@@ -99,48 +99,40 @@ public class DaOrderService {
 //     * @param limit     分页大小
 //     * @return 订单列表
 //     */
-//    public Object list(Integer userId, Integer showType, Integer page, Integer limit, String sort, String order) {
-//        if (userId == null) {
-//            return ResponseUtil.unlogin();
-//        }
-//
-//        List<Short> orderStatus = OrderUtil.orderStatus(showType);
-//        List<Order> orderList = orderService.queryByOrderStatus(userId, orderStatus, page, limit, sort, order);
-//
-//        List<Map<String, Object>> orderVoList = new ArrayList<>(orderList.size());
-//        for (Order o : orderList) {
-//            Map<String, Object> orderVo = new HashMap<>();
-//            orderVo.put("id", o.getId());
-//            orderVo.put("orderSn", o.getOrderSn());
-//            orderVo.put("actualPrice", o.getActualPrice());
-//            orderVo.put("orderStatusText", OrderUtil.orderStatusText(o));
-//            orderVo.put("handleOption", OrderUtil.build(o));
-//
-//            Groupon groupon = grouponService.queryByOrderId(o.getId());
-//            if (groupon != null) {
-//                orderVo.put("isGroupin", true);
-//            } else {
-//                orderVo.put("isGroupin", false);
-//            }
-//
-//            List<OrderGoods> orderGoodsList = orderGoodsService.queryByOid(o.getId());
-//            List<Map<String, Object>> orderGoodsVoList = new ArrayList<>(orderGoodsList.size());
-//            for (OrderGoods orderGoods : orderGoodsList) {
-//                Map<String, Object> orderGoodsVo = new HashMap<>();
-//                orderGoodsVo.put("id", orderGoods.getId());
-//                orderGoodsVo.put("goodsName", orderGoods.getGoodsName());
-//                orderGoodsVo.put("number", orderGoods.getNumber());
-//                orderGoodsVo.put("picUrl", orderGoods.getPicUrl());
-//                orderGoodsVo.put("specifications", orderGoods.getSpecifications());
-//                orderGoodsVoList.add(orderGoodsVo);
-//            }
-//            orderVo.put("goodsList", orderGoodsVoList);
-//
-//            orderVoList.add(orderVo);
-//        }
-//
-//        return ResponseUtil.okList(orderVoList, orderList);
-//    }
+    public Map<String,Object> list(Integer userId, Integer showType, Integer page, Integer limit, String sort, String order) {
+
+        List<Short> orderStatus = OrderUtil.orderStatus(showType);
+        List<Order> orderList = orderService.queryByOrderStatus(userId, orderStatus, page, limit, sort, order);
+
+        List<Map<String, Object>> orderVoList = new ArrayList<>(orderList.size());
+        for (Order o : orderList) {
+            Map<String, Object> orderVo = new HashMap<>();
+            orderVo.put("id", o.getId());
+            orderVo.put("orderSn", o.getOrderSn());
+            orderVo.put("actualPrice", o.getActualPrice());
+            orderVo.put("orderStatusText", OrderUtil.orderStatusText(o));
+            orderVo.put("handleOption", OrderUtil.build(o));
+
+            List<OrderGoods> orderGoodsList = orderGoodsService.queryByOid(o.getId());
+            List<Map<String, Object>> orderGoodsVoList = new ArrayList<>(orderGoodsList.size());
+            for (OrderGoods orderGoods : orderGoodsList) {
+                Map<String, Object> orderGoodsVo = new HashMap<>();
+                orderGoodsVo.put("id", orderGoods.getId());
+                orderGoodsVo.put("goodsName", orderGoods.getGoodsName());
+                orderGoodsVo.put("number", orderGoods.getNumber());
+                orderGoodsVo.put("picUrl", orderGoods.getPicUrl());
+                orderGoodsVo.put("specifications", orderGoods.getSpecifications());
+                orderGoodsVoList.add(orderGoodsVo);
+            }
+            orderVo.put("goodsList", orderGoodsVoList);
+
+            orderVoList.add(orderVo);
+        }
+        Map<String, Object> result = new HashMap<>();
+        result.put("orderVoList",orderVoList);
+        result.put("orderList",orderList);
+        return result;
+    }
 //
 //    /**
 //     * 订单详情
@@ -232,10 +224,13 @@ public class DaOrderService {
             if (cartId.equals(0)) {
                 cart.setProductId(productId);
                 GoodsProduct product = productService.findById(productId);
-
+                Goods goods = goodsService.findById(product.getGoodsId());
                 cart.setId(null);
                 cart.setPrice(product.getPrice());
                 cart.setNumber(num);
+                cart.setGoodsName(goods.getName());
+                cart.setGoodsSn(goods.getGoodsSn());
+                cart.setPicUrl(goods.getPicUrl());
                 cart.setSpecifications(product.getSpecifications());
                 checkedGoodsList = new ArrayList<>(1);
                 checkedGoodsList.add(cart);

@@ -2,18 +2,15 @@ package com.project.davinci.controller;
 
 import com.project.davinci.domain.*;
 import com.project.davinci.service.*;
+import com.project.davinci.service.BillService;
 import com.project.davinci.utils.OrderUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-
 public class OrderController {
     private final Log logger = LogFactory.getLog(OrderController.class);
 
@@ -36,15 +32,17 @@ public class OrderController {
 //     * @param limit     分页大小
 //     * @return 订单列表
 //     */
-//    @GetMapping("list")
-//    public Object list( Integer userId,
-//                       @RequestParam(defaultValue = "0") Integer showType,
-//                       @RequestParam(defaultValue = "1") Integer page,
-//                       @RequestParam(defaultValue = "10") Integer limit,
-//                        @RequestParam(defaultValue = "add_time") String sort,
-//                        @RequestParam(defaultValue = "desc") String order) {
-//        return daOrderService.list(userId, showType, page, limit, sort, order);
-//    }
+//    @RequestParam(defaultValue = "0") Integer showType,
+//    @RequestParam(defaultValue = "1") Integer page,
+//    @RequestParam(defaultValue = "10") Integer limit,
+//    @RequestParam(defaultValue = "add_time") String sort,
+//    @RequestParam(defaultValue = "desc") String order
+    @GetMapping("list")
+    @ResponseBody
+    public Map<String,Object> list(HttpSession session) {
+//        Account account = (Account)session.getAttribute("account");
+        return daOrderService.list(1, 0, 5, 10, "add_time", "desc");
+    }
 //
 //    /**
 //     * 订单详情
@@ -88,7 +86,9 @@ public class OrderController {
         cart.setId(cartId);
         return daOrderService.submit(account,address,cart,message);
     }
-//
+
+
+
 //    /**
 //     * 取消订单
 //     *
