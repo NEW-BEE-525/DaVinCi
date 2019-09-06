@@ -114,6 +114,9 @@
             right: 30px;
         }
 
+        #img_gallery p{
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -228,6 +231,8 @@
         <a class="sub_category_a">标签</a>
         <a class="sub_category_a">标签</a>
     </div>
+    <br>
+    <br>
     <h1 style="margin-left: 100px">达分期站内商店</h1>
     <div class="product_main_div">
         <div class="product_img_div inline_block">
@@ -296,7 +301,7 @@
             <span th:text="${info.value}" style="width: 400px;display: inline-block"></span>
         </p>
     </div>
-    <div th:utext="${info?.detail}" style="text-align: center"></div>
+    <div th:utext="${info?.detail}" style="text-align: center;" id="img_gallery"></div>
     <div class="right_bar">
         <a href="#top"><img src="/img/product/arrow_up.png" title="回顶部" width="30px" height="30px"></a>
         <br><br>

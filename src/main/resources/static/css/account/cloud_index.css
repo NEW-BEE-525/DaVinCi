@@ -1,0 +1,146 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,th,td{margin:0;padding:0;font-family:"Microsoft Yahei";}
+a{outline:none;blr:expression(this.onFocus=this.blur());color:#333;text-decoration:none;}
+img{border:0;}
+ol,ul{list-style:none;}
+
+
+/*新版登录页面*/
+body.gray{background:#f5f5f5;}
+.hidden{display:none;}
+.ruanko_body{width:990px;margin:0 auto;padding-top:70px;}
+.ruanko_body .logo a{text-indent:-9999px;background:url(/img/account/dfq_logo03.png) no-repeat;display:block;width:200px;height:100px;}
+
+/*新版登录页面主要内容区块*/
+.ruanko_body .ruanko_login_main{padding-top:0px;padding-bottom:60px;border-bottom:1px solid #e8e8e8;}
+.ruanko_body .login_left{width:300px;float:left;padding-left:0px;padding-bottom:60px}
+.ruanko_body .login_right{width:390px;float:right;position:relative;padding-right:0px}
+.ruanko_body .login_right .warn{font-size:12px;color:#333;background:#ffffc2;float:right;height:21px;line-height:21px;position:absolute;top:20px;left:120px;}
+.ruanko_body .login_right .warn img{float:left;margin-right:10px;height:16px;margin-top:2.5px;}
+.login_right .login_box{width:250px;padding-top:20px;padding-left: 100px}
+.login_box h4{color:#333;font-size:16px;font-weight:normal;margin-bottom:20px;height:21px;line-height:21px;}
+.login_box .login_input{position:relative;}
+.login_box .login_input input{width:218px;height:40px;line-height:40px;padding:0 15px;border:1px solid #ccc;box-shadow:0 2px 4px #ececec inset;color:#aaa;float:left;margin-bottom:-1px;}
+.login_box .login_input input:first-child{border-top-left-radius:3px;border-top-right-radius:3px;}
+.login_box .login_input input:last-child{border-bottom-left-radius:3px;border-bottom-right-radius:3px;}
+.login_box .login_input img{position:absolute;right:0;bottom:0px;right:1px;box-shadow:0 2px 4px #ececec inset;border-bottom-right-radius:3px;}
+.login_box .login_input li .title {
+  position: absolute;
+  line-height: 42px;
+  font-size: 12px;
+  color: #aaa;
+  left: 15px;
+}
+
+.login_box input:focus{outline:none;}
+.login_box .auto_login{height:15px;line-height:15px;clear:both;padding:15px 0;font-size:12px;font-family:Tahoma;color:#333;}
+.login_box .auto_login input[type="checkbox"]{vertical-align:middle;margin-top:0;margin-right:5px;}
+.login_box .auto_login a{margin-left:0px;+margin-left:120px;}
+.login_box .auto_login a:hover{text-decoration:underline;color:#333;}
+.login_box .login:hover{background-position:0 -50px;}
+
+.login_box .login_btn:hover{background-position:0 -50px;}
+.login_box .login_btn{margin:0px 0px 0px 0px;display:block;width:250px;height:40px;line-height:0px;color:#fff;text-align:center;font-size:16px;background:url(/img/account/login_bg.png);}
+
+.login_box .another_login{border-top:1px solid #e8e8e8;margin-top:40px;padding-top:20px;font-size:12px;color:#999;}
+.login_box .another_login p.another_login_icon{line-height:25px;}
+
+.login_box .another_login p.another_login_icon a.qqlogin{background-position:0 -100px;}
+.login_box .another_login p.another_login_icon a.wblogin{background-position:-35px -100px;}
+.login_box .another_login p.another_login_icon a.wxlogin{background-position:-70px -100px;}
+.login_box .another_login p.another_login_icon a.emlogin{background-position:-105px -100px;}
+.login_box .another_login p.register{margin-top:10px;}
+.login_box .another_login p.register a:hover{color:#333;text-decoration:underline;}
+
+/*软酷页脚*/
+.ruanko_body .ruanko_footer{text-align:center;padding-top:20px;}
+.ruanko_body .ruanko_footer a{display:inline-block;font-size:12px;color:#999;border-left:1px solid #e1e1e1;padding:0 20px;}
+.ruanko_body .ruanko_footer a:first-child{border-left:none;}
+.ruanko_body .ruanko_footer a:hover{color:#333;text-decoration:underline;}
+.ruanko_body .ruanko_footer p{margin-top:10px;font-size:12px;color:#999;}
+
+/*软酷网注册页面*/
+.ruanko_login_main .register_data_header{border-bottom:1px solid #e8e8e8;}
+.ruanko_login_main .register_data_header .goto_login{float:right;font-size:12px;color:#999;}
+.ruanko_login_main .register_data_header .goto_login a:hover{text-decoration:underline;color:#333;}
+.ruanko_login_main .register_data_header .register_nav{text-align:center;font-size:14px;}
+.ruanko_login_main .register_data_header .register_nav a{display:inline-block;padding-bottom:10px;border-bottom:2px solid #f5f5f5;margin-left:10px;margin-left:130px;color:#333;}
+.ruanko_login_main .register_data_header .register_nav a.curr{border-bottom:2px solid #0063af;}
+.ruanko_login_main .register_data_box .register_data{margin-left:300px;display:none;padding-top:55px;}
+.ruanko_login_main .register_data_box .register_data:first-child{display:block;}
+.register_input li{margin-top:18px;height:40px;line-height:40px;font-size:12px;color:#666;clear:both;}
+.register_input li p{float:left;}
+.register_input li p.massage{width:60px;margin-right:20px;text-align:right;}
+.register_input li img{float:left;margin:11px 10px;height:16px;}
+.register_input li input{float:left;width:218px;height:38px;line-height:38px;padding:0 15px;border:1px solid #ccc;border-radius:3px;color:#aaa;box-shadow:0 2px 4px #ececec inset;}
+.register_input li input:focus{border-color:#f60;}
+.register_input li input.code{width:110px;}
+.register_input li input.confirm_num{width:98px;border-top-right-radius:0;border-bottom-right-radius:0;}
+.register_input li a.get_confirm_num{
+  color:#666;
+  display:block;
+  float:left;
+  height:38px;
+  line-height:38px;
+  width:119px;
+  border:1px solid #ccc;
+  border-left:0;
+  text-align:center;
+  background:#ebebeb;
+  border-top-right-radius:3px;
+  border-bottom-right-radius:3px;
+}
+.register_input li .code_pic{margin:0 10px;cursor:pointer;height:40px;width:89px;}
+.register_input li span{color:#333;}
+.register_data .accept{margin-top:15px;font-size:12px;color:#999;font-family:Tahoma;padding-left:80px;}
+.register_data .accept input[type="checkbox"]{vertical-align:middle;margin-top:0;margin-right:5px;}
+.register_data .accept a:hover{color:#333;text-decoration:underline;}
+.register_data .login{margin:30px 0 10px 80px;display:block;width:250px;height:40px;line-height:40px;color:#fff;text-align:center;font-size:16px;background:url(/img/account/login_bg.png);}
+.register_data .login:hover{background-position:0 -50px;}
+.register_data .submit{margin:20px 0 200px 70px;display:inline-block;width:110px;height:40px;line-height:40px;color:#fff;text-align:center;font-size:16px;background:url(/img/accoount/login_bg.png) 0 -135px no-repeat;}
+.register_data .skip{margin:20px 0 200px 27px;display:inline-block;width:108px;height:38px;line-height:38px;color:#666;text-align:center;font-size:16px;border:1px solid #ccc;border-radius:3px;}
+.register_data .submit:hover{background-position:-120px -135px;}
+.register_data .skip:hover{background:#fff;}
+
+/**绑定邮箱等头部及提交(不同于注册页面部分)**/
+.ruanko_login_main .register_data_header .bundling_nav{text-align:center;font-size:14px;}
+.ruanko_login_main .register_data_header .bundling_nav a{display:inline-block;padding-bottom:10px;border-bottom:2px solid #f5f5f5;margin-left:10px;margin-left:130px;color:#333;}
+.ruanko_login_main .register_data_header .bundling_nav a:first-child{margin-left:0;}
+.ruanko_login_main .register_data_header .bundling_nav a.curr{border-bottom:2px solid #0063af;}
+.bundling_data .submit{margin:20px 0 200px 70px;display:block;width:110px;height:40px;line-height:40px;color:#fff;text-align:center;font-size:16px;background:url(/img/account/login_bg.png) 0 -135px no-repeat;}
+.bundling_data .submit:hover{background-position:-120px -135px;}
+.ruanko_login_main .register_data_box .bundling_data{margin-left:300px;display:none;padding-top:55px;}
+.ruanko_login_main .register_data_box .bundling_data:first-child{display:block;}
+.ruanko_login_main .register_data_box .bundling_data .ewm{margin-left:88px;width:215px;height:215px;margin-bottom:140px;}
+
+/*密码找回*/
+.ruanko_login_main .register_data_header .title{font-size:14px;padding-bottom:15px;color:#333;}
+.datum .write_num{padding:20px 0;}
+.datum .write_num li{height:40px;line-height:40px;padding:10px 0;padding-left:318px;font-size:12px;}
+.datum .write_num li:hover{background:#ececec;}
+.datum .write_num li p{height:40px;line-height:40px;float:left;color:#666;width:71px;+width:80px;}
+.datum .write_num li input[type="radio"]{margin-right:10px;vertical-align:middle;margin-top:-1px;}
+.datum .write_num li input[type="text"]{margin-left:10px;width:218px;padding:0 15px;border:1px solid #ccc;height:38px;line-height:38px;border-radius:3px;float:left;color:#aaa;background:#f5f5f5;}
+.datum .write_num li input[type="text"]:focus{border-color:#f60;background:#fff;}
+.datum .warn img{float:left;margin:11px 10px;height:16px;}
+.datum .find_password_massage{line-height:40px;margin-left:318px;padding:30px 0 40px;font-size:12px;}
+.datum .find_password_massage p{color:#666;width:72px;+width:80px;margin-right:10px;text-align:right;float:left;}
+.datum .find_password_massage input{height:38px;line-height:38px;padding:0 15px;width:110px;border:1px solid #ccc;color:#aaa;float:left;border-radius:3px;}
+.datum .find_password_massage input:focus{border-color:#f60;}
+.datum .find_password_massage .code_pic{margin:0 10px;float:left;}
+.datum .find_password_massage .submit{display:block;width:110px;height:40px;line-height:40px;color:#fff;font-size:16px;margin-top:40px;margin-left:82px;+margin-left:91px;text-align:center;background:url(/img/account/login_bg.png) 0 -135px no-repeat;}
+.datum .find_password_massage .submit:hover{background-position:-120px -135px;}
+.datum .register_data{padding-left:329px;+padding-left:338px;border-top:1px solid #e8e8e8;}
+.datum .register_data .register_input{margin-top:25px;}
+.datum .register_data .submit{display:block;width:110px;height:40px;line-height:40px;color:#fff;font-size:16px;margin-top:30px;margin-left:71px;text-align:center;background:url(/img/account/login_bg.png) 0 -135px no-repeat;}
+.datum .find_password_massage .submit:hover{background-position:-120px -135px;}
+
+
+
+/**系统报错**/
+.ruanko_body .return{float:right;color:#333;font-size:12px;}
+.ruanko_body .return:hover{text-decoration:underline;}
+.success .warn_register{display:inline-block;font-size:24px;line-height:24px;color:#333;text-align:left;padding-left:31px;background:url(/img/account/warn.png) left 3px no-repeat;padding-bottom:3px;}
+.success .warn_register p{margin-bottom:10px;}
+
+
+
