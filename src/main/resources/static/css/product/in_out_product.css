@@ -222,7 +222,7 @@
 
 }
 
-.pay_img{
+.pay_img {
     z-index: 120;
     position: fixed;
     top: 120px;
@@ -236,7 +236,7 @@
     text-align: center;
 }
 
-#pay_password{
+#pay_password {
     z-index: 120;
     position: fixed;
     top: 160px;
@@ -263,7 +263,7 @@
     text-align: center;
 }
 
-.close_btn{
+.close_btn {
     position: absolute;
     top: 0;
     width: 30px;
@@ -273,4 +273,13 @@
     text-align: center;
     background-color: red;
     color: white;
+}
+
+.cart_item_div {
+    height: 100px;
+    text-align: center;
+    width: 1009px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px dotted #80b2ff;
 }

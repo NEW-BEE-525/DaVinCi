@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta name="keywords" content="达分期、消费金融服务平台、教育分期、家居家电分期、低至0利息0首付">-->
+    <!--<meta name="description" content="达分期是达飞纷期推出的消费金融服务平台，专注为中国家庭用户提供“家·生活”消费金融服务，涵盖亲子教育、家居家电等家庭领域，让幸福“家·生活”走进中国亿万家庭。">-->
+    <link rel="shortcut icon" href="../../static/img/index_need/dfq_logo.ico">
+    <link href=" ../../static/css/index_need/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/index_need/myclass.css" rel="stylesheet">
+    <link href="../../static/css/index_need/media.css" rel="stylesheet">
+    <link href="../../static/css/product/in_out_product.css" rel="stylesheet">
+    <link href="../../static/css/account/personal_center.css" rel="stylesheet">
+    <script src="../../static/js/index_need/jquery.js"></script>
+    <script src="../../static/js/index_need/common.js"></script>
+    <title>购物车</title>
+    <style>
+        html, body {
+            position: relative;
+            height: 100%;
+        }
+
+        a {
+            color: black;
+        }
+
+        .swiper-container-vertical > .swiper-pagination-bullets .swiper-pagination-bullet {
+            margin: 20px 0;
+        }
+
+        @media screen and (max-width: 1140px) {
+            .main-footer1 {
+                display: none;
+            }
+        }
+
+        .pic {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+        }
+
+        .pic > a {
+            display: block;
+        }
+
+        .pic > a > img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        img {
+            vertical-align: middle;
+            border-style: none;
+        }
+
+        ul, img {
+            list-style: none;
+            border: 0;
+            font-weight: normal;
+            outline: none;
+            resize: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .two {
+            width: 100px;
+            position: absolute;
+            display: block;
+            visibility: hidden;
+            right: 0px;
+            text-align: center;
+            z-index: 99;
+            top: 30px;
+        }
+
+        .two > em {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            width: 21px;
+            height: 8px;
+            background: url(https://www-cdn-res.shiguangkey.com/dist/static/san.bd42d282.png) no-repeat;
+        }
+
+        .two > ul {
+            padding: 10px;
+            background: #fff;
+            -webkit-box-shadow: 0 2px 4px #d9dfe9;
+            box-shadow: 0 2px 4px #d9dfe9;
+            border: 1px solid #e4e5e8;
+            text-align: center;
+            position: relative;
+            top: -22px;
+        }
+
+        li > a {
+            text-decoration: none;
+            outline: none;
+            color: black;
+        }
+
+        .two li > a:hover {
+            color: blue;
+        }
+
+        .two li {
+            height: 30px;
+        }
+
+        #head_pic {
+            position: fixed;
+            right: 30px;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<header class="hd-bgc hd-bgcpc header" style="position: fixed;width: 100%;background: #3D3D3D;top: 0;z-index: 100;">
+    <div class="clearfix" style="width: 1200px;margin: 0 auto;">
+        <div class="pull-left" style="padding: 0 50px 0 0;">
+            <img src="../../static/img/index_need/dfqlogo.png" height="50px" width="100px" id="indexicon" alt="图标">
+        </div>
+        <div class="pull-left">
+            <ul id="menu_list">
+                <li class="hd_nav-item"><a href="../main/index.html" class="fontclass font_color-3">首页</a>
+                    <div class="onmoseover"></div>
+                </li>
+                <li class="hd_nav-item"><a href="#" class='font_color-1 bordbttom'>站内产品</a>
+                    <div class="onmoseoveractive"></div>
+                </li>
+                <li class="hd_nav-item"><a href="#" class='fontclass font_color-3'>站外产品</a>
+                    <div class="onmoseover"></div>
+                </li>
+                <li class="hd_nav-item"><a href="#" class='fontclass font_color-3'>关于达分期</a>
+                    <div class="onmoseover"></div>
+                </li>
+                <li class="hd_nav-item"><a href="#" class='fontclass font_color-3'>APP下载</a>
+                    <div class="onmoseover"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="pull-right telephone font_color-3">
+            <img src="../../static/img/index_need/telephonewhite.png" width="20px" height="14px"
+                 style="padding-right: 5px;" id="telephone">400-888-8888
+        </div>
+        <div class="pic">
+            <a href="#" id="head_pic">
+                <img th:title="${session.account?.getUsername()}?${session.account?.getUsername()}:'用户头像'"
+                     th:src="${session.account?.getAvatar()}?${session.account?.getAvatar()}:'../../static/img/account/common_head_pic.jpg'"
+                     alt="头像" style="position: relative;">
+            </a>
+            <div class="two" id="head_pic_list" th:if="${session.account} eq null">
+                <em class="member-box"></em>
+                <ul>
+                    <li><a href="#">登录</a> \ <a href="#">注册</a></li>
+
+                </ul>
+            </div>
+            <div class="two" id="head_pic_list" th:if="${session.account} ne null">
+                <em class="member-box"></em>
+                <ul>
+                    <li><a href="../account/personal_center.html">个人中心</a></li>
+                    <li><a href="#">我的订单</a></li>
+                    <li><a href="#">我的账单</a></li>
+                    <li><a href="#">帮助</a></li>
+                    <li><a href="#">安全中心</a></li>
+                    <li><a href="#">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div style="margin-top: 70px">
+    <div class="search_div">
+        <div style="display: inline-block;width: 380px;text-align: center;vertical-align: top">
+            <img src="../../static/img/product/cpys02.png" width="50px" height="50px"
+                 style="vertical-align: top;margin-top: 5px">
+            <span style="font-size: 40px;font-weight: 900">站内商品</span>
+        </div>
+        <div style="display: inline-block;vertical-align: top">
+            <form action="#" method="post">
+                <img src="../../static/img/product/search_ico.jpg" width="28px" height="28px">
+                <input class="_1YMqD" type="text" placeholder="输入关键词搜索产品">
+                <input type="submit" class="submit_btn" value="搜索">
+                <!--<a class="cart_a _2uLFV" style="margin-left: 230px">购物车</a>-->
+            </form>
+            <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机&nbsp;&nbsp;</a><a>裤子&nbsp;&nbsp;</a><a>电脑&nbsp;&nbsp;</a>
+            <a>衣服&nbsp;&nbsp;</a><a>学习用品&nbsp;&nbsp;</a><a>帽子&nbsp;&nbsp;</a><a>零食&nbsp;&nbsp;</a>
+        </div>
+    </div>
+    <!--分类-->
+    <div style="padding-left: 300px">
+        筛选:<a>&nbsp;&nbsp;&nbsp;&nbsp;最新&nbsp;&nbsp;</a>
+        <a>&nbsp;&nbsp;最便宜&nbsp;&nbsp;</a>
+        <a>&nbsp;&nbsp;可分期&nbsp;&nbsp;</a>
+        <a>&nbsp;&nbsp;免息&nbsp;&nbsp;</a>
+        <a>&nbsp;&nbsp;优惠&nbsp;&nbsp;</a>
+        <a>&nbsp;&nbsp;免邮&nbsp;&nbsp;</a>
+        <a>&nbsp;&nbsp;买一送一&nbsp;&nbsp;</a>
+        <a>&nbsp;&nbsp;折扣&nbsp;&nbsp;</a>
+        <a>&nbsp;&nbsp;减息&nbsp;&nbsp;</a>
+        <br>
+        分类:&nbsp;&nbsp;
+        <a class="category_a">&nbsp;&nbsp;居家&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;餐厨&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;饮食&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;配件&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;服装&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;婴童&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;杂货&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;洗护&nbsp;&nbsp;</a>
+        <a class="category_a">&nbsp;&nbsp;志趣&nbsp;&nbsp;</a>
+
+    </div>
+    <div class="sub_category_div">
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+        <a class="sub_category_a">标签</a>
+    </div>
+    <!--标题-->
+    <h1 style="margin-left: 120px" id="up">购物车</h1>
+    <!--购物车信息-->
+    <div style="margin-left: 120px;min-height: 800px">
+        <div>
+            <div class="inline_block order_up_head" style="width: 255px;">店铺宝贝</div>
+            <div class="inline_block order_up_head" style="width: 180px;">商品属性</div>
+            <div class="inline_block order_up_head" style="width: 120px;">单价</div>
+            <div class="inline_block order_up_head" style="width: 120px;">数量</div>
+            <div class="inline_block order_up_head" style="width: 130px;">金额</div>
+            <div class="inline_block order_up_head" style="width: 180px;">操作</div>
+        </div>
+        <div class="order_shop">
+            <h3>达分期站内店铺</h3>
+        </div>
+        <!--购物车列表-->
+        <div style="min-height: 600px">
+            <div class="cart_item_div" th:each="product, productStat : ${cartList}" name="11" th:attr="name=#{product.getId()}">
+                <a th:attr="name=#{product.getId()}" class="cart_a" name="11">
+                    <div class="inline_block" style="width: 255px;text-align: left">
+                        <img th:src="${product.getPicUrl()}" width="70" height="70">
+                        <div class="inline_block">
+                            <p th:text="${product.getGoodsName()}" class="pname">商品的名字</p>
+                        </div>
+                    </div>
+                    <div class="inline_block" style="width: 180px;color: #7a7a7a">
+                        <span th:each="info, infoStat : ${product.getSpecifications()}" th:text="${info}">规格</span>
+                    </div>
+                </a>
+                <div class="inline_block" style="width: 120px;">
+                    <p>￥<span th:text="${product.getPrice()}" th:attr="name=#{product.getId()}"
+                              name="11">100.00</span></p>
+                </div>
+                <div class="inline_block" style="width: 120px;">
+                    <a class="SL_btn sub_btn" th:attr="name=#{product.getId()}" name="11"><i>-</i></a>
+                    <input value="1" type="number" id="num" name="11" min="1"
+                           style="text-align:center;width: 50px;height: 26px;border: 1px solid #e6e7eb;display: inline-block;vertical-align: bottom"
+                           th:attr="name=#{product.getId()}">
+                    <a class="SL_btn add_btn" th:attr="name=#{product.getId()}" name="11"><i>+</i></a>
+                </div>
+                <div class="inline_block" style="width: 130px;">
+                    <b style="color: red;font-size: 16px">￥
+                        <span th:text="${product.getPrice()}" id="JE" th:attr="name=#{product.getId()}"
+                              name="11">9.90</span>
+                    </b>
+                </div>
+                <div class="inline_block" style="width: 180px;">
+                    <a th:attr="name=#{product.getId()}" name="11" id="pay_now">立即购买</a>
+                    <br>
+                    <a th:attr="name=#{product.getId()}" name="11" id="remove_from_cart">移出购物车</a>
+                </div>
+            </div>
+            <div class="cart_item_div" th:each="product, productStat : ${cartList}" th:attr="name=#{product.getId()}">
+                <a th:attr="name=#{product.getId()}">
+                    <div class="inline_block" style="width: 255px;text-align: left">
+                        <img th:src="${product.getPicUrl()}" width="70" height="70">
+                        <div class="inline_block">
+                            <p th:text="${product.getGoodsName()}" class="pname">商品的名字</p>
+                        </div>
+                    </div>
+                    <div class="inline_block" style="width: 180px;color: #7a7a7a">
+                        <span th:each="info, infoStat : ${product.getSpecifications()}" th:text="${info}">规格</span>
+                    </div>
+                </a>
+                <div class="inline_block" style="width: 120px;">
+                    <p>￥<span th:text="${product.getPrice()}" th:attr="name=#{product.getId()}"
+                              name="11">100.00</span></p>
+                </div>
+                <div class="inline_block" style="width: 120px;">
+                    <a class="SL_btn sub_btn" th:attr="name=#{product.getId()}" name="11"><i>-</i></a>
+                    <input value="1" type="number" id="num" name="11" min="1"
+                           style="text-align:center;width: 50px;height: 26px;border: 1px solid #e6e7eb;display: inline-block;vertical-align: bottom"
+                           th:attr="name=#{product.getId()}">
+                    <a class="SL_btn add_btn" th:attr="name=#{product.getId()}" name="11"><i>+</i></a>
+                </div>
+                <div class="inline_block" style="width: 130px;">
+                    <b style="color: red;font-size: 16px">￥
+                        <span th:text="${product.getPrice()}" id="JE" th:attr="name=#{product.getId()}"
+                              name="11">9.90</span>
+                    </b>
+                </div>
+                <div class="inline_block" style="width: 180px;">
+                    <a th:attr="name=#{product.getId()}" name="11" id="pay_now">立即购买</a>
+                    <br>
+                    <a th:attr="name=#{product.getId()}" name="11" id="remove_from_cart">移出购物车</a>
+                </div>
+            </div>
+            <div class="cart_item_div" th:each="product, productStat : ${cartList}" th:attr="name=#{product.getId()}">
+                <a th:attr="name=#{product.getId()}">
+                    <div class="inline_block" style="width: 255px;text-align: left">
+                        <img th:src="${product.getPicUrl()}" width="70" height="70">
+                        <div class="inline_block">
+                            <p th:text="${product.getGoodsName()}" class="pname">商品的名字</p>
+                        </div>
+                    </div>
+                    <div class="inline_block" style="width: 180px;color: #7a7a7a">
+                        <span th:each="info, infoStat : ${product.getSpecifications()}" th:text="${info}">规格</span>
+                    </div>
+                </a>
+                <div class="inline_block" style="width: 120px;">
+                    <p>￥<span th:text="${product.getPrice()}" th:attr="name=#{product.getId()}"
+                              name="11">100.00</span></p>
+                </div>
+                <div class="inline_block" style="width: 120px;">
+                    <a class="SL_btn sub_btn" th:attr="name=#{product.getId()}" name="11"><i>-</i></a>
+                    <input value="1" type="number" id="num" name="11" min="1"
+                           style="text-align:center;width: 50px;height: 26px;border: 1px solid #e6e7eb;display: inline-block;vertical-align: bottom"
+                           th:attr="name=#{product.getId()}">
+                    <a class="SL_btn add_btn" th:attr="name=#{product.getId()}" name="11"><i>+</i></a>
+                </div>
+                <div class="inline_block" style="width: 130px;">
+                    <b style="color: red;font-size: 16px">￥
+                        <span th:text="${product.getPrice()}" id="JE" th:attr="name=#{product.getId()}"
+                              name="11">9.90</span>
+                    </b>
+                </div>
+                <div class="inline_block" style="width: 180px;">
+                    <a th:attr="name=#{product.getId()}" name="11" id="pay_now">立即购买</a>
+                    <br>
+                    <a th:attr="name=#{product.getId()}" name="11" id="remove_from_cart">移出购物车</a>
+                </div>
+            </div>
+            <div style="width: 1009px;height: 60px;position: fixed;background-color: #3F3F3F;bottom: 0;color: white;font-size: 20px;">
+                <div class="inline_block" style="width: 255px;text-align: center;padding: 10px">总共：<span
+                        th:text="${cartTotal.goodsCount}">100</span>件宝贝
+                </div>
+                <div class="inline_block " style="width: 180px;"></div>
+                <div class="inline_block " style="width: 120px;"></div>
+                <div class="inline_block " style="width: 100px;"></div>
+                <div class="inline_block " style="width: 150px;text-align: center;padding: 10px">总价：￥<span
+                        th:text="${cartTotal.goodsAmount}" id="ZJ">100</span></div>
+                <div class="inline_block "
+                     style="width: 176px;height: 60px;background-color: red;text-align: center;padding: 10px">
+                    <a style="color: white;font-weight: bold;font-size: 24px">清空购物车</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--右栏-->
+<div class="right_bar">
+    <a href="#top"><img src="../../static/img/product/arrow_up.png" title="回顶部" width="30px" height="30px"></a>
+    <br><br>
+    <a><img src="../../static/img/product/star.png" title="收藏" width="30px" height="30px"></a>
+    <br><br>
+    <a><span style="color: white;font-size: 30px;">￥</span></a>
+    <br><br>
+    <a><img src="../../static/img/product/cart.png" title="购物车" width="32px" height="32px"></a>
+</div>
+
+<footer class="main-footer main-footer1" style="position: inherit;left: 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 text-l">
+                <img src="../../static/img/index_need/dfq_logo03.png">
+            </div>
+
+            <div class="col-sm-6 text-l">
+                <div class="font_color-4 ">
+                    <p class="font-size-3">友情链接： <a href="#" target="_blank">铁道集团</a> | <a
+                            href="#" target="_blank">铁道云贷</a> | <a href="#" target="_blank">铁道金控</a> | <a
+                            href="#" target="_blank">铁道商城</a></p>
+                    <p class="font-size-3 font_color-5" style="padding-top: 6px;">办公地址：长沙市天心区铁道学院二综203</p>
+                    <p class="font-size-3 font_color-5">服务热线：400-888-8888</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="clearfix font_color-5 font-size-6 text-c" style="padding-bottom: 20px;">
+                    <div class="pull-right">
+                        <img src="../../static/img/index_need/QRcode.png">
+                        <p>达分期服务号</p>
+                    </div>
+                    <div class="pull-right" style="padding-right: 30px;">
+                        <img src="../../static/img/index_need/QRcode.png">
+                        <p>达分期订阅号</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span>京ICP备190829号-1 Ccpyright@2019 铁道软件商务咨询（长沙）有限公司 版权所有</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div id="cover" style=""></div>
+
+<script>
+    var head_pic = document.getElementById("head_pic");
+    var head_pic_list = document.getElementById("head_pic_list");
+    head_pic.onmouseover = function () {
+        document.getElementsByClassName("two")[0].style.visibility = "visible";
+    };
+    head_pic_list.onmouseleave = function () {
+        document.getElementsByClassName("two")[0].style.visibility = "hidden";
+    };
+
+    //跳转到商品详情界面
+    $('.cart_a').click(function () {
+        window.location.href = "#?cartId=" + this.name;
+    });
+
+    //跳转到下订单界面
+    $('#pay_now').click(function () {
+        window.location.href = "#?cartId=" + this.name;
+    });
+
+    //从购物车移除商品
+    $('#remove_from_cart').click(function () {
+        var name = this.name;
+        var dataform = {'cartId': name};
+        $.ajax({
+            url: "#",
+            type: 'POST',
+            data: JSON.stringify(dataform),
+            success: function (data) {
+                if (!data)
+                    console.log("后台删除购物车失败")
+                else {
+                    document.getElementsByClassName(name)[0].style.display = 'none';
+                }
+            }
+        })
+    });
+
+    $('.category_a').hover(function () {
+        var category_list = [
+            [{"id": "1008002", "value": "布艺软装"}, {"id": "1008008", "value": "被枕"}, {"id": "1008009", "value": "床品件套"},
+                {"id": "1008016", "value": "灯具"}, {"id": "1010003", "value": "地垫"}, {"id": "1011003", "value": "床垫"},
+                {"id": "1011004", "value": "家饰"}, {"id": "1015000", "value": "家具"}, {"id": "1017000", "value": "宠物"},
+                {"id": "1036000", "value": "夏凉"}],
+            [{"id": "1005007", "value": "锅具"}, {"id": "1005008", "value": "餐具"}, {"id": "1005009", "value": "清洁"},
+                {"id": "1007000", "value": "杯壶"}, {"id": "1008011", "value": "清洁保鲜"}, {
+                "id": "1008012",
+                "value": "功能厨具"
+            },
+                {"id": "1008013", "value": "茶具咖啡具"}, {"id": "1013005", "value": "刀剪砧板"}, {
+                "id": "1023000",
+                "value": "厨房小电"
+            }],
+            [{"id": "1005010", "value": "炒货"}, {"id": "1005011", "value": "小食"}, {"id": "1005012", "value": "食材"},
+                {"id": "1005013", "value": "冲饮"}, {"id": "1008014", "value": "糖巧"}, {"id": "1008015", "value": "糕点"},
+                {"id": "1027000", "value": "茗茶"}, {"id": "1027001", "value": "果干"}, {"id": "1035003", "value": "肉制品"},
+                {"id": "1036003", "value": "调味"}],
+            [{"id": "1008003", "value": "鞋"}, {"id": "1008007", "value": "围巾"}, {"id": "1008010", "value": "拖鞋"},
+                {"id": "1008018", "value": "单肩包"}, {"id": "1010004", "value": "双肩包"}, {
+                "id": "1012001",
+                "value": "功能箱包"
+            },
+                {"id": "1013000", "value": "靴"}, {"id": "1020008", "value": "配饰"}, {"id": "1022000", "value": "数码"}],
+            [{"id": "1008004", "value": "袜子"}, {"id": "1010001", "value": "内衣"}, {"id": "1010002", "value": "内裤"},
+                {"id": "1013006", "value": "家居服"}, {"id": "1015001", "value": "T恤"}, {"id": "1020009", "value": "外衣"},
+                {"id": "1020010", "value": "衬衫"}, {"id": "1034000", "value": "丝袜"}, {"id": "1035000", "value": "卫衣"},
+                {"id": "1035001", "value": "毛衣"}, {"id": "1035002", "value": "裤装"}],
+            [{"id": "1011001", "value": "妈咪"}, {"id": "1020003", "value": "服饰"}, {"id": "1020004", "value": "婴童洗护"},
+                {"id": "1020005", "value": "寝居"}, {"id": "1020006", "value": "玩具"}, {"id": "1020007", "value": "喂养"},
+                {"id": "1034001", "value": "童车童椅"}],
+            [{"id": "1008005", "value": "户外"}, {"id": "1008006", "value": "口罩"}, {"id": "1008017", "value": "收纳"},
+                {"id": "1011002", "value": "海外"}, {"id": "1012002", "value": "雨具"}, {"id": "1012003", "value": "文具"},
+                {"id": "1020000", "value": "出行用品"}, {"id": "1021000", "value": "节日礼盒"}, {
+                "id": "1036001",
+                "value": "眼睛"
+            },
+                {"id": "1036002", "value": "汽车用品"}],
+            [{"id": "1008001", "value": "毛巾"}, {"id": "1009000", "value": "日用清洁"}, {"id": "1013002", "value": "美妆"},
+                {"id": "1013003", "value": "护发"}, {"id": "1013004", "value": "香薰"}, {"id": "1020001", "value": "面部护理"},
+                {"id": "1020002", "value": "用具"}],
+            [{"id": "1018000", "value": "夏日甜心"}, {"id": "1025000", "value": "礼品卡"}, {"id": "1028001", "value": "唱片"},
+                {"id": "1032000", "value": "魔兽世界"}, {"id": "1032001", "value": "炉石传说"}, {
+                "id": "1032002",
+                "value": "守望先锋"
+            },
+                {"id": "1032003", "value": "暗黑破坏神III"}, {"id": "1032004", "value": "星际争霸II"}, {
+                "id": "1032005",
+                "value": "风暴英雄"
+            },
+                {"id": "1033000", "value": "梦幻西游"}, {"id": "1036004", "value": "大话西游"}]
+        ];
+
+        var x;
+        this.style.backgroundColor = "white";
+        for (var i = 0; i < document.getElementsByClassName("category_a").length; i++) {
+            if (document.getElementsByClassName("category_a")[i].style.backgroundColor === "white")
+                x = i;
+            document.getElementsByClassName("category_a")[i].style.border = "0px";
+            document.getElementsByClassName("category_a")[i].style.backgroundColor = "transparent"
+        }
+        this.style.borderLeft = "1px solid black";
+        this.style.borderRight = "1px solid black";
+        this.style.borderTop = "1px solid black";
+        this.style.backgroundColor = "white";
+        for (var k = 0; k < 11; k++) {
+            document.getElementsByClassName("sub_category_a")[k].id = "hide";
+            document.getElementsByClassName("sub_category_a")[k].textContent = "";
+        }
+        for (var j = 0; j < category_list[x].length; j++) {
+            document.getElementsByClassName("sub_category_a")[j].id = category_list[x][j]["id"];
+            document.getElementsByClassName("sub_category_a")[j].textContent = category_list[x][j]["value"];
+        }
+        document.getElementsByClassName("sub_category_div")[0].style.display = "block";
+    });
+
+    $('.sub_category_div').mouseleave(function () {
+        this.style.display = "none";
+        for (var i = 0; i < document.getElementsByClassName("category_a").length; i++) {
+            document.getElementsByClassName("category_a")[i].style.border = "0px";
+            document.getElementsByClassName("category_a")[i].style.backgroundColor = "transparent"
+        }
+    });
+
+
+    $('.close_btn').click(function () {
+        document.getElementById("pay_password").style.display = "none";
+        document.getElementById("cover").style.display = "none";
+        document.getElementsByClassName("pay_img")[0].style.display = "none";
+    })
+
+    $('.sub_btn').click(function () {
+        this.nextElementSibling.value--;
+        document.getElementById('ZJ').innerText -= money_change(this.name);
+    });
+
+    $('.add_btn').click(function () {
+        this.previousElementSibling.value++;
+        document.getElementById('ZJ').innerText += money_change(this.name);
+    });
+
+    //数量改变的ajax请求
+    function money_change(name) {
+        var list = document.getElementsByName(name);
+        var DJ = list[2].textContent;
+        var SL = list[4].value;
+        list[6].textContent = DJ * SL;
+        var dataform = {
+            'productId': name,
+            'number': SL
+        };
+        $.ajax({
+            url: "#",
+            type: "POST",
+            data: JSON.stringify(dataform),
+            contentType: "application/json",
+            success: function (data) {
+                if (!data)
+                    console.log("后台数量修改失败！");
+            }
+        });
+        return DJ;
+    }
+</script>
+
+</body>
+</html>
