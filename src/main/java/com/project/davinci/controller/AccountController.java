@@ -1,32 +1,22 @@
 package com.project.davinci.controller;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.*;
 import java.util.Map;
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.JsonObject;
 import com.project.davinci.domain.Account;
 import com.project.davinci.domain.Student;
 import com.project.davinci.service.AccountService;
-import com.project.davinci.utils.CCPRestSDK;
-import com.project.davinci.utils.utils.encoder.CharacterEncoder;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import javax.imageio.ImageIO;
 import java.io.*;

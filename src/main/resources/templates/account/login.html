@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="问答,文档,代码,控件,视频,案例,开发工具,知识聚集,分享,机器人"/>
+    <meta name="keywords" content="白条 分期付款 借贷"/>
     <meta name="description" content=""/>
     <meta http-equiv="Expires" CONTENT="0">
     <meta http-equiv="Cache-Control" CONTENT="no-cache">
@@ -11,74 +11,262 @@
     <title>登录</title>
     <link rel="stylesheet" type="text/css" href="/css/account/css_rest.css"/>
     <link rel="stylesheet" type="text/css" href="/css/account/cloud_index.css"/>
-    7
-    <script src="/js/index_need/jquery.js" type="text/javascript"></script>
+    <script src="/js/account_need/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="/js/account_need/cloud_index.js" type="text/javascript"></script>
+    <script src="/js/account_need/sync_cookie.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var login_messages = ["验证码错误！", "帐号申请状态！", "帐号已删除！", "帐号已冻结！", "帐号密码不正确！", "帐号不存在！", "程序异常！", "登录成功！"];
+        var login_form_message = ["请输入用户名！", "请输入密码！", "请输入验证码！", "服务器忙，请稍后再登录！"];
+        var loginRedirectUrl = "0";
+
+        function getCookie(objName) {//获取指定名称的cookie的值
+            var arrStr = document.cookie.split("; ");
+            for (var i = 0; i < arrStr.length; i++) {
+                var temp = arrStr[i].split("=");
+                if (temp[0] == objName) return unescape(temp[1]);
+            }
+        }
+
+        var istrue = 1;
+
+        // // 提交表单
+        // function formSubmit() {
+        //
+        //     if ($('#userName').val().length == 0) {
+        //         $("#warn").html("<img src=\"images/warn.png\">" + login_form_message[0]);
+        //     } else if ($('#password').val().length == 0) {
+        //         $("#warn").html("<img src=\"images/warn.png\">" + login_form_message[1]);
+        //     } else if (useCode == 1 && $('#logincode').val().length == 0) {
+        //         $("#warn").html("<img src=\"images/warn.png\">" + login_form_message[2]);
+        //     } else if (useCode == -1) {
+        //         $("#warn").html("<img src=\"../images/warn.png\">" + login_form_message[3]);
+        //     } else {
+        //
+        //         // 处理参数
+        //         var param = {
+        //             userName: $('#userPhone').val(),
+        //             password: $('#password').val()
+        //         };
+        //
+        //         // 如果需要验证码，就拼上验证码参数
+        //         if (useCode == 1) {
+        //             param.code = $("#logincode").val();
+        //         }
+        //         if (istrue == 0) {
+        //             return;
+        //         }
+        //         istrue = 0;
+        //         // 转转页面
+        //         var url = "/common/commonlogin";
+        //         $.post(url, param, function (data, textStatus) {
+        //             if (data[0].login_status == -7) {
+        //                 $(".yan_zheng,.opacity").show();
+        //                 $("#real_name").html(data[0].real_name);
+        //                 $("#warn").html("<a href='javascript:userbind()'><img src=\"images/warn.png\">账号未通过邮箱或手机验证</a>");
+        //                 istrue = 1;
+        //             } else {
+        //                 var login_status = data[0].login_status + (login_messages.length - 2);
+        //                 switch (login_status) {
+        //                     case (login_messages.length - 1):
+        //                         var url = "http://www.ruanko.com";
+        //                         url = url.replace("%26", "&");
+        //                         url = url.replace("%3D", "=");
+        //
+        //                         syncCookie(url);
+        //                         break;
+        //                     case (login_messages.length - 2):
+        //                     case (login_messages.length - 3):
+        //                     case (login_messages.length - 5):
+        //                     case (login_messages.length - 6):
+        //                     case (login_messages.length - 7):
+        //                     case (login_messages.length - 8):
+        //                         $("#warn").html("<img src=\"images/warn.png\">" + login_messages[login_status]);
+        //                         break;
+        //                     case (login_messages.length - 4):
+        //                         $("#warn").html("<img src=\"images/warn.png\">" + login_messages[login_status]);
+        //                         useCode = data[0].useCode;
+        //                         if (useCode == 1) {
+        //                             var userName = $("#userName").val();
+        //                             userName = userName.toLowerCase();
+        //                             $("#code_pic").attr("src", "/validateImage.jsp?checkKey=ACCOUNT_LOGIN_CODE_KEY_" + userName + "&date=" + new Date().getTime());
+        //                             $(".code_p").show();
+        //                             $(".login_input").find("input[type=password]").addClass("password");
+        //                         }
+        //                         break;
+        //                 }
+        //                 istrue = 1;
+        //             }
+        //         }, "json");
+        //
+        //     }
+        // }
+
+        // 检查是否需要验证码
+        var useCode = -1;
+
+        function checkUseCode(obj) {
+            var url = "/common/checkUseCode";
+            var param = {userName: obj.value};
+
+            $.getJSON(url, param, function (data) {
+                useCode = data[0].useCode;
+                if (data[0].useCode == 1) {
+                    var userName = obj.value;
+                    userName = userName.toLowerCase();
+                    $("#code_pic").attr("src", "/validateImage.jsp?checkKey=ACCOUNT_LOGIN_CODE_KEY_" + userName + "&date=" + new Date().getTime());
+                    $(".code_p").show();
+                    $(".password").addClass("password_addradius");
+                } else {
+                    $(".code_p").hide();
+                    $(".password").removeClass("password_addradius");
+                }
+            });
+        }
+
+        // 改变验证码
+        function changeCode(obj) {
+            obj.src = obj.src.substr(0, obj.src.lastIndexOf("=") + 1) + new Date().getTime();
+        }
 
 
+        // 监听回车事件
+        document.onkeyup = function (event) {
+            var evt = window.event || event;
+            var code = evt.keyCode ? evt.keyCode : evt.which;
+            if (code == 13) {
+                formSubmit();
+            }
+        }
+
+        // 第三方登录
+        // function threadLogin(appName){
+        // 	console.log(parseInt(document.body.clientHeight));
+        // 	var url = "/common/thread_login?app_name="+ appName +"&from_system=ruanko&redirect_url=" + encodeURIComponent('http://www.ruanko.com');
+        // 	var left = (parseInt(document.body.clientWidth) - 585) / 2;
+        // 	var top = (parseInt(document.body.clientHeight) - 525) / 2;
+        // 	window.open(url, "", "left=" + left + ",top=" + top + ", height=525,width=585, toolbar=no, menubar=no, scrollbars=no, status=no, location=yes, resizable=yes");
+        // }
+        //输入框提示
+        $(function () {
+            $("#userPhone").val("");
+
+            var inputs = $(".login_input").find("input");
+            inputs.focus(function () {
+                if ($.trim($(this).val()) == "") $(this).siblings("p").hide();
+            });
+            inputs.blur(function () {
+                if ($.trim($(this).val()) == "") $(this).siblings("p").show();
+            });
+
+            var ps = $(".login_input").find("p");
+            ps.click(function () {
+                $(this).next("input").focus();
+            });
+        });
+        //
+        // function tiaozhuan(url){
+        // 	window.parent.location.href = url;
+        // }
+
+
+        //跳转到用户验证页面
+        // function userbind(){
+        // 	var userName = $('#userName').val();
+        // 	window.location.href= "http://login.ruanko.com/logins/commonlogin/userbind.login?redirect_url=http://www.ruanko.com&userName=" + userName;
+        // }
+        // function tips(){
+        //
+        // 	$(".yan_zheng, .opacity").show();
+        // 	$("#real_name").html("用户");
+        // }
+        // $(function(){
+        // 	$(".y_zheng").click(function(){
+        //       $(".yan_zheng,.opacity").show();
+        //       });
+        // 	$(".cha").click(function(){
+        //       $(".top_cont,.opacity,.yan_zheng").hide();
+        //       });
+        //     $(".opacity").click(function(){
+        //       $(".top_cont,.opacity,.yan_zheng").hide();
+        //       });
+        // });
+
+        function login_req() {
+
+            var phone = $("#userPhone").val();
+            var password = $("#password").val();
+
+
+            var record = {
+                userPhone: phone,
+                password: password
+            }
+            $.ajax({
+                type: "POST",
+                url: "login",
+                datatype: "text",
+                contentType: "application/json",
+                data: JSON.stringify(record),
+                async: true,
+                success: function (result) {
+                    if (result == '1') {
+                        window.location.href = "/";
+
+                    }
+                    if (result == '0') {
+                        alert('用户名或密码错误');
+                    }
+
+                },
+                error: function (result) {
+                    alert('登录失败', {
+                        icon: 0
+                    });
+                }
+            })
+
+        }
+
+    </script>
 </head>
-<div class="opacity"></div>
 
+<div class="opacity"></div>
 
 <body class="gray">
 
 <div class="ruanko_body">
-    <div class="login">
-        <div class="ruanko_login_main clear">
+    <h1 class="logo">
+        <a href="#">达分期</a>
+    </h1>
+    <div class="ruanko_login_main clear">
+        <div class="login_left">
+            <a target="_blank" href="#"><img src="/img/account/bag02.jpg"></a>
+        </div>
+        <div class="login_right">
+            <p class="warn" id="warn"></p>
+            <div class="login_box">
+                <h4>我要登录</h4>
+                <!--				  <p class="title">密码</p>-->
+                <ul class="login_input clear">
+                    <li class="clear login_name"><p class="title">用户名/手机/邮箱</p><input type="text" id="userPhone"
+                                                                                      onblur="checkUseCode(this);"></li>
+                    <li class="clear password"><p class="title">密码</p><input type="password" id="password"></li>
+                </ul>
+                <p class="auto_login">
+                    <a href="http://login.ruanko.com/logins/commonlogin/forgetpassword.login?redirect_url=http://www.ruanko.com"
+                       style="float:left">忘记密码</a>
+                </p>
 
-            <div class="login_right">
-                <p class="warn" id="warn"></p>
-                <div class="login_box">
-                    <h4>我要登录</h4>
-                    <ul class="login_input clear">
-                        <li class="clear login_name"><p class="title">用户名/手机/邮箱</p><input type="text" id="userPhone" onblur="checkUseCode(this);"></li>
-                        <li class="clear password"><p class="title">密码</p><input type="password" id="password"></li>
-                    </ul>
-
-                    <button type="button" id="logincode" class="login_btn" maxlength="4" onclick="login_req()">登录</button>
-
-                    <p class="register">还没有帐号，<a href="register.html">立即注册</a></p>
+                <button type="button" id="logincode" class="login_btn" maxlength="4" onclick="login_req()">登录</button>
+                <div class="another_login">
+                    <p class="register">还没有帐号，<a href="/register">立即注册</a></p>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-<script type="text/javascript">
 
-    function login_req() {
 
-        var phone = $("#userPhone").val();
-        var password = $("#password").val();
-        var record = {
-            "userPhone": phone,
-            "password": password
-        }
-        $.ajax({
-            type: "POST",
-            url: "login",
-            datatype: "text",
-            contentType: "application/json",
-            data: JSON.stringify(record),
-            async: true,
-            success: function (result) {
-                alert(result)
-                if (result == '1') {
-                    window.location.href = "/";
-
-                }
-                if (result == '0') {
-                    alert('用户名或密码错误');
-                }
-
-            },
-            error: function (result) {
-                alert('登录失败', {
-                    icon: 0
-                });
-            }
-        })
-
-    }
-</script>
 </body>
 </html>

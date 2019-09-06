@@ -10,17 +10,13 @@ import com.project.davinci.service.GoodsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import org.apache.tomcat.util.http.ResponseUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -195,7 +191,7 @@ public class CartController {
             model.addAttribute("cart",cart);
             return "product/reconfirm_order";
         }
-        return "account/login";
+        return "login_old";
     }
 
     /**

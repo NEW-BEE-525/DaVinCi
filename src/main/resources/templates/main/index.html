@@ -145,7 +145,7 @@
         <div class="pic">
             <a href="#" id="head_pic">
                 <img th:title="${session.account?.getUsername()}?${session.account.getUsername()}:'用户头像'"
-                     th:src="${session.account?.getAvatar()}?${session.account.getAvatar()}:'/upload/f47ac9f901312eafde175fa4652dbe72.jpeg'"
+                     th:src="${session.account?.getAvatar()}?${session.account.getAvatar()}:'/img/account/common_head_pic.jpg'"
                      alt="头像" style="position: relative;">
             </a>
             <div class="two" id="head_pic_list" th:if="${session.account} eq null">
