@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>订单管理</title>
+    <link rel="shortcut icon" href="/img/index_need/dfq_logo.ico">
+    <style>
+        a {
+            /*display: inline-block;*/
+            text-decoration: none;
+            color: #bc0000;
+            /*float: right;*/
+            margin: 5px;
+        }
+
+        td {
+            border: 1px solid black;
+            min-width: 100px;
+            min-height: 50px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1><img src="../../static/img/product/cpys02.png" width="50px" height="50px" style="vertical-align: bottom">
+    达分期--管理中心--订单管理
+</h1>
+<div style="width: 100%;border: 2px solid black"></div>
+<br>
+
+<div style="text-align: center;width: 1000px;margin-left: 200px">
+    <table>
+        <tr>
+            <td>订单ID</td>
+            <td>用户ID</td>
+            <td>订单编号</td>
+            <td>订单状态</td>
+            <td>实付金额</td>
+            <td>操作</td>
+        </tr>
+        <tr th:each="order, orderStat : ${orderList}">
+            <td th:text="${order.getId()}"></td>
+            <td th:text="${order.getUser_id()}"></td>
+            <td th:text="${user.getOrder_sn()}"></td>
+            <td th:text="${user.getOrder_status()}"></td>
+            <td th:text="${user.getActual_price()}"></td>
+            <td>
+                <a href="#">详情</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="#">发货</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+<script>
+
+</script>
+</html>

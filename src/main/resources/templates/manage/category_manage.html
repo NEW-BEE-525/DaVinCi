@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>分类管理</title>
+    <link rel="shortcut icon" href="/img/index_need/dfq_logo.ico">
+    <style>
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: #bc0000;
+            float: right;
+            margin-left: 10px;
+        }
+
+        .category_div {
+            width: 299px;
+            padding: 10px;
+            border-radius: 20px;
+            border: 2px solid black;
+            display: inline-block;
+            vertical-align: top;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1><img src="../../static/img/product/cpys02.png" width="50px" height="50px" style="vertical-align: bottom">
+    达分期--管理中心--分类管理
+</h1>
+<div style="width: 100%;border: 2px solid black"></div>
+<br>
+<div id="main">
+
+</div>
+
+
+</body>
+<script>
+    var category_list = ['居家', '餐厨', '饮食', '配件', '服装', '婴童', '杂货', '洗护', '志趣'];
+    var sub_category_list = [
+        [{"id": "1008002", "value": "布艺软装"}, {"id": "1008008", "value": "被枕"}, {"id": "1008009", "value": "床品件套"},
+            {"id": "1008016", "value": "灯具"}, {"id": "1010003", "value": "地垫"}, {"id": "1011003", "value": "床垫"},
+            {"id": "1011004", "value": "家饰"}, {"id": "1015000", "value": "家具"}, {"id": "1017000", "value": "宠物"},
+            {"id": "1036000", "value": "夏凉"}],
+        [{"id": "1005007", "value": "锅具"}, {"id": "1005008", "value": "餐具"}, {"id": "1005009", "value": "清洁"},
+            {"id": "1007000", "value": "杯壶"}, {"id": "1008011", "value": "清洁保鲜"}, {
+            "id": "1008012",
+            "value": "功能厨具"
+        },
+            {"id": "1008013", "value": "茶具咖啡具"}, {"id": "1013005", "value": "刀剪砧板"}, {
+            "id": "1023000",
+            "value": "厨房小电"
+        }],
+        [{"id": "1005010", "value": "炒货"}, {"id": "1005011", "value": "小食"}, {"id": "1005012", "value": "食材"},
+            {"id": "1005013", "value": "冲饮"}, {"id": "1008014", "value": "糖巧"}, {"id": "1008015", "value": "糕点"},
+            {"id": "1027000", "value": "茗茶"}, {"id": "1027001", "value": "果干"}, {"id": "1035003", "value": "肉制品"},
+            {"id": "1036003", "value": "调味"}],
+        [{"id": "1008003", "value": "鞋"}, {"id": "1008007", "value": "围巾"}, {"id": "1008010", "value": "拖鞋"},
+            {"id": "1008018", "value": "单肩包"}, {"id": "1010004", "value": "双肩包"}, {
+            "id": "1012001",
+            "value": "功能箱包"
+        },
+            {"id": "1013000", "value": "靴"}, {"id": "1020008", "value": "配饰"}, {"id": "1022000", "value": "数码"}],
+        [{"id": "1008004", "value": "袜子"}, {"id": "1010001", "value": "内衣"}, {"id": "1010002", "value": "内裤"},
+            {"id": "1013006", "value": "家居服"}, {"id": "1015001", "value": "T恤"}, {"id": "1020009", "value": "外衣"},
+            {"id": "1020010", "value": "衬衫"}, {"id": "1034000", "value": "丝袜"}, {"id": "1035000", "value": "卫衣"},
+            {"id": "1035001", "value": "毛衣"}, {"id": "1035002", "value": "裤装"}],
+        [{"id": "1011001", "value": "妈咪"}, {"id": "1020003", "value": "服饰"}, {"id": "1020004", "value": "婴童洗护"},
+            {"id": "1020005", "value": "寝居"}, {"id": "1020006", "value": "玩具"}, {"id": "1020007", "value": "喂养"},
+            {"id": "1034001", "value": "童车童椅"}],
+        [{"id": "1008005", "value": "户外"}, {"id": "1008006", "value": "口罩"}, {"id": "1008017", "value": "收纳"},
+            {"id": "1011002", "value": "海外"}, {"id": "1012002", "value": "雨具"}, {"id": "1012003", "value": "文具"},
+            {"id": "1020000", "value": "出行用品"}, {"id": "1021000", "value": "节日礼盒"}, {
+            "id": "1036001",
+            "value": "眼睛"
+        },
+            {"id": "1036002", "value": "汽车用品"}],
+        [{"id": "1008001", "value": "毛巾"}, {"id": "1009000", "value": "日用清洁"}, {"id": "1013002", "value": "美妆"},
+            {"id": "1013003", "value": "护发"}, {"id": "1013004", "value": "香薰"}, {"id": "1020001", "value": "面部护理"},
+            {"id": "1020002", "value": "用具"}],
+        [{"id": "1018000", "value": "夏日甜心"}, {"id": "1025000", "value": "礼品卡"}, {"id": "1028001", "value": "唱片"},
+            {"id": "1032000", "value": "魔兽世界"}, {"id": "1032001", "value": "炉石传说"}, {
+            "id": "1032002",
+            "value": "守望先锋"
+        },
+            {"id": "1032003", "value": "暗黑破坏神III"}, {"id": "1032004", "value": "星际争霸II"}, {
+            "id": "1032005",
+            "value": "风暴英雄"
+        },
+            {"id": "1033000", "value": "梦幻西游"}, {"id": "1036004", "value": "大话西游"}]
+    ];
+    var html = "";
+    for (var i = 0; i < category_list.length; i++) {
+        html += '<div class="category_div">\n' +
+            '<h2>' + category_list[i] + '</h2>\n' +
+            '<ol>\n';
+        for (var j = 0; j < sub_category_list[i].length; j++) {
+            html += '<li>' + sub_category_list[i][j].value +
+                '<a href="#">删除</a><a href="#">重命名</a>' + '</li>';
+        }
+        html += '</ol>\n' +
+            '</div>'
+    }
+    document.getElementById('main').innerHTML = html;
+</script>
+</html>
