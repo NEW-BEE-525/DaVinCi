@@ -274,3 +274,12 @@
     background-color: red;
     color: white;
 }
+
+.cart_item_div {
+    height: 100px;
+    text-align: center;
+    width: 1009px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px dotted #80b2ff;
+}

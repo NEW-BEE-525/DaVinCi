@@ -2,6 +2,7 @@ package com.project.davinci.service;
 
 import com.project.davinci.domain.*;
 import com.project.davinci.utils.OrderUtil;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,11 +16,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,8 +86,6 @@ public class DaOrderService {
 //    private QCodeService qCodeService;
 //    @Resource
 //    private ExpressService expressService;
-    @Resource
-    private CommentService commentService;
 //    @Resource
 //    private CouponVerifyService couponVerifyService;
 
@@ -99,7 +103,7 @@ public class DaOrderService {
 //     * @param limit     分页大小
 //     * @return 订单列表
 //     */
-    public Map<String,Object> list(Integer userId, Integer showType, Integer page, Integer limit, String sort, String order) {
+    public Map<String,Object> list(Integer userId, Integer showType, Integer page, Integer limit, String sort, String order) throws MalformedURLException {
 
         List<Short> orderStatus = OrderUtil.orderStatus(showType);
         List<Order> orderList = orderService.queryByOrderStatus(userId, orderStatus, page, limit, sort, order);
@@ -120,7 +124,20 @@ public class DaOrderService {
                 orderGoodsVo.put("id", orderGoods.getId());
                 orderGoodsVo.put("goodsName", orderGoods.getGoodsName());
                 orderGoodsVo.put("number", orderGoods.getNumber());
-                orderGoodsVo.put("picUrl", orderGoods.getPicUrl());
+                URL url = new URL(orderGoods.getPicUrl());
+                BufferedImage bi;
+                String img_str = null;
+                try {
+                    bi = ImageIO.read(url);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    ImageIO.write(bi, "png", baos);  //经测试转换的图片是格式这里就什么格式，否则会失真
+                    byte[] bytes = baos.toByteArray();
+                    img_str = new String(Base64.encodeBase64(bytes));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                orderGoodsVo.put("picUrl",img_str);
                 orderGoodsVo.put("specifications", orderGoods.getSpecifications());
                 orderGoodsVoList.add(orderGoodsVo);
             }
@@ -129,8 +146,8 @@ public class DaOrderService {
             orderVoList.add(orderVo);
         }
         Map<String, Object> result = new HashMap<>();
-        result.put("orderVoList",orderVoList);
-        result.put("orderList",orderList);
+
+        result.put("orderList",orderVoList);
         return result;
     }
 //
@@ -141,11 +158,8 @@ public class DaOrderService {
 //     * @param orderId 订单ID
 //     * @return 订单详情
 //     */
-    @RequestMapping(value = "orderDrtail", method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String,Object> detail(@RequestBody Map<String, String> map,HttpSession session) {
-        Account account = (Account)session.getAttribute("account");
-        Integer orderId =Integer.valueOf(map.get("orderId")) ;
+
+    public Map<String,Object> detail(Account account,Integer orderId) {
         if (account == null) {
             return null;
         }
@@ -228,6 +242,7 @@ public class DaOrderService {
                 cart.setId(null);
                 cart.setPrice(product.getPrice());
                 cart.setNumber(num);
+                cart.setGoodsId(goods.getId());
                 cart.setGoodsName(goods.getName());
                 cart.setGoodsSn(goods.getGoodsSn());
                 cart.setPicUrl(goods.getPicUrl());
@@ -251,7 +266,6 @@ public class DaOrderService {
             BigDecimal freightPrice = new BigDecimal(0.00);
             if (checkedGoodsPrice.compareTo(new BigDecimal(88.00)) < 0) {
                 freightPrice = new BigDecimal(8.00);
-                ;
             }
 
             // 最终支付费用

@@ -8,9 +8,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -22,10 +24,10 @@ public class AccountService {
         Account account = accountDAO.getAccountByMobile(mobile);
         Date date = new Date();
         Timestamp nousedate = new Timestamp(date.getTime());
-        if (nousedate != null){
+        if (account != null) {
             account.setLast_login_time(nousedate);
+            accountDAO.updateLoginTime(account);
         }
-        accountDAO.updateLoginTime(account);
         return account;
     }
 
@@ -40,6 +42,8 @@ public class AccountService {
         account.setGender(0);
         account.setLast_login_ip("0:0:0:0:0:0:0:1");
         account.setMobile(mobile);
+        BigDecimal balabce = new BigDecimal(5000.00);
+        account.setBalance(balabce);
         account.setAvatar("/upload/t0170bebbfa858561f0.jpg");
         account.setStatus(0);
         Date date = new Date();
@@ -94,6 +98,18 @@ public class AccountService {
 
     public int changePassword(Account account){
         return accountDAO.upfatePassword(account);
+    }
+
+    public int updatBalance(Account account){
+        return accountDAO.updatBalance(account);
+    }
+
+    public List<Account> getAccountList(){
+        return accountDAO.selectAllAccount();
+    }
+
+    public int banAccount(int id){
+        return accountDAO.banAccount(id);
     }
 }
 

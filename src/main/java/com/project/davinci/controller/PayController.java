@@ -32,7 +32,7 @@ public class PayController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("fastadd/alipay.trade.pay")
+    @PostMapping({"fastadd/alipay.trade.pay","cartBuy/alipay.trade.pay"})
     @ResponseBody
     public String pay(@RequestBody Map<String,String> request_param,
                       HttpSession session) {
@@ -107,6 +107,7 @@ public class PayController {
                 order.setOrderStatus(OrderUtil.STATUS_PAY);
                 orderService.updateWithOptimisticLocker(order);
                 response.getWriter().write("success");
+
             }
 
     }

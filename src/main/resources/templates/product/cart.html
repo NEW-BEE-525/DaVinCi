@@ -7,14 +7,14 @@
     <!--<meta name="keywords" content="达分期、消费金融服务平台、教育分期、家居家电分期、低至0利息0首付">-->
     <!--<meta name="description" content="达分期是达飞纷期推出的消费金融服务平台，专注为中国家庭用户提供“家·生活”消费金融服务，涵盖亲子教育、家居家电等家庭领域，让幸福“家·生活”走进中国亿万家庭。">-->
     <link rel="shortcut icon" href="/img/index_need/dfq_logo.ico">
-    <link href=" /css/index_need/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/index_need/bootstrap.min.css" rel="stylesheet">
     <link href="/css/index_need/myclass.css" rel="stylesheet">
     <link href="/css/index_need/media.css" rel="stylesheet">
     <link href="/css/product/in_out_product.css" rel="stylesheet">
     <link href="/css/account/personal_center.css" rel="stylesheet">
     <script src="/js/index_need/jquery.js"></script>
     <script src="/js/index_need/common.js"></script>
-    <title>商品详情</title>
+    <title>购物车</title>
     <style>
         html, body {
             position: relative;
@@ -23,6 +23,10 @@
 
         a {
             color: black;
+        }
+
+        .swiper-container-vertical > .swiper-pagination-bullets .swiper-pagination-bullet {
+            margin: 20px 0;
         }
 
         @media screen and (max-width: 1140px) {
@@ -114,7 +118,7 @@
             right: 30px;
         }
 
-        #img_gallery p {
+        p {
             margin-bottom: 0;
         }
     </style>
@@ -127,10 +131,10 @@
         </div>
         <div class="pull-left">
             <ul id="menu_list">
-                <li class="hd_nav-item"><a href="/" class="fontclass font_color-3">首页</a>
+                <li class="hd_nav-item"><a href="../main/index.html" class="fontclass font_color-3">首页</a>
                     <div class="onmoseover"></div>
                 </li>
-                <li class="hd_nav-item"><a href="/inProduct" class='font_color-1 bordbttom'>站内产品</a>
+                <li class="hd_nav-item"><a href="#" class='font_color-1 bordbttom'>站内产品</a>
                     <div class="onmoseoveractive"></div>
                 </li>
                 <li class="hd_nav-item"><a href="#" class='fontclass font_color-3'>站外产品</a>
@@ -175,7 +179,6 @@
         </div>
     </div>
 </header>
-
 <div style="margin-top: 70px">
     <div class="search_div">
         <div style="display: inline-block;width: 380px;text-align: center;vertical-align: top">
@@ -231,87 +234,89 @@
         <a class="sub_category_a">标签</a>
         <a class="sub_category_a">标签</a>
     </div>
-    <br>
-    <br>
-    <h1 style="margin-left: 100px">达分期站内商店</h1>
-    <div class="product_main_div">
-        <div class="product_img_div inline_block">
-            <img width="418px" height="418px" src="http://yanxuan.nosdn.127.net/654b02045fde802b51d5bbf09a8b75f2.png"
-                 id="big_img" th:src="${info?.gallery[0]}">
-            <div class="imgs_nav">
-                <a class="imglist"><img src="/img/product/none.png"
-                                        th:src="${info?.gallery[0]}?${info?.gallery[0]}:'/img/product/none.png'"></a>
-                <a class="imglist"><img src="http://yanxuan.nosdn.127.net/654b02045fde802b51d5bbf09a8b75f2.png"
-                                        th:src="${info?.gallery[1]}?${info?.gallery[1]}:'/img/product/none.png'"></a>
-                <a class="imglist"><img src="http://yanxuan.nosdn.127.net/654b02045fde802b51d5bbf09a8b75f2.png"
-                                        th:src="${info?.gallery[2]}?${info?.gallery[2]}:'/img/product/none.png'"></a>
-                <a class="imglist"><img src="http://yanxuan.nosdn.127.net/654b02045fde802b51d5bbf09a8b75f2.png"
-                                        th:src="${info?.gallery[3]}?${info?.gallery[3]}:'/img/product/none.png'"></a>
-                <!--                <a class="imglist"><img src="http://yanxuan.nosdn.127.net/654b02045fde802b51d5bbf09a8b75f2.png"-->
-                <!--                                        th:src="${info?.gallery[4]}?${info?.gallery[4]}:'/img/product/none.png'"></a>-->
-            </div>
+    <!--标题-->
+    <h1 style="margin-left: 120px" id="up">购物车</h1>
+    <!--购物车信息-->
+    <div style="margin-left: 120px;min-height: 800px">
+        <div>
+            <div class="inline_block order_up_head" style="width: 255px;">店铺宝贝</div>
+            <div class="inline_block order_up_head" style="width: 180px;">商品属性</div>
+            <div class="inline_block order_up_head" style="width: 120px;">单价</div>
+            <div class="inline_block order_up_head" style="width: 120px;">数量</div>
+            <div class="inline_block order_up_head" style="width: 130px;">金额</div>
+            <div class="inline_block order_up_head" style="width: 180px;">操作</div>
         </div>
-        <div class="product_info_div inline_block">
-            <b style="font-size: 16px;font-weight: 700" th:text="${info?.name}" id="pname">很仙的上衣洋气卫衣女2019新款秋装潮ins长袖宽松拼接木耳荷叶边</b>
-            <p style="color: red" th:utext="${info?.brief}">时尚字母印染 个性蕾丝 舒适面料 潮流洋气</p>
-            <p>
-                <span style="font-size: 14px;">价格</span><span style="color: red;margin-left: 100px">￥</span>
-                <span style="color: red;font-size: 24px;font-weight: 700" th:text="${productList[0]?.price}" id="price">178.00</span>
-            </p>
-            <p>
-                <span style="font-size: 14px;">运费</span><span style="margin-left: 100px">￥</span>
-                <span style="font-size: 16px;font-weight: 700">10.00</span>
-            </p>
-            <p>
-                <span style="font-size: 14px;">尺码</span>
-                <select style="margin-left: 100px;width: 80px" title="尺码">
-                    <option>30</option>
-                    <option>31</option>
-                    <option>32</option>
-                    <option>33</option>
-                    <option>34</option>
-                </select>
-            </p>
-            <p>
-            <div class="inline_block" style="width: 128px">
-                <span style="font-size: 14px;">产品规格</span>
-            </div>
-
-            <div class="inline_block" style="width: 453px;line-height: 38px;">
-                <a class="select_block col" th:each="product,productStat : ${productList}" th:name="${product.id}">
-                    <span th:each="info, infoStat : ${product.specifications}" th:text="${info}">规格</span>
+        <div class="order_shop">
+            <h3>达分期站内店铺</h3>
+        </div>
+        <!--购物车列表-->
+        <div style="min-height: 600px">
+            <div class="cart_item_div" th:each="cart, cartStat : ${cartList}" name="11"
+                 th:attr="name=${cart.getId()}">
+                <a th:attr="name=${cart.getId()}" class="cart_a" name="11">
+                    <div class="inline_block" style="width: 255px;text-align: left">
+                        <img th:src="${cart.getPicUrl()}" width="70" height="70">
+                        <div class="inline_block">
+                            <p th:text="${cart.getGoodsName()}" class="pname">商品的名字</p>
+                        </div>
+                    </div>
+                    <div class="inline_block" style="width: 180px;color: #7a7a7a">
+                        <span th:each="info, infoStat : ${cart.getSpecifications()}" th:text="${info}">规格</span>
+                    </div>
                 </a>
+                <div class="inline_block" style="width: 120px;">
+                    <p>￥<span th:text="${cart.getPrice()}" th:attr="name=${cart.getId()}"
+                              name="11">100.00</span></p>
+                </div>
+                <div class="inline_block" style="width: 120px;">
+                    <a class="SL_btn sub_btn" th:attr="name=${cart.getId()}" name="11"><i>-</i></a>
+                    <input th:value="${cart.getNumber()}" type="number" id="num" name="11" min="1"
+                           style="text-align:center;width: 50px;height: 26px;border: 1px solid #e6e7eb;display: inline-block;vertical-align: bottom"
+                           th:attr="name=${cart.getId()}">
+                    <a class="SL_btn add_btn" th:attr="name=${cart.getId()}" name="11"><i>+</i></a>
+                </div>
+                <div class="inline_block" style="width: 130px;">
+                    <b style="color: red;font-size: 16px">￥
+                        <span th:text="${cart.getPrice()}" id="JE" th:attr="name=${cart.getId()}"
+                              name="11">9.90</span>
+                    </b>
+                </div>
+                <div class="inline_block" style="width: 180px;">
+                    <a th:attr="name=${cart.getId()}" name="11" class="pay_now">立即购买</a>
+                    <br>
+                    <a th:attr="name=${cart.getId()}" name="11" class="remove_cart">移出购物车</a>
+                </div>
             </div>
-            </p>
-            <p>
-                <span style="font-size: 14px;margin-right: 100px">数量</span>
-                <input type="number" class="_1YMqD" style="width: 80px" value="1" id="pnum">
-            </p>
-
-            <br>
-            <p style="position: absolute;top: 647px;">
-                <a class="buy_now">立即购买</a>
-                <a class="addto_cart">加入购物车</a>
-            </p>
+<!--            底部固定栏-->
+            <div style="width: 1009px;height: 60px;position: fixed;background-color: #3F3F3F;bottom: 0;color: white;font-size: 20px;">
+                <div class="inline_block" style="width: 255px;text-align: center;padding: 10px">总共：<!--/*@thymesVar id="goodsCount" type=""*/-->
+                <span
+                        th:text="${cartTotal.goodsCount}">100</span>件宝贝
+                </div>
+                <div class="inline_block " style="width: 180px;"></div>
+                <div class="inline_block " style="width: 120px;"></div>
+                <div class="inline_block " style="width: 100px;"></div>
+                <div class="inline_block " style="width: 150px;text-align: center;padding: 10px">总价：￥<span
+                        th:text="${cartTotal.goodsAmount}" id="ZJ">100</span></div>
+                <div class="inline_block "
+                     style="width: 176px;height: 60px;background-color: red;text-align: center;padding: 10px">
+                    <a style="color: white;font-weight: bold;font-size: 24px">清空购物车</a>
+                </div>
+            </div>
         </div>
-    </div>
-    <div style="text-align: left;margin: 100px;border: 1px solid black;padding: 20px;">
-        <p th:each="info,infoStat : ${attribute}" style="margin-bottom:4px">
-            <span th:text="${info.attribute}" style="width: 133px;display: inline-block;vertical-align: top;"></span>
-            <span th:text="${info.value}" style="width: 400px;display: inline-block"></span>
-        </p>
-    </div>
-    <div th:utext="${info?.detail}" style="text-align: center;" id="img_gallery"></div>
-    <div class="right_bar">
-        <a href="#top"><img src="/img/product/arrow_up.png" title="回顶部" width="30px" height="30px"></a>
-        <br><br>
-        <a><img src="/img/product/star.png" title="收藏" width="30px" height="30px"></a>
-        <br><br>
-        <a><span style="color: white;font-size: 30px;">￥</span></a>
-        <br><br>
-        <a><img src="/img/product/cart.png" title="购物车" width="32px" height="32px"></a>
     </div>
 </div>
+<!--右栏-->
+<div class="right_bar">
+    <a href="#top"><img src="/img/product/arrow_up.png" title="回顶部" width="30px" height="30px"></a>
+    <br><br>
+    <a><img src="/img/product/star.png" title="收藏" width="30px" height="30px"></a>
+    <br><br>
+    <a><span style="color: white;font-size: 30px;">￥</span></a>
+    <br><br>
+    <a><img src="/img/product/cart.png" title="购物车" width="32px" height="32px"></a>
+</div>
+
 <footer class="main-footer main-footer1" style="position: inherit;left: 0;">
     <div class="container">
         <div class="row">
@@ -352,6 +357,8 @@
         </div>
     </div>
 </footer>
+<div id="cover" style=""></div>
+
 <script>
     var head_pic = document.getElementById("head_pic");
     var head_pic_list = document.getElementById("head_pic_list");
@@ -362,37 +369,34 @@
         document.getElementsByClassName("two")[0].style.visibility = "hidden";
     };
 
-    $('.buy_now').click(function () {
-        var id = "";
-        for (var i = 0; i < document.getElementsByClassName('col').length; i++) {
-            if (document.getElementsByClassName('col')[i].style.borderColor === "red") {
-                id = document.getElementsByClassName('col')[i].getAttribute('name');
-                break;
+    //跳转到商品详情界面
+    $('.cart_a').click(function () {
+        window.location.href = "/productDetail/" + this.name;
+    });
+
+    //跳转到下订单界面
+    $('.pay_now').click(function () {
+        window.location.href = "/cartBuy/" + this.name;
+    });
+
+    //从购物车移除商品
+    $('.remove_cart').click(function () {
+        var name = this.name;
+        var dataform = {'cartId': name};
+        console.log(name);
+        $.ajax({
+            url: "deleteCart",
+            type: 'POST',
+            data: JSON.stringify(dataform),
+            contentType: "application/json",
+            success: function (data) {
+                if (!data)
+                    console.log("后台删除购物车失败")
+                else {
+                    document.getElementsByName(name)[0].style.display = 'none';
+                }
             }
-        }
-        //传参同时跳转
-        console.log(id);
-        window.location.href = "/fastadd/" + id;
-    });
-
-    $('.col').click(function () {
-        for (var i = 0; i < document.getElementsByClassName("col").length; i++)
-            document.getElementsByClassName("col")[i].style.borderColor = "#efefef"
-        this.style.borderColor = "red";
-        document.getElementById('price').value = this.id;
-    });
-
-    $('.fq').click(function () {
-        for (var i = 0; i < document.getElementsByClassName("fq").length; i++)
-            document.getElementsByClassName("fq")[i].style.borderColor = "#efefef"
-        this.style.borderColor = "red";
-    });
-
-    $('.imglist').click(function () {
-        for (var i = 0; i < document.getElementsByClassName("imglist").length; i++)
-            document.getElementsByClassName("imglist")[i].style.borderColor = "#c0c0c0"
-        this.style.borderColor = "red";
-        document.getElementById("big_img").setAttribute("src", this.getElementsByTagName("img")[0].src);
+        })
     });
 
     $('.category_a').hover(function () {
@@ -472,51 +476,54 @@
         document.getElementsByClassName("sub_category_div")[0].style.display = "block";
     });
 
-    $(function () {
-        document.getElementsByClassName('col')[0].style.borderColor = 'red';
-    })
-
     $('.sub_category_div').mouseleave(function () {
         this.style.display = "none";
         for (var i = 0; i < document.getElementsByClassName("category_a").length; i++) {
             document.getElementsByClassName("category_a")[i].style.border = "0px";
             document.getElementsByClassName("category_a")[i].style.backgroundColor = "transparent"
         }
+    });
+
+
+    $('.close_btn').click(function () {
+        document.getElementById("pay_password").style.display = "none";
+        document.getElementById("cover").style.display = "none";
+        document.getElementsByClassName("pay_img")[0].style.display = "none";
     })
 
-    $('.addto_cart').click(function () {
-        var id = "";
-        for (var i = 0; i < document.getElementsByClassName('col').length; i++) {
-            if (document.getElementsByClassName('col')[i].style.borderColor === "red") {
-                id = document.getElementsByClassName('col')[i].getAttribute('name');
-                break;
-            }
-        }
-        var record = {
-            "productId": id,
-            'number': document.getElementById('pnum').value
-        }
-        console.log(record);
-        $.ajax({
-            type: "POST",
-            url: "addCart",
-            datatype: "text",
-            contentType: "application/json",
-            data: JSON.stringify(record),
-            async: true,
-            success: function (result) {
-                if (result=="1")
-                    alert('加入购物车成功！！')
-                else if(result=="-1")
-                    alert('请登录')
-                else
-                    alert('加入购物车失败！！')
-            },
-            error: function (result) {
-
-            }
-        })
+    $('.sub_btn').click(function () {
+        this.nextElementSibling.value--;
+        document.getElementById('ZJ').innerText -= money_change(this.name);
     });
+
+    $('.add_btn').click(function () {
+        this.previousElementSibling.value++;
+        document.getElementById('ZJ').innerText = Number(document.getElementById('ZJ').innerText) + Number(money_change(this.name));
+    });
+
+    //数量改变的ajax请求
+    function money_change(name) {
+        var list = document.getElementsByName(name);
+        var DJ = list[2].textContent;
+        var SL = list[4].value;
+        list[6].textContent = DJ * SL;
+        var dataform = {
+            'cartId': name,
+            'number': SL
+        };
+        $.ajax({
+            url: "updateCart",
+            type: "POST",
+            data: JSON.stringify(dataform),
+            contentType: "application/json",
+            success: function (data) {
+                if (!data)
+                    console.log("后台数量修改失败！");
+            }
+        });
+        return DJ;
+    }
 </script>
+
 </body>
 </html>

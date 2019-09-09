@@ -4,6 +4,7 @@ import com.project.davinci.domain.*;
 import com.project.davinci.service.*;
 import com.project.davinci.service.BillService;
 import com.project.davinci.utils.OrderUtil;
+import com.project.davinci.utils.RecommendUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -12,10 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
+import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Controller
 public class OrderController {
@@ -23,6 +27,10 @@ public class OrderController {
 
     @Resource
     private DaOrderService daOrderService;
+    @Resource
+    private CartService cartService;
+    @Resource
+    private UserActiveService userActiveService;
 //    /**
 //     * 订单列表
 //     *
@@ -37,9 +45,9 @@ public class OrderController {
 //    @RequestParam(defaultValue = "10") Integer limit,
 //    @RequestParam(defaultValue = "add_time") String sort,
 //    @RequestParam(defaultValue = "desc") String order
-    @GetMapping("list")
+    @GetMapping("allOrders")
     @ResponseBody
-    public Map<String,Object> list(HttpSession session) {
+    public Map<String,Object> list(HttpSession session) throws MalformedURLException {
 //        Account account = (Account)session.getAttribute("account");
         return daOrderService.list(1, 0, 5, 10, "add_time", "desc");
     }
@@ -51,10 +59,18 @@ public class OrderController {
 //     * @param orderId 订单ID
 //     * @return 订单详情
 //     */
-//    @GetMapping("detail")
-//    public Object detail( Integer userId, @NotNull Integer orderId) {
-//        return daOrderService.detail(userId, orderId);
-//    }
+    @RequestMapping(value = "orderDrtail", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> orderDrtail(@RequestBody Map<String, String> map, HttpSession session) {
+        Account account = (Account)session.getAttribute("account");
+        if (account!=null) {
+            Integer orderId = Integer.valueOf(map.get("id"));
+            return daOrderService.detail(account, orderId);
+        }
+        else {
+            return null;
+        }
+    }
 //
 //    /**
 //     * 提交订单
@@ -63,7 +79,7 @@ public class OrderController {
 //     * @param body   订单信息，{ cartId：xxx, addressId: xxx, couponId: xxx, message: xxx, grouponRulesId: xxx,  grouponLinkId: xxx}
 //     * @return 提交订单操作结果
 //     */
-    @RequestMapping(value = "fastadd/submit", method = RequestMethod.POST)
+    @RequestMapping(value = {"fastadd/submit","cartBuy/submit"}, method = RequestMethod.POST)
     @ResponseBody
     public String submit(@RequestBody Map<String, String> map, HttpSession session) {
         Account account = (Account)session.getAttribute("account");
@@ -74,16 +90,22 @@ public class OrderController {
         String mobile = map.get("mobile");
         String message = map.get("message");
         Short num = Short.parseShort(map.get("num"));
-        Integer fq = Integer.valueOf(map.get("fq"));
         //收货地址
         Address address = new Address();
         address.setName(name);
         address.setAddressDesc(addressDesc);
         address.setMobile(mobile);
-        Cart cart = new Cart();
-        cart.setNumber(num);
-        cart.setProductId(productId);
-        cart.setId(cartId);
+        Cart cart;
+        if (cartId!=0){
+            cart = cartService.findById(cartId);
+            cartService.deleteById(cartId);
+        }else {
+            cart = new Cart();
+            cart.setNumber(num);
+            cart.setProductId(productId);
+            cart.setId(cartId);
+        }
+
         return daOrderService.submit(account,address,cart,message);
     }
 
@@ -190,5 +212,45 @@ public class OrderController {
 //    public Object comment( Integer userId, @RequestBody String body) {
 //        return daOrderService.comment(userId, body);
 //    }
+@RequestMapping(value = "recommend_goods",method = RequestMethod.GET)
+@ResponseBody
+public Map<Long,Integer> recommend_goods(HttpSession session){
+    //当前登录的用户
+    Account account=(Account)session.getAttribute("account");
+//        UserActive userActive=new UserActive();
+//        userActive.setUserId(Long.valueOf(account.getId()));
+//        userActive.setCategory2Id(Long.valueOf(0));
+//        int i=userActiveService.isExistUserActive(userActive);
+//        if (i==0){
+//            //新用户，返回指定的商品
+//        }
+//        else {
+    //根据与其他用户的相似度生成商品清单
+            /*
+            1、查找此用户和数据库中用户查询记录
+            2、组装好的用户的查询记录的map集合
+            3、计算用户查询记录的相似度
+            4、选择topN的用户查询记录
+            5、返回这N个用的查询记录
+             */
+    List<UserActive> userActiveList=userActiveService.listAllUserActive();
+    ConcurrentHashMap<Long, ConcurrentHashMap<Long, Long>> activeMap= RecommendUtils.assembleUserBehavior(userActiveList);
+    List<UserSimilarity> similarityList=RecommendUtils.calcSimilarityBetweenUsers(activeMap);
+    List<Long> UserSimilarityList=RecommendUtils.getSimilarityBetweenUsers(Long.valueOf(account.getId()),similarityList,5);
+    List<Long> recommeddateProductList=RecommendUtils.getRecommendateCategory2(Long.valueOf(account.getId()),UserSimilarityList,userActiveList);
 
+    Map<Long,Integer> map = new HashMap<>(6);
+    for(long recommeddateProduct:recommeddateProductList){
+        if(map.containsKey(recommeddateProduct)){
+            Integer count = map.get(recommeddateProduct);
+            count++;
+            map.put(recommeddateProduct,count);
+        }
+        else {
+            map.put(recommeddateProduct,1);
+        }
+    }
+    return map;
+    // }
+}
 }

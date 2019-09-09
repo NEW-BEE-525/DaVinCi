@@ -14,9 +14,9 @@ public class AlipayConfig {
     // 支付宝公钥,查看地址：https://openhome.alipay.com/platform/keyManage.htm 对应APPID下的支付宝公钥。
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA8eQIfXAPI8mN9+FXEL1MrW/+tVUpOIe6x1eeYgi4XljLHOSSkYzQt6s+VrrUWND69CXrwj34JQyBjOclvqHlGynDFQeYX6Q7XYsToptdPKPcc+XhpKQojFPS47ip8KvkkDiB4GK509Egb0QgY5rjoM6MYEI5eFpqSP/BTcF5qzKWER9v61skPN54yTdKVHInJvlGUmKHtIAhbgX+r/LB1F1af9E0qOz9HbYFo9zPd9czC3STo1E5IniEz+pBadSMrauYjM1IMkxifmNLjt8i8aRkwrykTq/sWBTQuJcxXXSggE7Uxj9NfRjDo1aYil56yW++xbTldYWhDUXD+LknrwIDAQAB";
     // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String notify_url = "http://zy5rtx.natappfree.cc/notify";
+    public static String notify_url = "http://zw9etp.natappfree.cc/notify";
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String return_url = "http://zy5rtx.natappfree.cc/is_trade_success";
+    public static String return_url = "http://zw9etp.natappfree.cc/is_trade_success";
     // 签名方式
     public static String sign_type = "RSA2";
     // 字符编码格式

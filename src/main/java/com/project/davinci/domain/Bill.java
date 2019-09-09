@@ -55,14 +55,6 @@ public class Bill implements Serializable {
         this.brief = brief;
     }
 
-    public BigDecimal getTotal_amount() {
-        return total_amount;
-    }
-
-    public void setTotal_amount(int BigDecimal) {
-        this.total_amount = total_amount;
-    }
-
     public int getStage_months() {
         return stage_months;
     }
@@ -79,12 +71,19 @@ public class Bill implements Serializable {
         this.repayment_months = repayment_months;
     }
 
-
     public int getIs_payment() {
         return is_payment;
     }
 
     public void setIs_payment(int is_payment) {
         this.is_payment = is_payment;
+    }
+
+    public BigDecimal getTotal_amount() {
+        return total_amount;
+    }
+
+    public void setTotal_amount(BigDecimal total_amount) {
+        this.total_amount = total_amount;
     }
 }

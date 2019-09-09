@@ -7,7 +7,7 @@
     <!--<meta name="keywords" content="达分期、消费金融服务平台、教育分期、家居家电分期、低至0利息0首付">-->
     <!--<meta name="description" content="达分期是达飞纷期推出的消费金融服务平台，专注为中国家庭用户提供“家·生活”消费金融服务，涵盖亲子教育、家居家电等家庭领域，让幸福“家·生活”走进中国亿万家庭。">-->
     <link rel="shortcut icon" href="/img/index_need/dfq_logo.ico">
-    <link href=" /css/index_need/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/index_need/bootstrap.min.css" rel="stylesheet">
     <link href="/css/index_need/myclass.css" rel="stylesheet">
     <link href="/css/index_need/media.css" rel="stylesheet">
     <link href="/css/product/in_out_product.css" rel="stylesheet">
@@ -247,7 +247,7 @@
             <div class="inline_block order_up_head" style="width: 130px;">小计</div>
         </div>
         <div class="order_shop">
-            <p>达分期站内店铺</p>
+            <p id="0" th:id="${cart.getId()}" name="getCaet">达分期站内店铺</p>
         </div>
         <!--订单表格-->
         <div style="height: 75px;text-align: center;width: 1009px;padding-top: 10px">
@@ -265,7 +265,7 @@
             </div>
             <div class="inline_block" style="width: 120px;">
                 <a class="SL_btn" id="sub_btn"><i>-</i></a>
-                <input value="1" type="number" id="num"
+                <input th:value="${cart.getNumber()}" type="number" id="num"
                        style="text-align:center;width: 50px;height: 26px;border: 1px solid #e6e7eb;display: inline-block;vertical-align: bottom">
                 <a class="SL_btn" id="add_btn"><i>+</i></a>
             </div>
@@ -399,6 +399,7 @@
     <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
          style="width: 320px;height: 320px" id="QRcode">
     <a class="close_btn">X</a>
+    <a style="display: block;font-size: 20px;color: red;">查看订单详情</a>
 </div>
 <div id="pay_password">
     <h2>请输入支付密码：</h2>
@@ -515,10 +516,19 @@
         switch ($('#pay_way_select option:selected').val()) {
             case "1":
                 fq = 1;
+                document.getElementById("pay_password").style.display = "block";
+                document.getElementById("cover").style.display = "block";
+                break;
             case '2':
                 fq = 2;
+                document.getElementById("pay_password").style.display = "block";
+                document.getElementById("cover").style.display = "block";
+                break;
             case '3':
                 fq = 3;
+                document.getElementById("pay_password").style.display = "block";
+                document.getElementById("cover").style.display = "block";
+                break;
             case '4':
                 fq = 4;
                 document.getElementById("pay_password").style.display = "block";
@@ -548,20 +558,30 @@
     })
 
     $('#pay_password_submit').click(function () {
-        // var password = {'password': document.getElementById("pay_password_input").value};
-        // $.ajax({
-        //     url: '#',
-        //     type: 'POST',
-        //     data: JSON.stringify(password),
-        //     contentType: "application../../static/json",
-        //     success: function (data) {
-        //         if (data == "1") {
-        //         }
-        //         else {
-        //             alert("密码错误，交易失败！")
-        //         }
-        //     }
-        // })
+        var password = {
+            'password': document.getElementById("pay_password_input").value,
+            'order_id': order_id,
+            'fq':fq
+        };
+        console.log(password);
+        $.ajax({
+            url: 'balancePay',
+            type: 'POST',
+            data: JSON.stringify(password),
+            contentType: "application/json",
+            success: function (data) {
+                if (data == "1") {
+                    alert("支付成功")
+                }else if (data == "-1"){
+                    alert("白条余额不足")
+                }else if (data == "0"){
+                    alert("支付密码错误")
+                }
+                else {
+                    alert("错误，交易失败！")
+                }
+            }
+        })
     });
 
     $('.close_btn').click(function () {
@@ -589,6 +609,7 @@
         var XXDZ = document.getElementById('XXDZ').value;//详细地址
         var SHR = document.getElementById('SHR').value;//收货人
         var SHRDH = document.getElementById('SHRDH').value;//收货人电话
+        var cartId = document.getElementsByName('getCaet')[0].id;
         var dataMap = {
             'productId': id,
             'num': num,
@@ -596,7 +617,7 @@
             'addressDesc': XXDZ,
             'name': SHR,
             'mobile': SHRDH,
-            'cartId': "0",
+            'cartId': cartId,
             'fq': fq
         };
         console.log(dataMap);
@@ -616,6 +637,7 @@
                     document.getElementById('SHRDH').setAttribute("readonly", "true");
                     document.getElementById('up').innerText = '订单编号:' + data;
                     order_id = data;
+                    alert("订单提交成功！")
                 } else {
                     alert('支付失败！')
                 }

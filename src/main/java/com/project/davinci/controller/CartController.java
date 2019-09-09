@@ -52,8 +52,8 @@ public class CartController {
 //     * @param userId 用户ID
 //     * @return 用户购物车信息
 //     */
-    @RequestMapping(value = "getCart", method = RequestMethod.POST)
-    public String getCart(HttpSession session) {
+    @RequestMapping(value = "/getCart", method = RequestMethod.GET)
+    public String getCart(HttpSession session,Model model) {
         Account account = (Account) session.getAttribute("account");
         if (account != null) {
             List<Cart> cartList = cartService.queryByUid(account.getId());
@@ -67,10 +67,9 @@ public class CartController {
             cartTotal.put("goodsCount", goodsCount);
             cartTotal.put("goodsAmount", goodsAmount);
 
-            Map<String, Object> result = new HashMap<>();
-            result.put("cartList", cartList);
-            result.put("cartTotal", cartTotal);
-            return "1";
+            model.addAttribute("cartList", cartList);
+            model.addAttribute("cartTotal", cartTotal);
+            return "product/cart";
         } else {
             return "redirect:/login";
         }
@@ -87,7 +86,7 @@ public class CartController {
 //     * @param cart   购物车商品信息， { goodsId: xxx, productId: xxx, number: xxx }
 //     * @return 加入购物车操作结果
 //     */
-    @RequestMapping(value = "addCart", method = RequestMethod.POST)
+    @RequestMapping(value = "productDetail/addCart", method = RequestMethod.POST)
     @ResponseBody
     public String addCart(@RequestBody Map<String, String> map, HttpSession session) {
         Account account = (Account) session.getAttribute("account");
@@ -115,7 +114,6 @@ public class CartController {
                 cart.setChecked(true);
                 cartService.add(cart);
             } else {
-                //取得规格的信息,判断规格库存
                 int num = existCart.getNumber() + number;
                 existCart.setNumber((short) num);
                 if (cartService.updateById(existCart) == 0) {
@@ -124,7 +122,7 @@ public class CartController {
             }
             return "1";
         }
-        return "0";
+        return "-1";
     }
 
 
@@ -156,9 +154,11 @@ public class CartController {
 
             GoodsProduct product = productService.findById(productId);
 
-            cart.setId(null);
+            cart.setId(0);
             cart.setGoodsSn(goods.getGoodsSn());
             cart.setGoodsName((goods.getName()));
+            Short a = 1;
+            cart.setNumber(a);
             cart.setPicUrl(goods.getPicUrl());
             cart.setPrice(product.getPrice());
             cart.setSpecifications(product.getSpecifications());
@@ -171,6 +171,18 @@ public class CartController {
         return "redirect:/login";
     }
 
+
+    @GetMapping("/cartBuy/{cartId}")
+    public String cartBuy(@PathVariable(value = "cartId") String id_str, Model model, HttpSession session) {
+        Account account = (Account) session.getAttribute("account");
+        if (account != null) {
+            Integer cartId = Integer.valueOf(id_str);
+            Cart cart = cartService.findById(cartId);
+            model.addAttribute("cart", cart);
+            return "product/reconfirm_order";
+        }
+        return "redirect:/login";
+    }
     //    /**
 //     * 修改购物车商品货品数量
 //     *
@@ -236,5 +248,20 @@ public class CartController {
             return "0";
         }
     }
+
+//    @RequestMapping(value = "showGoods", method = RequestMethod.POST)
+////    @ResponseBody
+//    public String showGoods(@RequestBody Map<String, String> map) {
+//        Integer cartId = Integer.valueOf(map.get("cartId"));
+//        Cart cart = cartService.findById(cartId);
+//        System.out.println(cart.getId());
+//        if (cart!=null){
+//            Integer goodsId = cart.getGoodsId();
+//            return "redirect:/productDetail/"+goodsId;
+//        }
+//        else
+//            return "0";
+//    }
+
 
 }

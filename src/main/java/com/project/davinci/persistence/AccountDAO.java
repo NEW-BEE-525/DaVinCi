@@ -4,6 +4,8 @@ import com.project.davinci.domain.Account;
 import com.project.davinci.domain.Student;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface AccountDAO {
     Account getAccountByMobile(String mobile);
@@ -23,6 +25,12 @@ public interface AccountDAO {
     int updateMobile(Account account);
 
     int upfatePassword(Account account);
+
+    int updatBalance(Account account);
+
+    List<Account> selectAllAccount();
+
+    int banAccount(int id);
 }
 
 //    Account getAccountByUsernameAndPassword(Account account);
