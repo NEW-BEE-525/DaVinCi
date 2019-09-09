@@ -534,22 +534,13 @@
                 $.ajax({
                     url: 'alipay.trade.pay',
                     type: "post",
+                    async: false,
                     data: JSON.stringify(dataMap),
                     contentType: "application/json",
                     success: function (data) {
                         document.getElementById("QRcode").setAttribute("src", "data:image/jpg;base64," + data);
-                    }
-                });
-                document.getElementById("cover").style.display = "block";
-                document.getElementsByClassName("pay_img")[0].style.display = "block";
-                $.ajax({
-                    url: "/is_trade_success",
-                    type: 'GET',
-                    async: false,
-                    success: function (data) {
-                        if (data) {
-                            alert("支付成功！")
-                        }
+                        document.getElementById("cover").style.display = "block";
+                        document.getElementsByClassName("pay_img")[0].style.display = "block";
                     }
                 });
                 break;

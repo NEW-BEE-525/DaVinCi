@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 //import com.mysql.jdbc.StringUtils;
 import com.project.davinci.domain.*;
 import com.project.davinci.service.*;
+import com.project.davinci.utils.RecommendUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 //import org.linlinjava.litemall.core.system.SystemConfig;
@@ -16,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +46,9 @@ public class GoodsController {
 
     @Resource
 	private CommentService commentService;
+
+    @Autowired
+    private UserActiveService userActiveService;
 //
 //
 //	@Autowired
@@ -122,11 +127,45 @@ public class GoodsController {
 
     @RequestMapping(value = "getGoodList", method = RequestMethod.POST)
     @ResponseBody
-    public List<Goods> getGoofList(@RequestBody Map<String, String> map){
+    public List<Goods> getGoofList(@RequestBody Map<String, String> map, HttpSession session){
         Integer id = Integer.valueOf(map.get("id"));
-        //商品列表
         List<Goods> goodsList = goodsService.queryByCategory(id, 0, 6);
+        UserActive userActive=new UserActive();
+        Account account=(Account)session.getAttribute("account");
+        userActive.setUserId(Long.valueOf(account.getId()));
+        userActive.setCategory2Id(Long.valueOf(id));
+        userActiveService.saveUserActive(userActive);
         return goodsList;
+    }
+
+    @RequestMapping(value = "recommend_goods",method = RequestMethod.GET)
+    @ResponseBody
+    public void recommend_goods(HttpSession session){
+        //当前登录的用户
+        Account account=(Account)session.getAttribute("account");
+//        UserActive userActive=new UserActive();
+//        userActive.setUserId(Long.valueOf(account.getId()));
+//        userActive.setCategory2Id(Long.valueOf(0));
+//        int i=userActiveService.isExistUserActive(userActive);
+//        if (i==0){
+//            //新用户，返回指定的商品
+//        }
+//        else {
+            //根据与其他用户的相似度生成商品清单
+            /*
+            1、查找此用户和数据库中用户查询记录
+            2、组装好的用户的查询记录的map集合
+            3、计算用户查询记录的相似度
+            4、选择topN的用户查询记录
+            5、返回这N个用的查询记录
+             */
+            List<UserActive> userActiveList=userActiveService.listAllUserActive();
+            ConcurrentHashMap<Long, ConcurrentHashMap<Long, Long>> activeMap= RecommendUtils.assembleUserBehavior(userActiveList);
+            List<UserSimilarity> similarityList=RecommendUtils.calcSimilarityBetweenUsers(activeMap);
+            List<Long> UserSimilarityList=RecommendUtils.getSimilarityBetweenUsers(Long.valueOf(account.getId()),similarityList,5);
+            List<Long> recommeddateProductList=RecommendUtils.getRecommendateCategory2(Long.valueOf(account.getId()),UserSimilarityList,userActiveList);
+            System.out.println(recommeddateProductList);
+       // }
     }
 
 //
