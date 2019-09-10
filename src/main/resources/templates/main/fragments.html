@@ -113,18 +113,17 @@
 </head>
 
 <body>
-<header th:fragment="header" class="hd-bgc hd-bgcpc header"
-        style="position: fixed;width: 100%;background: none;top: 0;z-index: 100;">
+<header class="hd-bgc hd-bgcpc header" style="position: fixed;width: 100%;background: none;top: 0;z-index: 100;">
     <div class="clearfix" style="width: 1200px;margin: 0 auto;">
         <div class="pull-left" style="padding: 0 50px 0 0;">
             <img src="/img/index_need/dfqlogo.png" height="50px" width="100px" id="indexicon" alt="图标">
         </div>
         <div class="pull-left">
             <ul id="menu_list">
-                <li class="hd_nav-item"><a href="index.html" class='font_color-1 bordbttom'>首页</a>
+                <li class="hd_nav-item"><a href="/" class='font_color-1 bordbttom'>首页</a>
                     <div class="onmoseoveractive"></div>
                 </li>
-                <li class="hd_nav-item"><a href="#" class="fontclass font_color-3">站内产品</a>
+                <li class="hd_nav-item"><a href="/inProduct" class="fontclass font_color-3">站内产品</a>
                     <div class="onmoseover"></div>
                 </li>
                 <li class="hd_nav-item"><a href="#" class='fontclass font_color-3'>站外产品</a>
@@ -144,20 +143,27 @@
         </div>
         <div class="pic">
             <a href="#" id="head_pic">
-                <img title="16期-来坛天子笑"
-                     src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                     alt="头像"
-                     style="position: relative;">
+                <img th:title="${session.account?.getUsername()}?${session.account.getUsername()}:'用户头像'"
+                     th:src="${session.account?.getAvatar()}?${session.account.getAvatar()}:'/img/account/common_head_pic.jpg'"
+                     alt="头像" style="position: relative;">
             </a>
-
-            <div class="two" id="head_pic_list">
+            <div class="two" id="head_pic_list" th:if="${session.account} eq null">
                 <em class="member-box"></em>
                 <ul>
-                    <li><a href="#">个人中心</a></li>
-                    <li><a href="#">我的订单</a></li>
-                    <li><a href="#">我的账单</a></li>
-                    <li><a href="#">安全中心</a></li>
-                    <li><a href="#">退出登录</a></li>
+                    <li><a href="/login">登录</a> \ <a href="/register">注册</a></li>
+
+                </ul>
+            </div>
+            <div class="two" id="head_pic_list" th:if="${session.account} ne null">
+                <em class="member-box"></em>
+                <ul>
+                    <li><a href="/showPersonalCenter">个人中心</a></li>
+                    <a href="recommend_goods">推荐商品</a>
+                    <li><a href="/showAllOrders">我的订单</a></li>
+                    <li><a href="/showAllBills">我的账单</a></li>
+                    <li><a href="/showSafetyCenter">安全中心</a></li>
+                    <li><a href="/showHelp">帮助</a></li>
+                    <li><a href="/logout">退出登录</a></li>
                 </ul>
             </div>
 

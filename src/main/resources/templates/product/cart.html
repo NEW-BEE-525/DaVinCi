@@ -131,13 +131,13 @@
         </div>
         <div class="pull-left">
             <ul id="menu_list">
-                <li class="hd_nav-item"><a href="../main/index.html" class="fontclass font_color-3">首页</a>
+                <li class="hd_nav-item"><a href="/" class="fontclass font_color-3">首页</a>
                     <div class="onmoseover"></div>
                 </li>
-                <li class="hd_nav-item"><a href="#" class='font_color-1 bordbttom'>站内产品</a>
+                <li class="hd_nav-item"><a href="/inProduct" class='font_color-1 bordbttom'>站内产品</a>
                     <div class="onmoseoveractive"></div>
                 </li>
-                <li class="hd_nav-item"><a href="#" class='fontclass font_color-3'>站外产品</a>
+                <li class="hd_nav-item"><a href="/outProduct" class='fontclass font_color-3'>站外产品</a>
                     <div class="onmoseover"></div>
                 </li>
                 <li class="hd_nav-item"><a href="#" class='fontclass font_color-3'>关于达分期</a>
@@ -161,19 +161,18 @@
             <div class="two" id="head_pic_list" th:if="${session.account} eq null">
                 <em class="member-box"></em>
                 <ul>
-                    <li><a href="#">登录</a> \ <a href="#">注册</a></li>
-
+                    <li><a href="/login">登录</a> \ <a href="/register">注册</a></li>
                 </ul>
             </div>
             <div class="two" id="head_pic_list" th:if="${session.account} ne null">
                 <em class="member-box"></em>
                 <ul>
-                    <li><a href="../account/personal_center.html">个人中心</a></li>
-                    <li><a href="#">我的订单</a></li>
-                    <li><a href="#">我的账单</a></li>
-                    <li><a href="#">帮助</a></li>
-                    <li><a href="#">安全中心</a></li>
-                    <li><a href="#">退出登录</a></li>
+                    <li><a href="/showPersonalCenter">个人中心</a></li>
+                    <li><a href="/showAllOrders">我的订单</a></li>
+                    <li><a href="/showAllBills">我的账单</a></li>
+                    <li><a href="/showSafetyCenter">安全中心</a></li>
+                    <li><a href="/showHelp">帮助</a></li>
+                    <li><a href="/logout">退出登录</a></li>
                 </ul>
             </div>
         </div>
@@ -287,17 +286,16 @@
                     <a th:attr="name=${cart.getId()}" name="11" class="remove_cart">移出购物车</a>
                 </div>
             </div>
-<!--            底部固定栏-->
+            <!--            底部固定栏-->
             <div style="width: 1009px;height: 60px;position: fixed;background-color: #3F3F3F;bottom: 0;color: white;font-size: 20px;">
-                <div class="inline_block" style="width: 255px;text-align: center;padding: 10px">总共：<!--/*@thymesVar id="goodsCount" type=""*/-->
-                <span
-                        th:text="${cartTotal.goodsCount}">100</span>件宝贝
+                <div class="inline_block" style="width: 255px;text-align: center;padding: 10px">总共：
+                    <span th:text="${cartTotal.goodsCount}" id="BB"></span>件宝贝
                 </div>
                 <div class="inline_block " style="width: 180px;"></div>
                 <div class="inline_block " style="width: 120px;"></div>
-                <div class="inline_block " style="width: 100px;"></div>
-                <div class="inline_block " style="width: 150px;text-align: center;padding: 10px">总价：￥<span
-                        th:text="${cartTotal.goodsAmount}" id="ZJ">100</span></div>
+                <div class="inline_block " style="width: 60px;"></div>
+                <div class="inline_block " style="width: 190px;text-align: center;padding: 10px">总价：￥<span
+                        th:text="${cartTotal.goodsAmount}" id="ZJ"></span></div>
                 <div class="inline_block "
                      style="width: 176px;height: 60px;background-color: red;text-align: center;padding: 10px">
                     <a style="color: white;font-weight: bold;font-size: 24px">清空购物车</a>
@@ -314,7 +312,7 @@
     <br><br>
     <a><span style="color: white;font-size: 30px;">￥</span></a>
     <br><br>
-    <a><img src="/img/product/cart.png" title="购物车" width="32px" height="32px"></a>
+    <a href="/getCart"><img src="/img/product/cart.png" title="购物车" width="32px" height="32px"></a>
 </div>
 
 <footer class="main-footer main-footer1" style="position: inherit;left: 0;">
@@ -393,6 +391,8 @@
                 if (!data)
                     console.log("后台删除购物车失败")
                 else {
+                    document.getElementById('ZJ').innerText -= document.getElementsByName(name)[6].textContent;
+                    document.getElementById('BB').innerText -= document.getElementsByName(name)[4].value;
                     document.getElementsByName(name)[0].style.display = 'none';
                 }
             }
@@ -483,7 +483,6 @@
             document.getElementsByClassName("category_a")[i].style.backgroundColor = "transparent"
         }
     });
-
 
     $('.close_btn').click(function () {
         document.getElementById("pay_password").style.display = "none";

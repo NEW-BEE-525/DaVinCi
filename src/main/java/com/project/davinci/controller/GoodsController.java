@@ -70,6 +70,9 @@ public class GoodsController {
         return "product/in_product.html";
     }
 
+    @GetMapping("/outProduct")
+	public String viewOutProduct(){return "product/out_product.html";}
+
 	@RequestMapping("/productDetail/{id}")
 	public String detail(@PathVariable (value = "id") String id_str, Model model) throws Exception {
 		Integer id = Integer.valueOf(id_str);

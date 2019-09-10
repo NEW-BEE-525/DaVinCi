@@ -129,7 +129,7 @@
                 <li class="hd_nav-item"><a href="/inProduct" class='font_color-1 bordbttom'>站内产品</a>
                     <div class="onmoseoveractive"></div>
                 </li>
-                <li class="hd_nav-item"><a href="#" class='fontclass font_color-3'>站外产品</a>
+                <li class="hd_nav-item"><a href="/outProduct" class='fontclass font_color-3'>站外产品</a>
                     <div class="onmoseover"></div>
                 </li>
                 <li class="hd_nav-item"><a href="#" class='fontclass font_color-3'>关于达分期</a>
@@ -153,19 +153,18 @@
             <div class="two" id="head_pic_list" th:if="${session.account} eq null">
                 <em class="member-box"></em>
                 <ul>
-                    <li><a href="#">登录</a> \ <a href="#">注册</a></li>
-
+                    <li><a href="/login">登录</a> \ <a href="/register">注册</a></li>
                 </ul>
             </div>
             <div class="two" id="head_pic_list" th:if="${session.account} ne null">
                 <em class="member-box"></em>
                 <ul>
-                    <li><a href="../account/personal_center.html">个人中心</a></li>
-                    <li><a href="#">我的订单</a></li>
-                    <li><a href="#">我的账单</a></li>
-                    <li><a href="#">帮助</a></li>
-                    <li><a href="#">安全中心</a></li>
-                    <li><a href="#">退出登录</a></li>
+                    <li><a href="/showPersonalCenter">个人中心</a></li>
+                    <li><a href="/showAllOrders">我的订单</a></li>
+                    <li><a href="/showAllBills">我的账单</a></li>
+                    <li><a href="/showSafetyCenter">安全中心</a></li>
+                    <li><a href="/showHelp">帮助</a></li>
+                    <li><a href="/logout">退出登录</a></li>
                 </ul>
             </div>
         </div>
@@ -187,6 +186,33 @@
                 <input type="submit" class="submit_btn" value="搜索">
                 <!--<a class="cart_a _2uLFV" style="margin-left: 230px">购物车</a>-->
             </form>
+            <script>
+                document.getElementById('bb').onclick = function (ev) {
+                    var dataform = {"str": document.getElementById('aa').value}
+                    $.ajax({
+                        url: "#",
+                        type: "post",
+                        datatype: "text",
+                        contentType: "application/json",
+                        data: JSON.stringify(dataform),
+                        async: true,
+                        success: function (data) {
+                            var img_list = document.getElementsByClassName("product_img");
+                            var price_list = document.getElementsByClassName("product_price");
+                            var pname_list = document.getElementsByClassName("product_name");
+                            var pintroduce_list = document.getElementsByClassName('product_introduce');
+                            var plink_list = document.getElementsByClassName('product_link');
+                            for (var i = 0; i < 15; i++) {
+                                img_list[i].setAttribute("src", data[i]["picUrl"]);
+                                price_list[i].textContent = "￥" + data[i]["retailPrice"];
+                                pname_list[i].textContent = data[i]['name'];
+                                pintroduce_list[i].textContent = data[i]['brief'];
+                                plink_list[i].setAttribute("href", "/productDetail/" + data[i]["id"])
+                            }
+                        }
+                    })
+                }
+            </script>
             <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机&nbsp;&nbsp;</a><a>裤子&nbsp;&nbsp;</a><a>电脑&nbsp;&nbsp;</a>
             <a>衣服&nbsp;&nbsp;</a><a>学习用品&nbsp;&nbsp;</a><a>帽子&nbsp;&nbsp;</a><a>零食&nbsp;&nbsp;</a>
         </div>

@@ -134,10 +134,10 @@
                 <li class="hd_nav-item"><a href="../main/index.html" class="fontclass font_color-3">首页</a>
                     <div class="onmoseover"></div>
                 </li>
-                <li class="hd_nav-item"><a href="#" class='font_color-1 bordbttom'>站内产品</a>
+                <li class="hd_nav-item"><a href="/inProduct" class='font_color-1 bordbttom'>站内产品</a>
                     <div class="onmoseoveractive"></div>
                 </li>
-                <li class="hd_nav-item"><a href="#" class='fontclass font_color-3'>站外产品</a>
+                <li class="hd_nav-item"><a href="/outProduct" class='fontclass font_color-3'>站外产品</a>
                     <div class="onmoseover"></div>
                 </li>
                 <li class="hd_nav-item"><a href="#" class='fontclass font_color-3'>关于达分期</a>
@@ -161,19 +161,18 @@
             <div class="two" id="head_pic_list" th:if="${session.account} eq null">
                 <em class="member-box"></em>
                 <ul>
-                    <li><a href="#">登录</a> \ <a href="#">注册</a></li>
-
+                    <li><a href="/login">登录</a> \ <a href="/register">注册</a></li>
                 </ul>
             </div>
             <div class="two" id="head_pic_list" th:if="${session.account} ne null">
                 <em class="member-box"></em>
                 <ul>
-                    <li><a href="../account/personal_center.html">个人中心</a></li>
-                    <li><a href="#">我的订单</a></li>
-                    <li><a href="#">我的账单</a></li>
-                    <li><a href="#">帮助</a></li>
-                    <li><a href="#">安全中心</a></li>
-                    <li><a href="#">退出登录</a></li>
+                    <li><a href="/showPersonalCenter">个人中心</a></li>
+                    <li><a href="/showAllOrders">我的订单</a></li>
+                    <li><a href="/showAllBills">我的账单</a></li>
+                    <li><a href="/showSafetyCenter">安全中心</a></li>
+                    <li><a href="/showHelp">帮助</a></li>
+                    <li><a href="/logout">退出登录</a></li>
                 </ul>
             </div>
         </div>
@@ -350,7 +349,7 @@
         <br><br>
         <a><span style="color: white;font-size: 30px;">￥</span></a>
         <br><br>
-        <a><img src="/img/product/cart.png" title="购物车" width="32px" height="32px"></a>
+        <a href="/getCart"><img src="/img/product/cart.png" title="购物车" width="32px" height="32px"></a>
     </div>
 </div>
 <footer class="main-footer main-footer1" style="position: inherit;left: 0;">
@@ -508,6 +507,7 @@
     $('#submit_order').click(function () {
         document.getElementById('pay_way_div').style.display = 'block';
         trade_complete();
+        alert("订单提交成功！！")
         this.style.display = 'none';
         document.getElementById('real_pay').style.display = 'block';
     })
@@ -561,7 +561,7 @@
         var password = {
             'password': document.getElementById("pay_password_input").value,
             'order_id': order_id,
-            'fq':fq
+            'fq': fq
         };
         console.log(password);
         $.ajax({
@@ -572,9 +572,9 @@
             success: function (data) {
                 if (data == "1") {
                     alert("支付成功")
-                }else if (data == "-1"){
+                } else if (data == "-1") {
                     alert("白条余额不足")
-                }else if (data == "0"){
+                } else if (data == "0") {
                     alert("支付密码错误")
                 }
                 else {

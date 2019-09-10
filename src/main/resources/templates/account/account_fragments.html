@@ -33,7 +33,7 @@
             <div class="JS7zp">
                 <a href="/" class="header_a">首页</a>
                 <a href="/inProduct" class="header_a">站内商品</a>
-                <a href="#" class="header_a">站外商品</a>
+                <a href="/outProduct" class="header_a">站外商品</a>
                 <a href="#" class="header_a">关于达分期</a>
             </div>
             <div class="_1j-ox" hidden>
@@ -41,12 +41,12 @@
                 <a>搜索</a>
             </div>
             <div class="_28XjI" style="position: relative;">
-                <img title="16期-来坛天子笑"
-                     src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                     alt="16期-来坛天子笑">
+                <img th:title="${session.account?.getUsername()}?${session.account.getUsername()}:'用户头像'"
+                     th:src="${session.account?.getAvatar()}?${session.account.getAvatar()}:'/img/account/common_head_pic.jpg'"
+                     alt="头像" style="position: relative;">
                 <span class="_1s24Z"></span>
                 <ul>
-                    <li><a href="#">退出登录</a></li>
+                    <li><a href="/logout">退出登录</a></li>
                 </ul>
             </div>
         </div>
