@@ -248,7 +248,7 @@
             <div class="inline_block order_up_head" style="width: 130px;">小计</div>
         </div>
         <div class="order_shop">
-            <p id="0" th:id="${cart.getId()}" name="getCaet">达分期站内店铺</p>
+            <h3 id="0" th:id="${cart.getId()}" name="getCaet">达分期站内店铺</h3>
         </div>
         <!--订单表格-->
         <div style="height: 75px;text-align: center;width: 1009px;padding-top: 10px">
@@ -547,7 +547,8 @@
                     'total_amount': document.getElementById('XJ').textContent,
                     'subject': document.getElementsByClassName('pname')[0].textContent
                 };
-                console.log(dataMap);
+                // console.log(dataMap);
+                document.getElementById("cover").style.display = "block";
                 $.ajax({
                     url: 'alipay.trade.pay',
                     type: "post",
@@ -556,7 +557,6 @@
                     contentType: "application/json",
                     success: function (data) {
                         document.getElementById("QRcode").setAttribute("src", "data:image/jpg;base64," + data);
-                        document.getElementById("cover").style.display = "block";
                         document.getElementsByClassName("pay_img")[0].style.display = "block";
                     }
                 });
