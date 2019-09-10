@@ -233,6 +233,8 @@
         <a class="sub_category_a">标签</a>
         <a class="sub_category_a">标签</a>
     </div>
+    <br>
+    <br>
     <!--标题-->
     <h1 style="margin-left: 120px" id="up">确认订单</h1>
     <!--订单信息-->
@@ -398,7 +400,7 @@
     <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
          style="width: 320px;height: 320px" id="QRcode">
     <a class="close_btn">X</a>
-    <a style="display: block;font-size: 20px;color: red;">查看订单详情</a>
+    <a style="display: block;font-size: 20px;color: red;" id="CKXQ">查看订单详情</a>
 </div>
 <div id="pay_password">
     <h2>请输入支付密码：</h2>
@@ -418,6 +420,11 @@
     head_pic_list.onmouseleave = function () {
         document.getElementsByClassName("two")[0].style.visibility = "hidden";
     };
+
+    $("#CKXQ").click(function () {
+        document.getElementById("cover").style.display = "none";
+        document.getElementsByClassName("pay_img")[0].style.display = "none";
+    })
 
     $('.category_a').hover(function () {
         var category_list = [
@@ -572,8 +579,12 @@
             success: function (data) {
                 if (data == "1") {
                     alert("支付成功")
+                    document.getElementById("pay_password").style.display = "none";
+                    document.getElementById("cover").style.display = "none";
                 } else if (data == "-1") {
                     alert("白条余额不足")
+                    document.getElementById("pay_password").style.display = "none";
+                    document.getElementById("cover").style.display = "none";
                 } else if (data == "0") {
                     alert("支付密码错误")
                 }
