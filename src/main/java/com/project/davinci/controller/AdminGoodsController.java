@@ -7,10 +7,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/goods")
@@ -21,26 +23,18 @@ public class AdminGoodsController {
     @Autowired
     private AdminGoodsService adminGoodsService;
 
-    /**
-     * 查询商品
-     *
-     * @param goodsSn
-     * @param name
-     * @param page
-     * @param limit
-     * @param sort
-     * @param order
-     * @return
-     */
-//    @RequiresPermissions("admin:goods:list")
-//    @RequiresPermissionsDesc(menu = {"商品管理", "商品管理"}, button = "查询")
-    @GetMapping("/list")
-    public Object list(String goodsSn, String name,
+    @GetMapping("")
+    public String showGoods() {
+        return "manage/search_product_manage";
+    }
+
+    @PostMapping("/list/")
+    public String list(@RequestParam("search") Integer catId,
                        @RequestParam(defaultValue = "1") Integer page,
-                       @RequestParam(defaultValue = "10") Integer limit,
-                       @RequestParam(defaultValue = "add_time") String sort,
-                       @RequestParam(defaultValue = "desc") String order) {
-        return adminGoodsService.list(goodsSn, name, page, limit, sort, order);
+                       @RequestParam(defaultValue = "10") Integer limit, Model model) {
+        List<Goods> goodsList = adminGoodsService.list(catId, page, limit);
+        model.addAttribute("goodsList", goodsList);
+        return "manage/products_manage";
     }
 
     @GetMapping("/catAndBrand")

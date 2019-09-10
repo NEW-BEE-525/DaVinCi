@@ -71,7 +71,7 @@
                             <div role="tab" aria-disabled="false" aria-selected="true"
                                  class="rc-tabs-tab-active rc-tabs-tab" id="above_info" onclick="slide_1()">个人中心
                             </div>
-                            <div class="rc-tabs-ink-bar rc-tabs-ink-bar-animated"    id="bar_1"
+                            <div class="rc-tabs-ink-bar rc-tabs-ink-bar-animated" id="bar_1"
                                  style="display: block; transform: translate3d(0px, 0px, 0px); width: 96px;">
                             </div>
                         </div>
@@ -595,8 +595,8 @@
                                 "<tr>\n" +
                                 " <td class=\"order_product\">\n" +
                                 "<a  class=\"product_pic\" >\n" +
-                                "<img class=\"order_pic\" name='111'\n" +
-                                "width=\"80px\" height=\"80px\" style=\"vertical-align: unset\">\n" +
+                                "<img class=\"order_pic\" name='111' src=" + orderList[i].goodsList[0]["picUrl"] +"/n" +
+                            "width=\"80px\" height=\"80px\" style=\"vertical-align: unset\">\n" +
                                 "</a>\n" +
                                 "</td>\n" +
                                 " <td class=\"order_descn\">\n" + orderList[i].goodsList[0]["goodsName"] +
@@ -651,26 +651,26 @@
                             "</div>\n" +
                             "\n" +
                             "</div>\n" +
-                            "\n" ;
+                            "\n";
                         for (var i = 0; i < billList.length; i++) {
 
                             Str +=
                                 "<div class=\"bill_list\">\n" +
                                 "<div class=\"bill_list_textcontent\">\n" +
-                                "<h3>商品名称: <span class =\"product_name\">" + billList[i]["goods_name"]+ "</span></h3>\n"+
-                                "<h4>商品简介：<span class =\"product_belif\">" + billList[i]["brief"]+ "</span></h4>\n"+
+                                "<h3>商品名称: <span class =\"product_name\">" + billList[i]["goods_name"] + "</span></h3>\n" +
+                                "<h4>商品简介：<span class =\"product_belif\">" + billList[i]["brief"] + "</span></h4>\n" +
                                 "</div>\n" +
                                 "\n" +
                                 "<div class=\"bill_price\">\n" +
-                                "<h3>每月还款：<span class =\"product_month\">" + (billList[i]["total_amount"] / billList[i]["stage_months"]) +  "</span></h3>\n"+
-                            "\n" +
-                                "<h3>应还几个月：<span class =\"product_month_count\">" +billList[i]["repayment_months"] + "</span></h3>\n"+
-                            "</div>\n" +
+                                "<h3>每月还款：<span class =\"product_month\">" + (billList[i]["total_amount"] / billList[i]["stage_months"]) + "</span></h3>\n" +
+                                "\n" +
+                                "<h3>应还几个月：<span class =\"product_month_count\">" + billList[i]["repayment_months"] + "</span></h3>\n" +
+                                "</div>\n" +
                                 "\n" +
                                 "<a class =\"product_pay\">\n" +
                                 "一键还款\n" +
                                 "</a>\n" +
-                                "</div>\n" ;
+                                "</div>\n";
                         }
                         document.getElementById("bills").innerHTML = Str;
                         break;

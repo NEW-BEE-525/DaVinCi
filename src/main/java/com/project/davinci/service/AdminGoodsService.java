@@ -32,10 +32,9 @@ public class AdminGoodsService {
 //    @Autowired
 //    private QCodeService qCodeService;
 
-    public Object list(String goodsSn, String name,
-                       Integer page, Integer limit, String sort, String order) {
-        List<Goods> goodsList = goodsService.querySelective(goodsSn, name, page, limit, sort, order);
-        return null;
+    public List<Goods>  list(Integer catId, Integer page, Integer limit) {
+        List<Goods> goodsList = goodsService.queryByCategory(catId, page, limit);
+        return goodsList;
     }
 
     private Object validate(GoodsAllinone goodsAllinone) {

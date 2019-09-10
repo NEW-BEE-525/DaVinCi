@@ -180,39 +180,12 @@
             <span style="font-size: 40px;font-weight: 900">站内商品</span>
         </div>
         <div style="display: inline-block;vertical-align: top">
-            <form action="#" method="post">
+            <div>
                 <img src="/img/product/search_ico.jpg" width="28px" height="28px">
-                <input class="_1YMqD" type="text" placeholder="输入关键词搜索产品">
-                <input type="submit" class="submit_btn" value="搜索">
+                <input class="_1YMqD" type="text" placeholder="输入关键词搜索产品" id="aa">
+                <input type="button" class="submit_btn" value="搜索" id="bb">
                 <!--<a class="cart_a _2uLFV" style="margin-left: 230px">购物车</a>-->
-            </form>
-            <script>
-                document.getElementById('bb').onclick = function (ev) {
-                    var dataform = {"str": document.getElementById('aa').value}
-                    $.ajax({
-                        url: "#",
-                        type: "post",
-                        datatype: "text",
-                        contentType: "application/json",
-                        data: JSON.stringify(dataform),
-                        async: true,
-                        success: function (data) {
-                            var img_list = document.getElementsByClassName("product_img");
-                            var price_list = document.getElementsByClassName("product_price");
-                            var pname_list = document.getElementsByClassName("product_name");
-                            var pintroduce_list = document.getElementsByClassName('product_introduce');
-                            var plink_list = document.getElementsByClassName('product_link');
-                            for (var i = 0; i < 15; i++) {
-                                img_list[i].setAttribute("src", data[i]["picUrl"]);
-                                price_list[i].textContent = "￥" + data[i]["retailPrice"];
-                                pname_list[i].textContent = data[i]['name'];
-                                pintroduce_list[i].textContent = data[i]['brief'];
-                                plink_list[i].setAttribute("href", "/productDetail/" + data[i]["id"])
-                            }
-                        }
-                    })
-                }
-            </script>
+            </div>
             <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机&nbsp;&nbsp;</a><a>裤子&nbsp;&nbsp;</a><a>电脑&nbsp;&nbsp;</a>
             <a>衣服&nbsp;&nbsp;</a><a>学习用品&nbsp;&nbsp;</a><a>帽子&nbsp;&nbsp;</a><a>零食&nbsp;&nbsp;</a>
         </div>
@@ -257,166 +230,166 @@
     <!--标题-->
     <span style="margin-left: 30px;font-weight: 700;font-size: 30px" id="DBZT">为你推荐</span>
     <!--商品-->
-    <div>
-        <div>
+    <div >
+        <div id="one">
             <div class="inline_div">
                 <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
+                    <img class="product_img" src="#">
                     <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
                     </div>
                 </a>
             </div>
             <div class="inline_div">
                 <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
+                    <img class="product_img" src="#">
                     <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
                     </div>
                 </a>
             </div>
             <div class="inline_div">
                 <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
+                    <img class="product_img" src="#">
                     <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
                     </div>
                 </a>
             </div>
             <div class="inline_div">
                 <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
+                    <img class="product_img" src="#">
                     <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
                     </div>
                 </a>
             </div>
             <div class="inline_div">
                 <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
+                    <img class="product_img" src="#">
                     <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
-            </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
-            </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
-            </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
-                    </div>
-                </a>
-            </div>
-            <div class="inline_div">
-                <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
-                    <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
                     </div>
                 </a>
             </div>
         </div>
-        <div>
+        <div id="two">
             <div class="inline_div">
                 <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
+                    <img class="product_img" src="#">
                     <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
                     </div>
                 </a>
             </div>
             <div class="inline_div">
                 <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
+                    <img class="product_img" src="#">
                     <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
                     </div>
                 </a>
             </div>
             <div class="inline_div">
                 <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
+                    <img class="product_img" src="#">
                     <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
                     </div>
                 </a>
             </div>
             <div class="inline_div">
                 <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
+                    <img class="product_img" src="#">
                     <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
                     </div>
                 </a>
             </div>
             <div class="inline_div">
                 <a class="product_link">
-                    <img class="product_img" src="http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png">
+                    <img class="product_img" src="#">
                     <div style="padding-left: 20px">
-                        <b class="product_price" style="font-size: 20px;color: red">￥100.0</b>
-                        <p class="product_name">超爽双人床</p>
-                        <p class="product_introduce">商品的简短的简短的简短简单的介绍</p>
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div id="three">
+            <div class="inline_div">
+                <a class="product_link">
+                    <img class="product_img" src="#">
+                    <div style="padding-left: 20px">
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
+                    </div>
+                </a>
+            </div>
+            <div class="inline_div">
+                <a class="product_link">
+                    <img class="product_img" src="#">
+                    <div style="padding-left: 20px">
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
+                    </div>
+                </a>
+            </div>
+            <div class="inline_div">
+                <a class="product_link">
+                    <img class="product_img" src="#">
+                    <div style="padding-left: 20px">
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
+                    </div>
+                </a>
+            </div>
+            <div class="inline_div">
+                <a class="product_link">
+                    <img class="product_img" src="#">
+                    <div style="padding-left: 20px">
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
+                    </div>
+                </a>
+            </div>
+            <div class="inline_div">
+                <a class="product_link">
+                    <img class="product_img" src="#">
+                    <div style="padding-left: 20px">
+                        <b class="product_price" style="font-size: 20px;color: red"></b>
+                        <p class="product_name"></p>
+                        <p class="product_introduce"></p>
                     </div>
                 </a>
             </div>
         </div>
     </div>
     <!--页码-->
-    <div class="page_div">
+    <div class="page_div" id="page_div">
         <a>1&nbsp;&nbsp;&nbsp;&nbsp;</a>
         <a>2&nbsp;&nbsp;&nbsp;&nbsp;</a>
         <a>3&nbsp;&nbsp;&nbsp;&nbsp;</a>
@@ -596,6 +569,9 @@
                 var pname_list = document.getElementsByClassName("product_name");
                 var pintroduce_list = document.getElementsByClassName('product_introduce');
                 var plink_list = document.getElementsByClassName('product_link');
+                document.getElementById('two').style.display = 'block';
+                document.getElementById('three').style.display = 'block';
+                document.getElementById('page_div').style.display = 'block';
                 for (var i = 0; i < 15; i++) {
                     img_list[i].setAttribute("src", data[i]["picUrl"]);
                     price_list[i].textContent = "￥" + data[i]["retailPrice"];
@@ -614,22 +590,80 @@
     //                              //
     //////////////////////////////////
     //
-    // $(function () {
-    //     $.get("#", function (data) {
-    //         var img_list = document.getElementsByClassName("product_img");
-    //         var price_list = document.getElementsByClassName("product_price");
-    //         var pname_list = document.getElementsByClassName("product_name");
-    //         var pintroduce_list = document.getElementsByClassName('product_introduce');
-    //         for (var i = 0; i < 15; i++) {
-    //             img_list[i].setAttribute("src", data[i]["picUrl"]);
-    //             price_list[i].textContent = "￥" + data[i]["retailPrice"];
-    //             pname_list[i].textContent = data[i]['name'];
-    //             pintroduce_list[i].textContent = data[i]['brief'];
-    //             plink_list[i].setAttribute("href", "#?id=" + data[i]["id"])
-    //         }
-    //     })
-    // })
+    $(function () {
+        $.get("recommend_goods", function (data) {
+            console.log(data);
+            var img_list = document.getElementsByClassName("product_img");
+            var price_list = document.getElementsByClassName("product_price");
+            var pname_list = document.getElementsByClassName("product_name");
+            var pintroduce_list = document.getElementsByClassName('product_introduce');
+            var plink_list = document.getElementsByClassName('product_link');
+            document.getElementById('two').style.display = 'none';
+            document.getElementById('three').style.display = 'none';
+            document.getElementById('page_div').style.display = 'none';
+            for (var i = 0; i < 5; i++) {
+                img_list[i].setAttribute("src", data[i]["picUrl"]);
+                price_list[i].textContent = "￥" + data[i]["retailPrice"];
+                pname_list[i].textContent = data[i]['name'];
+                pintroduce_list[i].textContent = data[i]['brief'];
+                plink_list[i].setAttribute("href", "#?id=" + data[i]["id"])
+            }
+        })
+    });
 
+    document.getElementById('bb').onclick = function () {
+        var dataform = {"keyword": document.getElementById('aa').value};
+        console.log((dataform));
+        $.ajax({
+            url: "searchGoods",
+            type: "post",
+            datatype: "text",
+            contentType: "application/json",
+            data: JSON.stringify(dataform),
+            async: true,
+            success: function (data) {
+                document.getElementById('two').style.display = 'block';
+                document.getElementById('three').style.display = 'block';
+                var img_list = document.getElementsByClassName("product_img");
+                var price_list = document.getElementsByClassName("product_price");
+                var pname_list = document.getElementsByClassName("product_name");
+                var pintroduce_list = document.getElementsByClassName('product_introduce');
+                var plink_list = document.getElementsByClassName('product_link');
+                for (var i = 0; i < data.length; i++) {
+                    img_list[i].setAttribute("src", data[i]["picUrl"]);
+                    price_list[i].textContent = "￥" + data[i]["retailPrice"];
+                    pname_list[i].textContent = data[i]['name'];
+                    pintroduce_list[i].textContent = data[i]['brief'];
+                    plink_list[i].setAttribute("href", "/productDetail/" + data[i]["id"])
+                }
+                if (data.length >=5 && data.length <10){
+                    document.getElementById('two').style.display = 'none';
+                    document.getElementById('three').style.display = 'none';
+                    document.getElementById("DBZT").innerText = "搜索结果：5条结果";
+                    document.getElementById('page_div').style.display = 'none';
+                }
+                else if(data.length >=10 && data.length <15){
+                    document.getElementById('two').style.display = 'block';
+                    document.getElementById('three').style.display = 'none';
+                    document.getElementById("DBZT").innerText = "搜索结果：10条结果";
+                    document.getElementById('page_div').style.display = 'none';
+                }
+                else if(data.length >=15){
+                    document.getElementById('two').style.display = 'block';
+                    document.getElementById('three').style.display = 'block';
+                    document.getElementById("DBZT").innerText = "搜索结果：15条结果";
+                    document.getElementById('page_div').style.display = 'none';
+                }
+                else{
+                    document.getElementById('one').style.display = 'none';
+                    document.getElementById('two').style.display = 'none';
+                    document.getElementById('three').style.display = 'none';
+                    document.getElementById("DBZT").innerText = "搜索结果：0条结果";
+                    document.getElementById('page_div').style.display = 'none';
+                }
+            }
+        })
+    }
 </script>
 </body>
 </html>

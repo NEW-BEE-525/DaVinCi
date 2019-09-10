@@ -6,6 +6,17 @@
     <link rel="shortcut icon" href="/img/index_need/dfq_logo.ico">
     <style>
         a {
+            /*display: inline-block;*/
+            /*border: 5px solid black;*/
+            /*font-size: 26px;*/
+            /*padding: 50px;*/
+            text-decoration: none;
+            color: black;
+            /*margin: 5px;*/
+            /*border-radius: 10px;*/
+        }
+
+        .a {
             display: inline-block;
             text-decoration: none;
             color: #bc0000;
@@ -25,8 +36,8 @@
     </style>
 </head>
 <body>
-<h1><img src="../../static/img/product/cpys02.png" width="50px" height="50px" style="vertical-align: bottom">
-    达分期--管理中心--分类管理
+<h1><img src="/img/product/cpys02.png" width="50px" height="50px" style="vertical-align: bottom">
+    达分期--<a href="/admin">管理中心</a>--分类管理
 </h1>
 <div style="width: 100%;border: 2px solid black"></div>
 <br>
@@ -97,7 +108,7 @@
             '<ol>\n';
         for (var j = 0; j < sub_category_list[i].length; j++) {
             html += '<li>' + sub_category_list[i][j].value +
-                '<a href="#">删除</a><a href="#">重命名</a>' + '</li>';
+                '<a href="#" class="a">删除</a><a href="#" class="a">重命名</a>' + '</li>';
         }
         html += '</ol>\n' +
             '</div>'

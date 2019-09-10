@@ -21,14 +21,14 @@ public class AdminAccountController {
     @Resource
     private AccountService accountService;
 
-    @GetMapping("/")
+    @GetMapping()
     public String view(Model model){
         List<Account> accountList = accountService.getAccountList();
-        return "main/index";
+        model.addAttribute("accountList",accountList);
+        return "manage/users_manage";
     }
 
-    @RequestMapping(value = "ban", method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "/ban", method = RequestMethod.POST)
     public String banAccount(@RequestBody Map<String, String> map, HttpSession session) {
        int id = Integer.valueOf(map.get("userId"));
        return String.valueOf(accountService.banAccount(id));

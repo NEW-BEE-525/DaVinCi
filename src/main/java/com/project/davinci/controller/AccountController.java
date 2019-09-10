@@ -19,11 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonObject;
-import com.project.davinci.domain.Account;
-import com.project.davinci.domain.Bill;
-import com.project.davinci.domain.Student;
-import com.project.davinci.service.AccountService;
-import com.project.davinci.service.BillService;
+import com.project.davinci.domain.*;
+import com.project.davinci.service.*;
 import com.project.davinci.utils.CCPRestSDK;
 import com.project.davinci.utils.utils.encoder.CharacterEncoder;
 import org.apache.commons.codec.binary.Base64;
@@ -43,10 +40,19 @@ public class AccountController {
     private AccountService accountService;
     @Resource
     private BillService billService;
+    @Resource
+    private CategoryService categoryService;
+    @Resource
+    private UserActiveService userActiveService;
 
     @GetMapping("/")
     public String view(){
         return "main/index";
+    }
+
+    @GetMapping("/admin")
+    public String viewAdmin(){
+        return "manage/main_manage";
     }
 
     @GetMapping("/login")
@@ -103,6 +109,9 @@ public class AccountController {
             return "0";
         }
         else {
+            if (map.get("userPhone")=="admin"){
+                return "2";
+            }
             if (account.getPassword().equals(map.get("password"))) {
                 session.setAttribute("account",account);
                 return "1";//登录成功
@@ -124,9 +133,18 @@ public class AccountController {
         if (sessionVerification.equals(verification)&&sessionMobile.equals(mobile)) {
             session.removeAttribute("verification");
             session.removeAttribute("mobile");
-            if (accountService.registerAccount(mobile,passwored)==1)
+
+            if (accountService.registerAccount(mobile,passwored)==1) {
+                Account account = accountService.checkLogin(mobile);
+                List<Category> currentSubCategory = categoryService.queryByPid(1005000);
+                for (Category category:currentSubCategory){
+                    UserActive userActive = new UserActive();
+                    userActive.setUserId(Long.valueOf(account.getId()));
+                    userActive.setCategory2Id(Long.valueOf(category.getId()));
+                    userActiveService.saveUserActive(userActive);
+                }
                 return "1";//注册成功
-            else
+            }else
                 return "-1";//该手机号已绑定账号
         }
         return "0";//验证码错误

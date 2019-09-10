@@ -7,6 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,12 @@ public class AdminCategoryController {
     @Autowired
     private CategoryService categoryService;
 
-//    @RequiresPermissions("admin:category:list")
-//    @RequiresPermissionsDesc(menu = {"商场管理", "类目管理"}, button = "查询")
+    @GetMapping()
+    public String view(){
+        return "manage/category_manage";
+    }
+
+
     @GetMapping("/list")
     public Object list() {
         List<CategoryVo> categoryVoList = new ArrayList<>();

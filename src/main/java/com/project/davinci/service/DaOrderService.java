@@ -124,20 +124,7 @@ public class DaOrderService {
                 orderGoodsVo.put("id", orderGoods.getId());
                 orderGoodsVo.put("goodsName", orderGoods.getGoodsName());
                 orderGoodsVo.put("number", orderGoods.getNumber());
-                URL url = new URL(orderGoods.getPicUrl());
-                BufferedImage bi;
-                String img_str = null;
-                try {
-                    bi = ImageIO.read(url);
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    ImageIO.write(bi, "png", baos);  //经测试转换的图片是格式这里就什么格式，否则会失真
-                    byte[] bytes = baos.toByteArray();
-                    img_str = new String(Base64.encodeBase64(bytes));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                orderGoodsVo.put("picUrl",img_str);
+                orderGoodsVo.put("picUrl",orderGoods.getPicUrl());
                 orderGoodsVo.put("specifications", orderGoods.getSpecifications());
                 orderGoodsVoList.add(orderGoodsVo);
             }

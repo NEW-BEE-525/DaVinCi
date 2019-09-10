@@ -29,8 +29,6 @@ public class OrderController {
     private DaOrderService daOrderService;
     @Resource
     private CartService cartService;
-    @Resource
-    private UserActiveService userActiveService;
 //    /**
 //     * 订单列表
 //     *
@@ -212,45 +210,5 @@ public class OrderController {
 //    public Object comment( Integer userId, @RequestBody String body) {
 //        return daOrderService.comment(userId, body);
 //    }
-@RequestMapping(value = "recommend_goods",method = RequestMethod.GET)
-@ResponseBody
-public Map<Long,Integer> recommend_goods(HttpSession session){
-    //当前登录的用户
-    Account account=(Account)session.getAttribute("account");
-//        UserActive userActive=new UserActive();
-//        userActive.setUserId(Long.valueOf(account.getId()));
-//        userActive.setCategory2Id(Long.valueOf(0));
-//        int i=userActiveService.isExistUserActive(userActive);
-//        if (i==0){
-//            //新用户，返回指定的商品
-//        }
-//        else {
-    //根据与其他用户的相似度生成商品清单
-            /*
-            1、查找此用户和数据库中用户查询记录
-            2、组装好的用户的查询记录的map集合
-            3、计算用户查询记录的相似度
-            4、选择topN的用户查询记录
-            5、返回这N个用的查询记录
-             */
-    List<UserActive> userActiveList=userActiveService.listAllUserActive();
-    ConcurrentHashMap<Long, ConcurrentHashMap<Long, Long>> activeMap= RecommendUtils.assembleUserBehavior(userActiveList);
-    List<UserSimilarity> similarityList=RecommendUtils.calcSimilarityBetweenUsers(activeMap);
-    List<Long> UserSimilarityList=RecommendUtils.getSimilarityBetweenUsers(Long.valueOf(account.getId()),similarityList,5);
-    List<Long> recommeddateProductList=RecommendUtils.getRecommendateCategory2(Long.valueOf(account.getId()),UserSimilarityList,userActiveList);
 
-    Map<Long,Integer> map = new HashMap<>(6);
-    for(long recommeddateProduct:recommeddateProductList){
-        if(map.containsKey(recommeddateProduct)){
-            Integer count = map.get(recommeddateProduct);
-            count++;
-            map.put(recommeddateProduct,count);
-        }
-        else {
-            map.put(recommeddateProduct,1);
-        }
-    }
-    return map;
-    // }
-}
 }

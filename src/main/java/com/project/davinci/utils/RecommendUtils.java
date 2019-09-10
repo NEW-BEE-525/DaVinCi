@@ -213,7 +213,7 @@ public class RecommendUtils {
             });
 
             // 记录差值最大的二级类目的id
-            long maxCategory2 = 0L;
+            long maxCategory2 = 1008009L;
 
             // 记录最大的差值
             double maxDifference = 0.0;
