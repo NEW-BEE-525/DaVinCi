@@ -9,6 +9,24 @@ $(document).ready(function () {
             $("#above_info2").css("color", "#050505");
         });
 
+        $("#above_info3").hover(function () {
+            $("#above_info3").css("color", "#FFAC00")
+        }, function () {
+            $("#above_info3").css("color", "#050505");
+        });
+
+        $("#above_info4").hover(function () {
+            $("#above_info4").css("color", "#FFAC00")
+        }, function () {
+            $("#above_info4").css("color", "#050505");
+        });
+
+        $("#above_info5").hover(function () {
+            $("#above_info5").css("color", "#FFAC00")
+        }, function () {
+            $("#above_info5").css("color", "#050505");
+        });
+
         $("#above_info").hover(function () {
             $("#above_info").css("color", "#FFAC00")
         }, function () {

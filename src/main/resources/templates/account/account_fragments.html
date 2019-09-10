@@ -69,9 +69,9 @@
                         <!--主体上栏-->
                         <div class="rc-tabs rc-tabs-top">
                             <div role="tab" aria-disabled="false" aria-selected="true"
-                                 class="rc-tabs-tab-active rc-tabs-tab" id="above_info">个人中心
+                                 class="rc-tabs-tab-active rc-tabs-tab" id="above_info" onclick="slide_1()">个人中心
                             </div>
-                            <div class="rc-tabs-ink-bar rc-tabs-ink-bar-animated"
+                            <div class="rc-tabs-ink-bar rc-tabs-ink-bar-animated"    id="bar_1"
                                  style="display: block; transform: translate3d(0px, 0px, 0px); width: 96px;">
                             </div>
                         </div>
@@ -663,7 +663,7 @@
                                 "\n" +
                                 "<div class=\"bill_price\">\n" +
                                 "<h3>每月还款：<span class =\"product_month\">" + (billList[i]["total_amount"] / billList[i]["stage_months"]) +  "</span></h3>\n"+
-                            "</div>\n" +
+                            "\n" +
                                 "<h3>应还几个月：<span class =\"product_month_count\">" +billList[i]["repayment_months"] + "</span></h3>\n"+
                             "</div>\n" +
                                 "\n" +
