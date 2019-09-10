@@ -54,11 +54,11 @@
         }
         console.log(record)
         $.ajax({
-            type: "POST",
-            url: "getGoodList",
+            type: "GET",
+            url: "allBills",
             datatype: "text",
             contentType: "application/json",
-            data: JSON.stringify(record),
+            // data: JSON.stringify(record),
             async: true,
             success: function (result) {
                 console.log(result)

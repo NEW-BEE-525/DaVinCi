@@ -2,6 +2,7 @@ package com.project.davinci.service;
 
 import com.project.davinci.domain.*;
 import com.project.davinci.utils.OrderUtil;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,11 +16,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,8 +86,6 @@ public class DaOrderService {
 //    private QCodeService qCodeService;
 //    @Resource
 //    private ExpressService expressService;
-    @Resource
-    private CommentService commentService;
 //    @Resource
 //    private CouponVerifyService couponVerifyService;
 
@@ -99,48 +103,53 @@ public class DaOrderService {
 //     * @param limit     分页大小
 //     * @return 订单列表
 //     */
-//    public Object list(Integer userId, Integer showType, Integer page, Integer limit, String sort, String order) {
-//        if (userId == null) {
-//            return ResponseUtil.unlogin();
-//        }
-//
-//        List<Short> orderStatus = OrderUtil.orderStatus(showType);
-//        List<Order> orderList = orderService.queryByOrderStatus(userId, orderStatus, page, limit, sort, order);
-//
-//        List<Map<String, Object>> orderVoList = new ArrayList<>(orderList.size());
-//        for (Order o : orderList) {
-//            Map<String, Object> orderVo = new HashMap<>();
-//            orderVo.put("id", o.getId());
-//            orderVo.put("orderSn", o.getOrderSn());
-//            orderVo.put("actualPrice", o.getActualPrice());
-//            orderVo.put("orderStatusText", OrderUtil.orderStatusText(o));
-//            orderVo.put("handleOption", OrderUtil.build(o));
-//
-//            Groupon groupon = grouponService.queryByOrderId(o.getId());
-//            if (groupon != null) {
-//                orderVo.put("isGroupin", true);
-//            } else {
-//                orderVo.put("isGroupin", false);
-//            }
-//
-//            List<OrderGoods> orderGoodsList = orderGoodsService.queryByOid(o.getId());
-//            List<Map<String, Object>> orderGoodsVoList = new ArrayList<>(orderGoodsList.size());
-//            for (OrderGoods orderGoods : orderGoodsList) {
-//                Map<String, Object> orderGoodsVo = new HashMap<>();
-//                orderGoodsVo.put("id", orderGoods.getId());
-//                orderGoodsVo.put("goodsName", orderGoods.getGoodsName());
-//                orderGoodsVo.put("number", orderGoods.getNumber());
-//                orderGoodsVo.put("picUrl", orderGoods.getPicUrl());
-//                orderGoodsVo.put("specifications", orderGoods.getSpecifications());
-//                orderGoodsVoList.add(orderGoodsVo);
-//            }
-//            orderVo.put("goodsList", orderGoodsVoList);
-//
-//            orderVoList.add(orderVo);
-//        }
-//
-//        return ResponseUtil.okList(orderVoList, orderList);
-//    }
+    public Map<String,Object> list(Integer userId, Integer showType, Integer page, Integer limit, String sort, String order) throws MalformedURLException {
+
+        List<Short> orderStatus = OrderUtil.orderStatus(showType);
+        List<Order> orderList = orderService.queryByOrderStatus(userId, orderStatus, page, limit, sort, order);
+
+        List<Map<String, Object>> orderVoList = new ArrayList<>(orderList.size());
+        for (Order o : orderList) {
+            Map<String, Object> orderVo = new HashMap<>();
+            orderVo.put("id", o.getId());
+            orderVo.put("orderSn", o.getOrderSn());
+            orderVo.put("actualPrice", o.getActualPrice());
+            orderVo.put("orderStatusText", OrderUtil.orderStatusText(o));
+            orderVo.put("handleOption", OrderUtil.build(o));
+
+            List<OrderGoods> orderGoodsList = orderGoodsService.queryByOid(o.getId());
+            List<Map<String, Object>> orderGoodsVoList = new ArrayList<>(orderGoodsList.size());
+            for (OrderGoods orderGoods : orderGoodsList) {
+                Map<String, Object> orderGoodsVo = new HashMap<>();
+                orderGoodsVo.put("id", orderGoods.getId());
+                orderGoodsVo.put("goodsName", orderGoods.getGoodsName());
+                orderGoodsVo.put("number", orderGoods.getNumber());
+                URL url = new URL(orderGoods.getPicUrl());
+                BufferedImage bi;
+                String img_str = null;
+                try {
+                    bi = ImageIO.read(url);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    ImageIO.write(bi, "png", baos);  //经测试转换的图片是格式这里就什么格式，否则会失真
+                    byte[] bytes = baos.toByteArray();
+                    img_str = new String(Base64.encodeBase64(bytes));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                orderGoodsVo.put("picUrl",img_str);
+                orderGoodsVo.put("specifications", orderGoods.getSpecifications());
+                orderGoodsVoList.add(orderGoodsVo);
+            }
+            orderVo.put("goodsList", orderGoodsVoList);
+
+            orderVoList.add(orderVo);
+        }
+        Map<String, Object> result = new HashMap<>();
+
+        result.put("orderList",orderVoList);
+        return result;
+    }
 //
 //    /**
 //     * 订单详情
@@ -149,11 +158,8 @@ public class DaOrderService {
 //     * @param orderId 订单ID
 //     * @return 订单详情
 //     */
-    @RequestMapping(value = "orderDrtail", method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String,Object> detail(@RequestBody Map<String, String> map,HttpSession session) {
-        Account account = (Account)session.getAttribute("account");
-        Integer orderId =Integer.valueOf(map.get("orderId")) ;
+
+    public Map<String,Object> detail(Account account,Integer orderId) {
         if (account == null) {
             return null;
         }
@@ -232,10 +238,14 @@ public class DaOrderService {
             if (cartId.equals(0)) {
                 cart.setProductId(productId);
                 GoodsProduct product = productService.findById(productId);
-
+                Goods goods = goodsService.findById(product.getGoodsId());
                 cart.setId(null);
                 cart.setPrice(product.getPrice());
                 cart.setNumber(num);
+                cart.setGoodsId(goods.getId());
+                cart.setGoodsName(goods.getName());
+                cart.setGoodsSn(goods.getGoodsSn());
+                cart.setPicUrl(goods.getPicUrl());
                 cart.setSpecifications(product.getSpecifications());
                 checkedGoodsList = new ArrayList<>(1);
                 checkedGoodsList.add(cart);
@@ -256,7 +266,6 @@ public class DaOrderService {
             BigDecimal freightPrice = new BigDecimal(0.00);
             if (checkedGoodsPrice.compareTo(new BigDecimal(88.00)) < 0) {
                 freightPrice = new BigDecimal(8.00);
-                ;
             }
 
             // 最终支付费用

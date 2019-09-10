@@ -1,6 +1,7 @@
 package com.project.davinci.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -11,6 +12,7 @@ public class Account implements Serializable {
   private String username;
   private String password;
   private int gender;
+  private BigDecimal balance;
   private String birthday;
   private Timestamp last_login_time;
   private String last_login_ip;
@@ -141,5 +143,13 @@ public class Account implements Serializable {
 
   public void setBirthday(String birthday) {
     this.birthday = birthday;
+  }
+
+  public BigDecimal getBalance() {
+    return balance;
+  }
+
+  public void setBalance(BigDecimal balance) {
+    this.balance = balance;
   }
 }

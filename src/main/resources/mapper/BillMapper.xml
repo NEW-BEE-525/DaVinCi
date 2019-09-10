@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.davinci.persistence.BillDAO">
+
+    <resultMap id="BaseResultMap" type="Bill">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="user_id" jdbcType="INTEGER" property="user_id" />
+        <result column="goods_id" jdbcType="INTEGER" property="goods_id" />
+        <result column="goods_name" jdbcType="VARCHAR" property="goods_name" />
+        <result column="brief" jdbcType="VARCHAR" property="brief" />
+        <result column="total_amount" jdbcType="DECIMAL" property="total_amount" />
+        <result column="stage_months" jdbcType="INTEGER" property="stage_months" />
+        <result column="brief" jdbcType="INTEGER" property="brief" />
+        <result column="is_payment" jdbcType="TINYINT" property="is_payment" />
+    </resultMap>
+
+   <select id="getBillsByUserId" resultMap="BaseResultMap">
+                SELECT * FROM da_bill WHERE user_id=#{id}
+   </select>
+
+    <insert id="insertBill" parameterType="Bill">
+        INSERT INTO da_bill(user_id,goods_id,goods_name,brief,total_amount,stage_months,repayment_months,is_payment)
+VALUES(#{user_id},#{goods_id},#{goods_name},#{brief},#{total_amount},#{stage_months},#{repayment_months},#{is_payment})
+    </insert>
+</mapper>

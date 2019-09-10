@@ -114,7 +114,7 @@
             right: 30px;
         }
 
-        #img_gallery p{
+        #img_gallery p {
             margin-bottom: 0;
         }
     </style>
@@ -285,7 +285,7 @@
             </p>
             <p>
                 <span style="font-size: 14px;margin-right: 100px">数量</span>
-                <input type="number" class="_1YMqD" style="width: 80px" placeholder="1" id="pnum">
+                <input type="number" class="_1YMqD" style="width: 80px" value="1" id="pnum">
             </p>
 
             <br>
@@ -483,6 +483,40 @@
             document.getElementsByClassName("category_a")[i].style.backgroundColor = "transparent"
         }
     })
+
+    $('.addto_cart').click(function () {
+        var id = "";
+        for (var i = 0; i < document.getElementsByClassName('col').length; i++) {
+            if (document.getElementsByClassName('col')[i].style.borderColor === "red") {
+                id = document.getElementsByClassName('col')[i].getAttribute('name');
+                break;
+            }
+        }
+        var record = {
+            "productId": id,
+            'number': document.getElementById('pnum').value
+        }
+        console.log(record);
+        $.ajax({
+            type: "POST",
+            url: "addCart",
+            datatype: "text",
+            contentType: "application/json",
+            data: JSON.stringify(record),
+            async: true,
+            success: function (result) {
+                if (result=="1")
+                    alert('加入购物车成功！！')
+                else if(result=="-1")
+                    alert('请登录')
+                else
+                    alert('加入购物车失败！！')
+            },
+            error: function (result) {
+
+            }
+        })
+    });
 </script>
 </body>
 </html>

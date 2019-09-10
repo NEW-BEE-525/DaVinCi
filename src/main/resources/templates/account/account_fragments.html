@@ -11,6 +11,7 @@
     <link href="/css/account/personal_center.css" rel="stylesheet">
     <link href="/css/account/my_order_and_bill.css" rel="stylesheet">
     <script src="/js/index_need/jquery.js"></script>
+    <script src="/js/index_need/my_order_and_bill.js"></script>
     <style>
         .header_a:hover {
             color: #FFAC00;
@@ -180,170 +181,88 @@
                                     </div>
                                 </div>
                                 <div class="div_list" style="display: none">
-                                    <div class="order_list">
-                                        <a>
-                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                 width="70px" height="70px" style="vertical-align: unset">
-                                        </a>
-                                        <div class="order_list_textcontent">
-                                            <a>订单编号</a><br><a>订单编号</a><br>
-                                            <a>交易情况</a>
+                                    <div class="rc-tabs rc-tabs-top" id="rc-tabs2">
+                                        <div role="tab" aria-disabled="false" aria-selected="true"
+                                             class="rc-tabs-tab-active rc-tabs-tab" id="above_info2"
+                                             onclick="slide_2()">待付款
+                                        </div>
+                                        <div class="rc-tabs-ink-bar rc-tabs-ink-bar-animated" id="bar_2"
+                                             style="display: block; transform: translate3d(0px, 0px, 0px); width: 96px;">
                                         </div>
                                     </div>
-                                    <div class="order_list">
-                                        <a>
-                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                 width="70px" height="70px" style="vertical-align: unset">
-                                        </a>
-                                        <div class="order_list_textcontent">
-                                            <a>订单编号</a><br><a>订单编号</a><br>
-                                            <a>交易情况</a>
+
+                                    <div class="rc-tabs rc-tabs-top" id="rc-tabs3">
+                                        <div role="tab" aria-disabled="false" aria-selected="true"
+                                             class="rc-tabs-tab-active rc-tabs-tab" id="above_info3"
+                                             onclick="slide_3()">待发货
+                                        </div>
+                                        <div class="rc-tabs-ink-bar rc-tabs-ink-bar-animated" id="bar_3"
+                                             style="display: block; transform: translate3d(0px, 0px, 0px); width: 96px;">
+
                                         </div>
                                     </div>
-                                    <div class="order_list">
-                                        <a>
-                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                 width="70px" height="70px" style="vertical-align: unset">
-                                        </a>
-                                        <div class="order_list_textcontent">
-                                            <a>订单编号</a><br><a>订单编号</a><br>
-                                            <a>交易情况</a>
+
+                                    <div class="rc-tabs rc-tabs-top" id="rc-tabs4">
+                                        <div role="tab" aria-disabled="false" aria-selected="true"
+                                             class="rc-tabs-tab-active rc-tabs-tab" id="above_info4"
+                                             onclick="slide_4()">待收货
+                                        </div>
+                                        <div class="rc-tabs-ink-bar rc-tabs-ink-bar-animated" id="bar_4"
+                                             style="display: block; transform: translate3d(0px, 0px, 0px); width: 96px;">
+
                                         </div>
                                     </div>
-                                    <div class="order_list">
-                                        <a>
-                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                 width="70px" height="70px" style="vertical-align: unset">
-                                        </a>
-                                        <div class="order_list_textcontent">
-                                            <a>订单编号</a><br><a>订单编号</a><br>
-                                            <a>交易情况</a>
+
+                                    <div class="rc-tabs rc-tabs-top" id="rc-tabs5">
+                                        <div role="tab" aria-disabled="false" aria-selected="true"
+                                             class="rc-tabs-tab-active rc-tabs-tab" id="above_info5"
+                                             onclick="slide_5()">待评价
+                                        </div>
+                                        <div class="rc-tabs-ink-bar rc-tabs-ink-bar-animated" id="bar_5"
+                                             style="display: block; transform: translate3d(0px, 0px, 0px); width: 96px;">
+
                                         </div>
                                     </div>
-                                    <div class="order_list">
-                                        <a>
-                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                 width="70px" height="70px" style="vertical-align: unset">
-                                        </a>
-                                        <div class="order_list_textcontent">
-                                            <a>订单编号</a><br><a>订单编号</a><br>
-                                            <a>交易情况</a>
+
+                                    <div class="order_catalog">
+
+                                        <div class="baobei">
+                                            <span>宝贝</span>
+                                        </div>
+
+                                        <div class="unicost">
+                                            <span>单价</span>
+                                        </div>
+
+                                        <div class="count">
+                                            <span>数量</span>
+                                        </div>
+
+                                        <div class="amount">
+                                            <span>实付款</span>
+                                        </div>
+
+                                        <div class="stus">
+                                            <select>
+                                                <option value="volvo">交易状态</option>
+                                                <option value="saab">等待买家付款</option>
+                                                <option value="opel">买家已付款</option>
+                                                <option value="audi">交易成功</option>
+                                                <option value="audi">交易失败</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="operate">
+                                            <span>交易操作</span>
                                         </div>
                                     </div>
-                                    <div class="order_list">
-                                        <a>
-                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                 width="70px" height="70px" style="vertical-align: unset">
-                                        </a>
-                                        <div class="order_list_textcontent">
-                                            <a>订单编号</a><br><a>订单编号</a><br>
-                                            <a>交易情况</a>
-                                        </div>
+
+
+                                    <div id="orders">
                                     </div>
                                 </div>
                                 <div class="div_list" style="display: none">
-                                    <div class="bill_list">
-                                        <a>
-                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                 width="70px" height="70px" style="vertical-align: unset">
-                                        </a>
-                                        <div class="bill_list_textcontent">
-                                            <a>
-                                                <h3>交易物品：XXXX</h3>
-                                                <h4>交易时间：XXX：XXX：XXX</h4>
-                                            </a>
-                                        </div>
-                                        <div class="bill_price">
-                                            <h1>+0.01</h1>
-
-                                        </div>
-                                    </div>
-                                    <div class="bill_list">
-                                        <a>
-                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                 width="70px" height="70px" style="vertical-align: unset">
-                                        </a>
-                                        <div class="bill_list_textcontent">
-                                            <h3>交易物品：XXXX</h3>
-                                            <h4>交易时间：XXX：XXX：XXX</h4>
-
-                                        </div>
-                                        <div class="bill_price">
-                                            <h1>+0.01</h1>
-
-                                        </div>
-                                    </div>
-                                    <div class="bill_list">
-                                        <a>
-                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                 width="70px" height="70px" style="vertical-align: unset">
-                                        </a>
-                                        <div class="bill_list_textcontent">
-                                            <h3>交易物品：XXXX</h3>
-                                            <h4>交易时间：XXX：XXX：XXX</h4>
-                                        </div>
-                                        <div class="bill_price">
-                                            <h1>+0.01</h1>
-
-                                        </div>
-                                    </div>
-                                    <div class="bill_list">
-                                        <a>
-                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                 width="70px" height="70px" style="vertical-align: unset">
-                                        </a>
-                                        <div class="bill_list_textcontent">
-                                            <h3>交易物品：XXXX</h3>
-                                            <h4>交易时间：XXX：XXX：XXX</h4>
-                                        </div>
-                                        <div class="bill_price">
-                                            <h1>+0.01</h1>
-
-                                        </div>
-                                    </div>
-                                    <div class="bill_list">
-                                        <a>
-                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                 width="70px" height="70px" style="vertical-align: unset">
-                                        </a>
-                                        <div class="bill_list_textcontent">
-                                            <h3>交易物品：XXXX</h3>
-                                            <h4>交易时间：XXX：XXX：XXX</h4>
-                                        </div>
-                                        <div class="bill_price">
-                                            <h1>+0.01</h1>
-
-                                        </div>
-                                    </div>
-                                    <div class="bill_list">
-                                        <a>
-                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                 width="70px" height="70px" style="vertical-align: unset">
-                                        </a>
-                                        <div class="bill_list_textcontent">
-                                            <h3>交易物品：XXXX</h3>
-                                            <h4>交易时间：XXX：XXX：XXX</h4>
-                                        </div>
-                                        <div class="bill_price">
-                                            <h1>+0.01</h1>
-
-                                        </div>
-                                    </div>
-                                    <div class="bill_list">
-                                        <a>
-                                            <img src="https://res-static.shiguangkey.com/file/udb/user/20190823/18/20190823185731585463229.jpg"
-                                                 width="70px" height="70px" style="vertical-align: unset">
-                                        </a>
-                                        <div class="bill_list_textcontent">
-                                            <a>
-                                                <h3>交易物品：XXXX</h3>
-                                                <h4>交易时间：XXX：XXX：XXX</h4>
-                                            </a>
-                                        </div>
-                                        <div class="bill_price">
-                                            <h1>+0.01</h1>
-
-                                        </div>
+                                    <div id="bills">
                                     </div>
                                 </div>
                                 <div class="div_list" style="display: none">
@@ -663,6 +582,97 @@
                         document.getElementById("preview").setAttribute("src", "data:image/jpg;base64," + data["avatar"]);
                         console.log(data["birthday"]);
                         document.getElementsByName("birthday")[0].value = data["birthday"];
+                        break;
+                    case 1:
+                        var Str = "";
+                        var orderList = data["orderList"];
+                        for (var i = 0; i < orderList.length; i++) {
+                            Str += "<div class = \"order_id\">\n" +
+                                "<label class=\"date_check\"><input name=\"Date\" type=\"checkbox\"/></label>\n" +
+                                "<span class=\"order_date\"></span>\n" +
+                                "<span class=\"ord_id\" >" + orderList[i].id + "</span>\n" +
+                                "</div> <table class=\"order_table\">\n" +
+                                "<tr>\n" +
+                                " <td class=\"order_product\">\n" +
+                                "<a  class=\"product_pic\" >\n" +
+                                "<img class=\"order_pic\" name='111'\n" +
+                                "width=\"80px\" height=\"80px\" style=\"vertical-align: unset\">\n" +
+                                "</a>\n" +
+                                "</td>\n" +
+                                " <td class=\"order_descn\">\n" + orderList[i].goodsList[0]["goodsName"] +
+                                "<div class=\"product_descn\">\n" +
+                                "<span class = \"descn\"></span>\n" +
+                                "</div>\n" +
+                                "</td>\n" +
+                                "<td  class=\"product_unicost\">\n" + orderList[i].actualPrice +
+                                "<span class=\"unicost_product\"></span>\n" +
+                                "</td>\n" +
+                                "<td  class=\"product_count\">\n" + orderList[i].goodsList[0]["number"] +
+                                " <span class=\"count_product\"></span>\n" +
+                                "</td>\n" +
+                                "\n" +
+                                " <td  class=\"product_amount\">\n" + orderList[i].actualPrice +
+                                "<span class=\"amount_product\" ></span>\n" +
+                                "</td>\n" +
+                                "<td  class=\"product_stuts\" >\n" + orderList[i].orderStatusText +
+                                " <span class=\"stuts_product\"></span>\n" +
+                                " </td>\n" +
+                                "\n" +
+                                "<td  class=\"product_operate\">\n" + "#" +
+                                "<span class=\"operate_product\"></span>\n" +
+                                "</td>\n" +
+                                "</tr>\n" +
+                                "\n" +
+                                "</table>";
+                        }
+                        document.getElementById("orders").innerHTML = Str;
+
+                        for (var j = 0; j < orderList.length; j++) {
+                            document.getElementsByClassName("order_pic")[j].setAttribute("src", "data:image/png;base64," + orderList[j].goodsList[0]["picUrl"]);
+                        }
+                        break;
+                    case 2:
+                        var account = data["account"];
+                        var billList = data["billList"];
+                        var Str = "<div class=\"baitiao\">\n" +
+                            "<div class=\"edu\">\n" +
+                            "<span>可用额度:</span>\n" +
+                            "\n" +
+                            "</div>\n" +
+                            "<div class=\"edu_money\">\n" + account["balance"]
+                            +
+                            "</div>\n" +
+                            "\n" +
+                            "<div class=\"edu\">\n" +
+                            "<span>总额度</span>\n" + (7000 - 1000 * account["user_level"]) +
+                            "</div>\n" +
+                            "<div class=\"edu_money\">\n" +
+                            "3000$\n" +
+                            "</div>\n" +
+                            "\n" +
+                            "</div>\n" +
+                            "\n" ;
+                        for (var i = 0; i < billList.length; i++) {
+
+                            Str +=
+                                "<div class=\"bill_list\">\n" +
+                                "<div class=\"bill_list_textcontent\">\n" +
+                                "<h3>商品名称: <span class =\"product_name\">" + billList[i]["goods_name"]+ "</span></h3>\n"+
+                                "<h4>商品简介：<span class =\"product_belif\">" + billList[i]["brief"]+ "</span></h4>\n"+
+                                "</div>\n" +
+                                "\n" +
+                                "<div class=\"bill_price\">\n" +
+                                "<h3>每月还款：<span class =\"product_month\">" + (billList[i]["total_amount"] / billList[i]["stage_months"]) +  "</span></h3>\n"+
+                            "</div>\n" +
+                                "<h3>应还几个月：<span class =\"product_month_count\">" +billList[i]["repayment_months"] + "</span></h3>\n"+
+                            "</div>\n" +
+                                "\n" +
+                                "<a class =\"product_pay\">\n" +
+                                "一键还款\n" +
+                                "</a>\n" +
+                                "</div>\n" ;
+                        }
+                        document.getElementById("bills").innerHTML = Str;
                         break;
                 }
             })
