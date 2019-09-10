@@ -424,6 +424,8 @@
     $("#CKXQ").click(function () {
         document.getElementById("cover").style.display = "none";
         document.getElementsByClassName("pay_img")[0].style.display = "none";
+        document.getElementById("real_pay").style.display = 'none';
+        document.getElementById('pay_way_div').style.display = 'none';
     })
 
     $('.category_a').hover(function () {
@@ -581,6 +583,8 @@
                     alert("支付成功")
                     document.getElementById("pay_password").style.display = "none";
                     document.getElementById("cover").style.display = "none";
+                    document.getElementById("real_pay").style.display = 'none';
+                    document.getElementById('pay_way_div').style.display = 'none';
                 } else if (data == "-1") {
                     alert("白条余额不足")
                     document.getElementById("pay_password").style.display = "none";
